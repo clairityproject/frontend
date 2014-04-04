@@ -6,12 +6,10 @@
 //Only get latest datapoint
 //Differentiate inside vs. outside nodes
 //Resize map when in corner
-
-//Currently working - 4.3.14
+//Fix Attribution
 
 var serverNodesURL = "http://ec2-54-186-224-108.us-west-2.compute.amazonaws.com/api/v1/node/";
 var serverDataURL = "http://ec2-54-186-224-108.us-west-2.compute.amazonaws.com/api/v1/datapoint/";
-
 
 var sensors = [];
 var new_sensor;
@@ -38,6 +36,7 @@ function sensor(lat,lon,location) {
 }
 
 function RequestNodes() {
+	console.log("Requesting Datapoints");
 	$.getJSON(serverNodesURL, function (data) {
 		for(i=0; i<data["objects"].length; i++){
 			new_sensor = new sensor(data["objects"][i]["location"]["latitude"],data["objects"][i]["location"]["longitude"],data["objects"][i]["location"]["name"]);
@@ -116,7 +115,6 @@ function displayHover(i){
 	$(".alpha4").html("Alphasense 4: "+String(sensors[i].alpha4));
 	$(".temp").html("Temperature: "+String(sensors[i].temp));
 };
-
 
 $(document).ready(function(){
 	RequestNodes();
