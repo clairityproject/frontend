@@ -7,8 +7,11 @@
 //Differentiate inside vs. outside nodes
 //Resize map when in corner
 
-var serverNodesURL = "http://ec2-54-201-87-182.us-west-2.compute.amazonaws.com/api/v1/node/";
-var serverDataURL = "http://ec2-54-201-87-182.us-west-2.compute.amazonaws.com/api/v1/datapoint/";
+//Currently working - 4.3.14
+
+var serverNodesURL = "http://ec2-54-186-224-108.us-west-2.compute.amazonaws.com/api/v1/node/";
+var serverDataURL = "http://ec2-54-186-224-108.us-west-2.compute.amazonaws.com/api/v1/datapoint/";
+
 
 var sensors = [];
 var new_sensor;
@@ -114,21 +117,23 @@ function displayHover(i){
 	$(".temp").html("Temperature: "+String(sensors[i].temp));
 };
 
-$(document).ready(function(){
 
+$(document).ready(function(){
 	RequestNodes();
 	RequestDatapoints();
 	var reset = setInterval(function() {RequestDatapoints()}, update_int);
 
     //Leaflet Map
-    var sWBound = L.latLng(42.365901,-71.079440);
-    var nEBound = L.latLng(42.350901,-71.107550);
-	var map = L.map("map", {minZoom: 14, maxBounds:[sWBound,nEBound], zoomControl: false });
+    var googleLayer = new L.Google('ROADMAP');
+
+	var sWBound = L.latLng(42.365901,-71.079440);
+	var nEBound = L.latLng(42.350901,-71.107550);
+	var map = new L.Map('map', {minZoom: 14, maxBounds:[sWBound,nEBound], zoomControl: false, layers: [googleLayer] });
 	map.setView([42.359200, -71.091950], 16);
-	L.tileLayer('http://tile.cloudmade.com/440e7bdbfe0444b18cca210e9cb056c5/997/256/{z}/{x}/{y}.png', { attribution:'Map data &copy CloudMade'} ).addTo(map);
+
+	map.addLayer(googleLayer);
 	var zoomBar = L.control.zoom({ position: 'topleft' }).addTo(map);
-	
-	
+
 	map.touchZoom.disable();
 	map.dragging.disable();
 	map.doubleClickZoom.disable();
@@ -153,6 +158,7 @@ $(document).ready(function(){
 			sensors[i].circ.on('mouseout', function(evt){
 				evt.target.closePopup();
 			});
+
 			sensors[i].circ.on('click', function(evt){
 				moveMap();
 			});
@@ -161,17 +167,20 @@ $(document).ready(function(){
 	}
 
 	var draw = setTimeout(function() {drawNodes()}, 500);
+	//var pan = setTimeout(function() {map.panTo([30,-60])}, 2000);
 
 	function moveMap(){
 		if(mapBig){
+			//map.setZoom(15);
 			$("#map").animate({
-				height: "120px",
-				width: "120px"
+				height: "200px",
+				width: "400px"
 			},750);
 			mapBig = false;
 			map.attributionControl.removeAttribution('Map data &copy CloudMade');
 			map.removeControl(zoomBar);
-			//map.setView([42.359200, -71.091950], 16);
+			//map.panTo([42.35300, -71.083000]);
+			//map.setZoom(15);
 		}
 	}
 
@@ -184,7 +193,9 @@ $(document).ready(function(){
 			mapBig = true;
 			map.attributionControl.addAttribution('Map data &copy CloudMade');
 			map.addControl(zoomBar);
+			map.setView([42.359200, -71.091950], 16);
 		}
 	});
+
 
 });
