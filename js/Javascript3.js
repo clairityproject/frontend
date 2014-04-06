@@ -1,3 +1,5 @@
+// In Front End
+
 //TO DO:
 //Fix timing - split into multiple threads
 //Fix map bounds
@@ -6,8 +8,14 @@
 //Only get latest datapoint
 //Differentiate inside vs. outside nodes
 //Resize map when in corner
+//Fix Attribution
 
+<<<<<<< HEAD
 var serverNodesURL = "http://ec2-54-186-224-108.us-west-2.compute.amazonaws.com/api/v1/node/";
+=======
+var serverNodesURL = "http://ec2-54-186-224-108.us-west-2.compute.amazonaws.com/api/v1/node/"
+//http://ec2-54-187-18-145.us-west-2.compute.amazonaws.com/api/v1/node/";
+>>>>>>> Map-Edits
 var serverDataURL = "http://ec2-54-186-224-108.us-west-2.compute.amazonaws.com/api/v1/datapoint/";
 
 var sensors = [];
@@ -39,12 +47,18 @@ function RequestNodes() {
 		for(i=0; i<data["objects"].length; i++){
 			new_sensor = new sensor(data["objects"][i]["location"]["latitude"],data["objects"][i]["location"]["longitude"],data["objects"][i]["location"]["name"]);
     		sensors.push(new_sensor);
+    		console.log("nodes Drawn is being set to true")
     		nodesDrawn = true;
 		}
 	});
+	//while(!nodesDrawn){
+		//wait
+	//	}
+	//RequestDatapoints();
 }
 
 function RequestDatapoints() {
+	console.log("nodes Drawn is being read")
 	if(nodesDrawn){
 		$.getJSON(serverDataURL, function (data) {
 			for(i=0; i<data["objects"].length; i++){
@@ -115,20 +129,20 @@ function displayHover(i){
 };
 
 $(document).ready(function(){
-
 	RequestNodes();
-	RequestDatapoints();
 	var reset = setInterval(function() {RequestDatapoints()}, update_int);
 
     //Leaflet Map
-    var sWBound = L.latLng(42.365901,-71.079440);
-    var nEBound = L.latLng(42.350901,-71.107550);
-	var map = L.map("map", {minZoom: 14, maxBounds:[sWBound,nEBound], zoomControl: false });
+    var googleLayer = new L.Google('ROADMAP');
+
+	var sWBound = L.latLng(42.365901,-71.079440);
+	var nEBound = L.latLng(42.350901,-71.107550);
+	var map = new L.Map('map', {minZoom: 14, maxBounds:[sWBound,nEBound], zoomControl: false, layers: [googleLayer] });
 	map.setView([42.359200, -71.091950], 16);
-	L.tileLayer('http://tile.cloudmade.com/440e7bdbfe0444b18cca210e9cb056c5/997/256/{z}/{x}/{y}.png', { attribution:'Map data &copy CloudMade'} ).addTo(map);
+
+	map.addLayer(googleLayer);
 	var zoomBar = L.control.zoom({ position: 'topleft' }).addTo(map);
-	
-	
+
 	map.touchZoom.disable();
 	map.dragging.disable();
 	map.doubleClickZoom.disable();
@@ -142,6 +156,7 @@ $(document).ready(function(){
 	    		fillColor: "#f03",
 	    		fillOpacity: 0.75
 			}).addTo(map);
+			
 
 			sensors[i].circ.number = i;
 	
@@ -153,6 +168,7 @@ $(document).ready(function(){
 			sensors[i].circ.on('mouseout', function(evt){
 				evt.target.closePopup();
 			});
+
 			sensors[i].circ.on('click', function(evt){
 				moveMap();
 			});
@@ -161,17 +177,19 @@ $(document).ready(function(){
 	}
 
 	var draw = setTimeout(function() {drawNodes()}, 500);
+	//var pan = setTimeout(function() {map.panTo([30,-60])}, 2000);
 
 	function moveMap(){
 		if(mapBig){
+			//map.setZoom(15);
 			$("#map").animate({
-				height: "120px",
-				width: "120px"
+				height: "200px",
+				width: "400px"
 			},750);
 			mapBig = false;
-			map.attributionControl.removeAttribution('Map data &copy CloudMade');
 			map.removeControl(zoomBar);
-			//map.setView([42.359200, -71.091950], 16);
+			//map.panTo([42.35300, -71.083000]);
+			//map.setZoom(15);
 		}
 	}
 
@@ -182,8 +200,8 @@ $(document).ready(function(){
 					width: "70%"
 				},750);
 			mapBig = true;
-			map.attributionControl.addAttribution('Map data &copy CloudMade');
 			map.addControl(zoomBar);
+			map.setView([42.359200, -71.091950], 16);
 		}
 	});
 
