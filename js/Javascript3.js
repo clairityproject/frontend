@@ -1,3 +1,5 @@
+// In Front End
+
 //TO DO:
 //Fix timing - split into multiple threads
 //Fix map bounds
@@ -8,7 +10,8 @@
 //Resize map when in corner
 //Fix Attribution
 
-var serverNodesURL = "http://ec2-54-186-224-108.us-west-2.compute.amazonaws.com/api/v1/node/";
+var serverNodesURL = "http://ec2-54-186-224-108.us-west-2.compute.amazonaws.com/api/v1/node/"
+//http://ec2-54-187-18-145.us-west-2.compute.amazonaws.com/api/v1/node/";
 var serverDataURL = "http://ec2-54-186-224-108.us-west-2.compute.amazonaws.com/api/v1/datapoint/";
 
 var sensors = [];
@@ -36,17 +39,22 @@ function sensor(lat,lon,location) {
 }
 
 function RequestNodes() {
-	console.log("Requesting Datapoints");
 	$.getJSON(serverNodesURL, function (data) {
 		for(i=0; i<data["objects"].length; i++){
 			new_sensor = new sensor(data["objects"][i]["location"]["latitude"],data["objects"][i]["location"]["longitude"],data["objects"][i]["location"]["name"]);
     		sensors.push(new_sensor);
+    		console.log("nodes Drawn is being set to true")
     		nodesDrawn = true;
 		}
 	});
+	//while(!nodesDrawn){
+		//wait
+	//	}
+	//RequestDatapoints();
 }
 
 function RequestDatapoints() {
+	console.log("nodes Drawn is being read")
 	if(nodesDrawn){
 		$.getJSON(serverDataURL, function (data) {
 			for(i=0; i<data["objects"].length; i++){
@@ -118,7 +126,6 @@ function displayHover(i){
 
 $(document).ready(function(){
 	RequestNodes();
-	RequestDatapoints();
 	var reset = setInterval(function() {RequestDatapoints()}, update_int);
 
     //Leaflet Map
@@ -145,6 +152,7 @@ $(document).ready(function(){
 	    		fillColor: "#f03",
 	    		fillOpacity: 0.75
 			}).addTo(map);
+			
 
 			sensors[i].circ.number = i;
 	
@@ -194,6 +202,5 @@ $(document).ready(function(){
 			map.setView([42.359200, -71.091950], 16);
 		}
 	});
-
 
 });
