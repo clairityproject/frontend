@@ -183,7 +183,6 @@ $(document).ready(function(){
 				width: "400px"
 			},750);
 			mapBig = false;
-			map.attributionControl.removeAttribution('Map data &copy CloudMade');
 			map.removeControl(zoomBar);
 			//map.panTo([42.35300, -71.083000]);
 			//map.setZoom(15);
@@ -197,7 +196,6 @@ $(document).ready(function(){
 					width: "70%"
 				},750);
 			mapBig = true;
-			map.attributionControl.addAttribution('Map data &copy CloudMade');
 			map.addControl(zoomBar);
 			map.setView([42.359200, -71.091950], 16);
 		}
