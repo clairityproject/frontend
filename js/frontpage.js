@@ -177,6 +177,7 @@ $(document).ready(function(){
 				height: "100px",
 				width: "100px"
 			},750);
+			$(".graph").css("visibility","visible");
 			mapBig = false;
 			map.removeControl(zoomBar);
 			//map.panTo([42.35300, -71.083000]);
@@ -190,6 +191,7 @@ $(document).ready(function(){
 					height: "450px",
 					width: "70%"
 				},750);
+			$(".graph").css("visibility","hidden");
 			mapBig = true;
 			map.addControl(zoomBar);
 			map.setView([42.359200, -71.091950], 16);
