@@ -11,7 +11,7 @@
 
 var serverNodesURL = "http://ec2-54-186-224-108.us-west-2.compute.amazonaws.com/api/v1/node/"
 //http://ec2-54-187-18-145.us-west-2.compute.amazonaws.com/api/v1/node/";
-var serverDataURL = "http://ec2-54-186-224-108.us-west-2.compute.amazonaws.com/api/v1/datapoint/";
+var serverDataURL = "http://ec2-54-187-18-145.us-west-2.compute.amazonaws.com/api/v1/datapoint/";
 
 var sensors = [];
 var new_sensor;
