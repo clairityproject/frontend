@@ -42,10 +42,8 @@ function RequestNodes() {
 		for(i=0; i<data["objects"].length; i++){
 			new_sensor = new sensor(data["objects"][i]["location"]["latitude"],data["objects"][i]["location"]["longitude"],data["objects"][i]["location"]["name"]);
     		sensors.push(new_sensor);
-    		console.log("nodes Drawn is being set to true")
     		nodesDrawn = true;
 		}
-		console.log(sensors);
 	});
 	//while(!nodesDrawn){
 		//wait
@@ -54,7 +52,6 @@ function RequestNodes() {
 }
 
 function RequestDatapoints() {
-	console.log("nodes Drawn is being read")
 	if(nodesDrawn){
 		$.getJSON(serverDataURL, function (data) {
 			for(i=0; i<data["objects"].length; i++){
@@ -146,7 +143,6 @@ $(document).ready(function(){
 
 	//Nodes
 	function drawNodes(){
-		console.log("Drawing nodes");
 		for(var i=0; i<sensors.length; i++){
 			sensors[i].circ = L.circle([sensors[i].lat,sensors[i].lon], 16, {
 	    		color: 'red',
@@ -178,8 +174,8 @@ $(document).ready(function(){
 		if(mapBig){
 			//map.setZoom(15);
 			$("#map").animate({
-				height: "200px",
-				width: "400px"
+				height: "100px",
+				width: "100px"
 			},750);
 			mapBig = false;
 			map.removeControl(zoomBar);
