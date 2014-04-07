@@ -24,7 +24,9 @@ var alpha1_thresholds = [100, 500, 900, 1300, 1500];
 var alpha2_thresholds = [100, 500, 900, 1300, 1500];
 var alpha3_thresholds = [100, 500, 900, 1300, 1500];
 var alpha4_thresholds = [100, 500, 900, 1300, 1500];
-var alpha_thresholds = [alpha1_thresholds, alpha2_thresholds, alpha3_thresholds, alpha4_thresholds];
+var pm25_thresholds = [100, 500, 900, 1300, 1500];
+var pm10_thresholds = [100, 500, 900, 1300, 1500];
+var alpha_thresholds = [alpha1_thresholds, alpha2_thresholds, alpha3_thresholds, alpha4_thresholds, pm25_thresholds, pm10_thresholds];
 
 function sensor(lat,lon,location) {
 	this.lat = lat;
@@ -35,6 +37,9 @@ function sensor(lat,lon,location) {
 	this.alpha3 = null;
 	this.alpha4 = null;
 	this.color = 0; // 0 = green, 1 = yellow, 2 = orange, 3 = red
+	this.pm25 = null;
+	this.pm10 = null;
+	
 }
 
 function RequestNodes() {
@@ -85,6 +90,15 @@ function addAlphasenseData(i,j,data){
 		var toAdd = data["objects"][i]["alphasense_4"];
 		sensors[i].alpha4 = toAdd;
 		findColor(i,toAdd);
+	case 5:
+		var toAdd = data["objects"][i]["pm25"];
+		sensors[i].pm25 = toAdd;
+		findColor(i,toAdd);
+	case 6:
+		var toAdd = data["objects"][i]["pm10"];
+		sensors[i].pm10 = toAdd;
+		findColor(i,toAdd);
+		
 	}
 }
 
@@ -114,11 +128,11 @@ function setColor(){
 
 function displayHover(i){
 	$("#locationheader").html("Location: "+String(sensors[i].location));
-	$(".alpha1").html("Alphasense 1: "+String(sensors[i].alpha1));
-	$(".alpha2").html("Alphasense 2: "+String(sensors[i].alpha2));
-	$(".alpha3").html("Alphasense 3: "+String(sensors[i].alpha3));
-	$(".alpha4").html("Alphasense 4: "+String(sensors[i].alpha4));
-	$(".temp").html("Temperature: "+String(sensors[i].temp));
+	$(".alpha1").html("Nitrogen Dioxide (NO2) "+String(sensors[i].alpha1));
+	$(".alpha2").html("Ozone (O3) "+String(sensors[i].alpha2));
+	$(".alpha3").html("Carbon Monoxide (CO) "+String(sensors[i].alpha3));
+	$(".alpha4").html("Nitric Oxide (NO) "+String(sensors[i].alpha4));
+	$(".temp").html("Temperature "+String(sensors[i].temp));
 };
 
 $(document).ready(function(){
