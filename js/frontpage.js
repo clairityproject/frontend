@@ -1,7 +1,6 @@
 // In Front End
 
 //TO DO:
-//Fix timing - split into multiple threads
 //Fix map bounds
 //Fix hover area
 //Add PM and Last updated
