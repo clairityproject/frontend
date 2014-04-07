@@ -46,6 +46,7 @@ function RequestNodes() {
     		console.log("nodes Drawn is being set to true")
     		nodesDrawn = true;
 		}
+		console.log(sensors);
 	});
 	//while(!nodesDrawn){
 		//wait
@@ -146,13 +147,13 @@ $(document).ready(function(){
 
 	//Nodes
 	function drawNodes(){
+		console.log("Drawing nodes");
 		for(var i=0; i<sensors.length; i++){
 			sensors[i].circ = L.circle([sensors[i].lat,sensors[i].lon], 16, {
 	    		color: 'red',
 	    		fillColor: "#f03",
 	    		fillOpacity: 0.75
 			}).addTo(map);
-			
 
 			sensors[i].circ.number = i;
 	
@@ -173,7 +174,6 @@ $(document).ready(function(){
 	}
 
 	var draw = setTimeout(function() {drawNodes()}, 500);
-	//var pan = setTimeout(function() {map.panTo([30,-60])}, 2000);
 
 	function moveMap(){
 		if(mapBig){

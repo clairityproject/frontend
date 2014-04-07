@@ -23,3 +23,10 @@ html{font-family:sans-serif;-ms-text-size-adjust:100%;-webkit-text-size-adjust:1
 	width: 25%;
 }
 
+.leaflet-google-layer{
+	z-index: 0;
+}
+
+.leaflet-map-pane{
+	z-index: 100;
+}
