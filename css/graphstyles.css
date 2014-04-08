@@ -1,3 +1,9 @@
 .graph{
-	visibility:hidden;
+}
+
+#graphcontainer{
+	visibility: hidden;
+	width: 0px;
+	height: 0px;
+	border: 1px solid #999;
 }

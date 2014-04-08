@@ -193,7 +193,8 @@ $(document).ready(function(){
 				height: "100px",
 				width: "100px"
 			},750);
-			$(".graph").css("visibility","visible");
+			$("#graphcontainer").css("visibility","visible","height","400px","width","95%");
+			$("#valuesTable").css("visibility","hidden");
 			mapBig = false;
 			map.removeControl(zoomBar);
 			//map.panTo([42.35300, -71.083000]);
@@ -204,10 +205,10 @@ $(document).ready(function(){
 	$('#map').click(function(){
 		if(!mapBig){
 			$(this).animate({
-					height: "450px",
+					height: "800px",
 					width: "70%"
 				},750);
-			$(".graph").css("visibility","hidden");
+			$("#graphcontainer").css("visibility","initial");
 			mapBig = true;
 			map.addControl(zoomBar);
 			map.setView([42.359200, -71.091950], 16);
