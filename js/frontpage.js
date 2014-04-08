@@ -133,6 +133,8 @@ function displayHover(i){
 	$(".alpha3").html("Carbon Monoxide (CO) "+String(sensors[i].alpha3));
 	$(".alpha4").html("Nitric Oxide (NO) "+String(sensors[i].alpha4));
 	$(".temp").html("Temperature "+String(sensors[i].temp));
+	$(".rh").html("Relative Humidity "+String(sensors[i].rh));
+	
 };
 
 $(document).ready(function(){
