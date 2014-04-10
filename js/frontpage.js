@@ -3,7 +3,7 @@
 //TO DO:
 //Fix map bounds
 //Fix hover area
-//Add PM and Last updated
+//Last updated
 //Only get latest datapoint
 //Differentiate inside vs. outside nodes
 //Resize map when in corner
@@ -208,7 +208,7 @@ $(document).ready(function(){
 					height: "800px",
 					width: "70%"
 				},750);
-			$("#graphcontainer").css("visibility","initial");
+			$("#graphcontainer").css("visibility","initial","height","0px","width","0px");
 			mapBig = true;
 			map.addControl(zoomBar);
 			map.setView([42.359200, -71.091950], 16);
