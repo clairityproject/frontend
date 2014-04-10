@@ -6,8 +6,8 @@
 //Last updated
 //Only get latest datapoint
 //Differentiate inside vs. outside nodes
-//Resize map when in corner
 //Fix Attribution
+//Graph Popup
 
 var serverNodesURL = "http://ec2-54-186-224-108.us-west-2.compute.amazonaws.com/api/v1/node/"
 //http://ec2-54-187-18-145.us-west-2.compute.amazonaws.com/api/v1/node/";
@@ -126,8 +126,8 @@ function setColor(){
 }
 
 
-function displayHover(i){
-	$("#locationheader").html("Location: "+String(sensors[i].location));
+function displaySidebar(i){
+	$("#locationheader").html(String(sensors[i].location));
 	$(".alpha1").html("Nitrogen Dioxide (NO2) "+String(sensors[i].alpha1));
 	$(".alpha2").html("Ozone (O3) "+String(sensors[i].alpha2));
 	$(".alpha3").html("Carbon Monoxide (CO) "+String(sensors[i].alpha3));
@@ -171,14 +171,14 @@ $(document).ready(function(){
 			sensors[i].circ.bindPopup(sensors[i].location, {closeButton: false});
 			sensors[i].circ.on('mouseover', function(evt) {
 				evt.target.openPopup();
-				displayHover(this.number);
 			});
 			sensors[i].circ.on('mouseout', function(evt){
 				evt.target.closePopup();
 			});
 
 			sensors[i].circ.on('click', function(evt){
-				moveMap();
+				displaySidebar(this.number);
+				//this.setStyle({fillColor: "#FF0000"});
 			});
 
 		};

@@ -1,0 +1,136 @@
+<!--wireframe3-->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>CLAIRITY</title>
+    
+    <script src="https://code.jquery.com/jquery-2.1.0.min.js"></script>
+
+	<!--Leaflet Links-->
+	<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.2/leaflet.css" />
+	<script src="http://cdn.leafletjs.com/leaflet-0.7.2/leaflet.js"></script>
+	
+	<!--GoogleMaps Links-->
+	<script src="http://maps.google.com/maps/api/js?v=3.2&sensor=false"></script>
+    <script src="http://matchingnotes.com/javascripts/leaflet-google.js"></script>
+	
+	<!--JQuery Links-->
+	<!--script src="http://code.jquery.com/ui/1.9.2/jquery-ui.js"></script-->
+
+    <!-- Bootstrap -->
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+    <link href="../css/graphstyles.css" rel="stylesheet">
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="../js/bootstrap.min.js"></script>
+    
+	<!--<script src="js/jquery.malihu.PageScroll2id.min.js"></script>-->
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  
+
+  <body>
+  	<!-- Navigation Bar -->
+    <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+	<div class="container">
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+				<span class="sr-ony">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			
+		<!--	<a class="navbar-brand" href="#">CLAIRITY</a> -->
+		</div>
+		<!--
+		<img id="logo" src="http://www.imageurlhost.com/images/c18mcu6qxhmpgzx7rkf.jpg" alt="Clairity Logo" align=left>
+		-->
+		<div class="collapse navbar-collapse">
+			
+			<ul class="nav navbar-nav">
+				<li class="active"><a href="#">Home</a></li>
+				<li><a href="#about" rel="m_PageScroll2id">About</a></li>
+				<li><a href="#aqi" rel="m_PageScroll2id">AQI</a></li>
+				<li><a href="#pollutants" rel="m_PageScroll2id">Pollutants</a></li>
+				<li><a href="#contact" rel="m_PageScroll2id">Contact</a></li>
+				<li><a href="https://cee.mit.edu/">MIT CEE</a></li>
+			</ul>
+		</div>
+	</div>
+    </div>
+    
+    <!--
+    <div class="jumbotron">
+		<img id="logo" src="http://www.imageurlhost.com/images/c18mcu6qxhmpgzx7rkf.jpg" alt="Clairity Logo">
+	</div>
+	-->
+	
+	<!-- MAP SECTION -->
+
+	<div>
+		<div class="col-md-3" id="valuesTable">
+			<table>
+			<tr>
+				<th id="locationheader"></th>
+			</tr>
+			<tr>
+				<td class="temp">Temperature</td>
+			</tr>
+			<tr>
+				<td class="alpha1">Alphasense1</td>
+			</tr>
+			<tr>
+				<td class="alpha2">Alphasense2</td>
+			</tr>
+			<tr>
+				<td class="alpha3">Alphasense3</td>
+			</tr>
+			<tr>
+				<td class="alpha4">Alphasense4</td>
+			</tr>
+			</table>
+
+			<button type="button" id="graphButton">See More</button>
+		</div>
+
+	</div>
+	<div id="map"></div>
+
+	
+<!--GRAPH SECTION-->
+	<div>
+
+			<button id="make100" class="graph">100 points</button>
+			<button id="make200" class="graph">200 points</button>
+			<button id="make400" class="graph">400 points</button>
+
+			<div>
+				<div id="container1" class="graph"></div>
+			</div>
+
+	</div>
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="../js/bootstrap.min.js"></script>
+    <script src="../js/frontpage.js"></script>
+    <script type="text/javascript" src="../js/createGraphs.js"></script>
+    <script src="https://code.jquery.com/jquery-2.1.0.min.js"></script>
+    <script src="http://code.highcharts.com/highcharts.js"></script>
+	<script src="js/jquery.malihu.PageScroll2id.min.js"></script>
+    
+  </body>
+</html>
+
