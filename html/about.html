@@ -20,12 +20,15 @@
 	<!--script src="http://code.jquery.com/ui/1.9.2/jquery-ui.js"></script-->
 
     <!-- Bootstrap -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link href="css/graphstyles.css" rel="stylesheet">
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+    <link href="../css/graphstyles.css" rel="stylesheet">
 
+	<link href="../css/about.css" rel="stylesheet">
+	
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="js/bootstrap.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
+    <script src="../js/about.js"></script>
     
 	<!--<script src="js/jquery.malihu.PageScroll2id.min.js"></script>-->
 
@@ -68,89 +71,76 @@
 	</div>
     </div>
     
-    <!--
-    <div class="jumbotron">
-		<img id="logo" src="http://www.imageurlhost.com/images/c18mcu6qxhmpgzx7rkf.jpg" alt="Clairity Logo">
-	</div>
-	-->
-	<br><br><br>
-	
-	<div class="container">
-	
-	
-	
-	<!-- MAP SECTION -->
-	
+    
+    
+<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+  <!-- Indicators -->
+  <ol class="carousel-indicators">
+    <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+    <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+    <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+  </ol>
 
-	
-	<div class="row featurette">
-		<div class="col-md-3">
-			<table>
-			<tr>
-				<th id="locationheader">Location</th>
-			</tr>
-			<tr>
-				<td class="temp">Temperature</td>
-			</tr>
-			<tr>
-				<td class="alpha1">Alphasense1</td>
-			</tr>
-			<tr>
-				<td class="alpha2">Alphasense2</td>
-			</tr>
-			<tr>
-				<td class="alpha3">Alphasense3</td>
-			</tr>
-			<tr>
-				<td class="alpha4">Alphasense4</td>
-			</tr>
-			</table>
-		</div>
+  <!-- Wrapper for slides -->
+  <div class="carousel-inner">
+  
+	<div class="item active">
+      <img style="opacity:0.75" src="../unitphotos.jpg">
+      <div class="container">
+      <div class="caption-overlay"></div>
+      <div class="carousel-caption">
+      	<h1>About CLAIRITY</h1>
+      	<p>
+      	Here is a description about what CLAIRITY is.
+      	</p>
+      </div>
+      </div>
+    </div>
+    
+    <div class="item">
+	<img style="opacity:0.75" src="../campusimage.jpg">
+      <div class="container">
+    	<div class="caption-overlay"></div>
+      <div class="carousel-caption">
+      	<h1>Our Mission</h1>
+      	<p>
+   		Assess the exposure of the MIT population to airborne pollution through the design and implementation of a distributed air quality sensor network on MIT’s campus.
+      	</p>
+      </div>
+      </div>
+    </div>
+     
+	<div class="item">
+	<img style="opacity:0.8" src="../node.jpg">
+      <div class="container">
+        <div class="caption-overlay"></div>
+      <div class="carousel-caption">
+      	<h1>Node Info?</h1>
+      	<p>
+		More info about the node. 
+      	</p>
+      </div>
+      </div>
+    </div>
 
-		<div id="map"></div>
-	
-		
-	</div>
+  </div>
 
-	<!-- GRAPH SECTION -->
-	<br><br>
-	<hr class="featurette-divider">
-	<br><br>
-	
-	<button id="make100" class="graph">100 points</button>
-	<button id="make200" class="graph">200 points</button>
-	<button id="make400" class="graph">400 points</button>
-	
-	<div>
-		<div id="container1" class="graph"></div>
-	</div>
+  <!-- Controls -->
+  <a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">
+    <span class="glyphicon glyphicon-chevron-left"></span>
+  </a>
+  <a class="right carousel-control" href="#carousel-example-generic" data-slide="next">
+    <span class="glyphicon glyphicon-chevron-right"></span>
+  </a>
+</div>
 
-	<!-- ABOUT SECTION -->
-	<div id="about"></div>
-	<br><br>
-	<hr class="featurette-divider">
-	<br><br>
-	<div class="row featurette">
-		<div class="col-md-5">
-			<img class="featurette-image img-responsive" data-src="holder.js/500x500/auto" src="http://web.mit.edu/objectivism/www/images/MIT_Alumni_Association_dome.bmp">
-		</div>
-		<div class="col-md-7">
-			<h2 class="featurette-heading">
-			MIT's Air Quality.
-				<span class="text-muted">Our Mission:</span>
-			</h2>
-			<p class="lead">				
-				Assess the exposure of the MIT population to airborne pollution through the design and implementation of a distributed air quality sensor network on MIT’s campus.
-			</p>
-		</div>
-	</div>
-	
-	<br><br>
-	<hr>
-	<br><br>
-	
-	<!-- NODE SECTION -->
-	
+
+
+
+
+<!--
+
+
 	<div class="row featurette">
 		<div class="col-md-7">
 			<h2 class="featurette-heading"> 
@@ -170,7 +160,7 @@
 	<hr>
 
 	
-	<!-- AQI SECTION -->
+	<!-- AQI SECTION --
 	<div id="aqi"></div>
 	<br><br><br>
 	<div class="row featurette">
@@ -198,7 +188,7 @@
 	<br><br>
 	
 	
-	<!-- POLLUTANTS SECTIONN -->
+	<!-- POLLUTANTS SECTIONN --
 	
 	<div id="pollutants"></div>
 	<hr>
@@ -251,7 +241,7 @@
 				<h2>Particulate Matter (PM) 2.5/10</h2>
 				<p>
 				Particulate matter (PM) consists of a mixture of solid and liquid droplets. Particles less than 10 micrometers are so small that they can enter the lungs, posing a serious threat. These small particles are typically divided into two categories: fine particles (<2.5µm) and coarse particles (>2.5µm and <10µm). 
-				<!--The main sources of fine particles include motor vehicles, industrial processes, and power plants. Sources of coarse particles include grinding/crushing operations, roadways, and dusty industries. Exposure to PM has been linked to aggravated conditions for those with heart or lung diseases. -->
+				<!--The main sources of fine particles include motor vehicles, industrial processes, and power plants. Sources of coarse particles include grinding/crushing operations, roadways, and dusty industries. Exposure to PM has been linked to aggravated conditions for those with heart or lung diseases. --
 				</p>
 				<p>
 					<a class="btn" href="#">Learn More</a>
@@ -288,7 +278,7 @@
 	<hr>
 	<br><br>
 
-	<!-- CONTACT SECTION -->
+	<!-- CONTACT SECTION --
 	<div id="contact" class="bs-docs-featurette">
 		<div class="container">
 			<h2 class="bs-docs-featurette-title">Contact Us</h2>
@@ -298,19 +288,17 @@
 		</div>
 	</div>
 	
+	
+
 	<hr class="half-rule">
 	</div>
+	
+
+
+-->
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="js/bootstrap.min.js"></script>
-    <!-- <script src="js/wireframe1.js"></script> -->
-    <script src="js/frontpage.js"></script>
-    <script type="text/javascript" src="js/createGraphs.js"></script>
-    <script src="https://code.jquery.com/jquery-2.1.0.min.js"></script>
-    <script src="http://code.highcharts.com/highcharts.js"></script>
-	<script src="js/jquery.malihu.PageScroll2id.min.js"></script>
     
   </body>
 </html>
