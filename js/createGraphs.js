@@ -156,12 +156,19 @@ function redraw() {
     $.getJSON(url, processJSON);
 }
 
-
-
 $(document).ready(function () {
-	$('#graphButton').click(function() {
-		redraw();
+	$('#toGraph').click(function() {
+		$('#map').fadeOut();
+		$('#valuesTable').fadeOut(redraw);
+		$('#graphContainer').fadeIn(redraw());
 	});
+	
+	$('#backToMap').click(function() {
+		$('#graphContainer').fadeOut();
+		$('#map').fadeIn();
+		$('#valuesTable').fadeIn();
+	});
+	
 });
 
 
