@@ -12,9 +12,156 @@
 	z-index: 10;
 }
 
+
 .row {
 	margin-left: 0px;
 	margin-right: 0px;
-	padding-left: 30px;
-	padding-right: 30px;
+	padding-left: 60px;
+	padding-right: 60px;
+}
+
+.featurette {
+	padding-left
+}
+
+h3 {
+	text-align: center;
+	margin-top: 0px;
+}
+
+.features-panel-caption {
+	position: relative;
+	width: 968px;
+	margin: 0 auto;
+	overflow: hidden;
+	display: block;
+	font-size: 1.5em;
+	font-family: "Proxima Nova Semibold",Arial,sans-serif;
+	font-weight: bold;
+	margin-top: 30px;
+}
+
+.features-panel {
+	position: absolute;
+	left: 50%;
+	margin: -484px;
+	width: 968px;
+	height: 242px;
+	margin-top: 20px;
+	font-size: 1.5em;
+	line-height: 1.25em;
+	padding: 0;
+	border: 0;
+	vertical-align: baseline;
+}
+
+.features-tile {
+	position: absolute;
+	width: 243px;
+	height: 242px;
+	float: left;
+	overflow: hidden;
+	z-index: 0;
+}
+
+
+
+.features-small-tile {
+	position: absolute;
+	width: 243px;
+	height: 242px;
+	float: left;
+	overflow: hidden;
+	z-index: 0;
+}
+
+.features-small-tile:hover {
+	width: 323px;
+	height: 322px;
+	top: -40px;
+}
+
+.features-tile-content h1 {
+	color: #fff;
+	font-size: 15px;
+	margin-top: 60px;
+	margin-left: 10px;
+}
+
+#features_tile_first:hover {
+	left: -40px;
+}
+#features_tile_second:hover {
+	left: 202px;
+}
+#features_tile_third:hover {
+	left: 444px;
+}
+#features_tile_fourth:hover {
+	left: 686px;
+}
+
+#features_tile_first {
+	left:0;
+}
+#features_tile_second {
+	left:242px;
+}
+#features_tile_third {
+	left:484px;
+}
+#features_tile_fourth {
+	left:726px;
+}
+
+.blue1 {
+	background-color: #07294b;
+}
+.blue2 {
+	background-color: #0d3b69;
+}
+.blue3 {
+	background-color: #1560ac;
+}
+.blue4 {
+	background-color: #1077e0;
+}
+
+
+
+
+.features-tile-number {
+position: absolute;
+background-color: rgba(0,0,0,0.1);
+width: 58px;
+height: 58px;
+text-align: center;
+margin: auto;
+float: left;
+z-index: 2;
+}
+
+.features-tile-content {
+position: absolute;
+color: white;
+margin: 14px;
+width: 214px;
+height: 214px;
+z-index: 1;
+-webkit-font-smoothing: antialiased;
+}
+
+.features-tile-cap {
+position: absolute;
+width: 100%;
+height: 100%;
+z-index: 1001;
+}
+
+
+.transperent-tile {
+-moz-box-shadow: 0 0 32px rgba(0,0,0,0.25);
+-webkit-box-shadow: 0 0 32px rgba(0,0,0,0.25);
+box-shadow: 0 0 32px rgba(0,0,0,0.25);
+-pie-box-shadow: 0 0 10px #666;
 }
