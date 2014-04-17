@@ -7,6 +7,7 @@
 //Only get latest datapoint
 //Differentiate inside vs. outside nodes
 //Fix Attribution
+//map: Buildings from whereis.mit.edu ?
 
 var serverNodesURL = "http://ec2-54-186-224-108.us-west-2.compute.amazonaws.com/api/v1/node/"
 //http://ec2-54-187-18-145.us-west-2.compute.amazonaws.com/api/v1/node/";
@@ -142,12 +143,13 @@ function displaySidebar(i){
 	
 };
 
+
 $(document).ready(function(){
 	RequestNodes();
 	var reset = setInterval(function() {RequestDatapoints()}, update_int);
 
     //Leaflet Map
-    var googleLayer = new L.Google('ROADMAP');
+    var googleLayer = new L.Google('ROADMAP',mapStylesArray);
 
 	var sWBound = L.latLng(42.365901,-71.079440);
 	var nEBound = L.latLng(42.350901,-71.107550);
@@ -168,7 +170,7 @@ $(document).ready(function(){
 			sensors[i].circ = L.circle([sensors[i].lat,sensors[i].lon], 16, {
 	    		color: 'red',
 	    		fillColor: "#f03",
-	    		fillOpacity: 0.75
+	    		fillOpacity: 0.5
 			}).addTo(map);
 
 			sensors[i].circ.number = i;
@@ -183,7 +185,10 @@ $(document).ready(function(){
 
 			sensors[i].circ.on('click', function(evt){
 				displaySidebar(this.number);
-				//this.setStyle({fillColor: "#FF0000"});
+				for(var i=0; i<sensors.length; i++){
+					sensors[i].circ.setStyle({fillOpacity: "0.5"});
+				}
+				this.setStyle({fillOpacity: "1"});
 			});
 
 		};
