@@ -1,3 +1,67 @@
 .graph{
-	visibility:hidden;
+}
+
+
+#map{
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    z-index: -1;
+}
+
+#valuesTable{
+	background-color: #6699FF;
+	background: rgba(0, 0, 0, 0.7);
+	position: fixed;
+	left: 1%;
+	top: 50px;
+	height: 100%;
+	width: 250px;
+	color: white;
+	z-index: 1;
+}
+
+#graphContainer{
+	z-index: -10;
+	position: fixed;
+	top: 65px;
+	width: 100%;
+}
+
+
+#toGraph{
+	color: black;
+	position: relative;
+	top: 50px;
+}
+
+#graphButton{
+	position: relative;
+}
+
+#logo{
+	height: 25%;
+	width: 25%;
+}
+
+#backToMap{
+	float: right;
+	position: relative;
+	right: 1%;
+	background-color: white;
+	height: 30px;
+	width: 40px;
+	z-index: 5;
+	color: gray;
+	font-size: x-small;
+	line-height: 10px;
+	text-align: center;
+}
+
+.leaflet-google-layer{
+	z-index: 0;
+}
+
+.leaflet-map-pane{
+	z-index: 100;
 }

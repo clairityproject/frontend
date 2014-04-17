@@ -1,4 +1,3 @@
-$(document).ready(function () {
 
 //    var limit = prompt("Please enter how many values: ", 20);
 	var limit = 413;
@@ -157,11 +156,22 @@ function redraw() {
     $.getJSON(url, processJSON);
 }
 
-//initial 
-redraw();
-
-
+$(document).ready(function () {
+	$('#toGraph').click(function() {
+		$('#map').fadeOut();
+		$('#valuesTable').fadeOut(redraw);
+		$('#graphContainer').fadeIn(redraw());
+	});
+	
+	$('#backToMap').click(function() {
+		$('#graphContainer').fadeOut();
+		$('#map').fadeIn();
+		$('#valuesTable').fadeIn();
+	});
+	
 });
+
+
 //OLD CODE
 // var url = "http://ec2-54-201-87-182.us-west-2.compute.amazonaws.com/api/v1/datapoint/?limit=3";
 // $.getJSON(url, function (data) {

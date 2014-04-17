@@ -3,11 +3,11 @@
 //TO DO:
 //Fix map bounds
 //Fix hover area
-//Add PM and Last updated
+//Last updated
 //Only get latest datapoint
 //Differentiate inside vs. outside nodes
-//Resize map when in corner
 //Fix Attribution
+//Graph Popup
 
 var serverNodesURL = "http://ec2-54-186-224-108.us-west-2.compute.amazonaws.com/api/v1/node/"
 //http://ec2-54-187-18-145.us-west-2.compute.amazonaws.com/api/v1/node/";
@@ -126,13 +126,15 @@ function setColor(){
 }
 
 
-function displayHover(i){
-	$("#locationheader").html("Location: "+String(sensors[i].location));
+function displaySidebar(i){
+	$("#locationheader").html(String(sensors[i].location));
 	$(".alpha1").html("Nitrogen Dioxide (NO2) "+String(sensors[i].alpha1));
 	$(".alpha2").html("Ozone (O3) "+String(sensors[i].alpha2));
 	$(".alpha3").html("Carbon Monoxide (CO) "+String(sensors[i].alpha3));
 	$(".alpha4").html("Nitric Oxide (NO) "+String(sensors[i].alpha4));
 	$(".temp").html("Temperature "+String(sensors[i].temp));
+	$(".rh").html("Relative Humidity "+String(sensors[i].rh));
+	
 };
 
 $(document).ready(function(){
@@ -169,14 +171,14 @@ $(document).ready(function(){
 			sensors[i].circ.bindPopup(sensors[i].location, {closeButton: false});
 			sensors[i].circ.on('mouseover', function(evt) {
 				evt.target.openPopup();
-				displayHover(this.number);
 			});
 			sensors[i].circ.on('mouseout', function(evt){
 				evt.target.closePopup();
 			});
 
 			sensors[i].circ.on('click', function(evt){
-				moveMap();
+				displaySidebar(this.number);
+				//this.setStyle({fillColor: "#FF0000"});
 			});
 
 		};
@@ -191,7 +193,8 @@ $(document).ready(function(){
 				height: "100px",
 				width: "100px"
 			},750);
-			$(".graph").css("visibility","visible");
+			$("#graphcontainer").css("visibility","visible","height","400px","width","95%");
+			$("#valuesTable").css("visibility","hidden");
 			mapBig = false;
 			map.removeControl(zoomBar);
 			//map.panTo([42.35300, -71.083000]);
@@ -202,10 +205,10 @@ $(document).ready(function(){
 	$('#map').click(function(){
 		if(!mapBig){
 			$(this).animate({
-					height: "450px",
+					height: "800px",
 					width: "70%"
 				},750);
-			$(".graph").css("visibility","hidden");
+			$("#graphcontainer").css("visibility","initial","height","0px","width","0px");
 			mapBig = true;
 			map.addControl(zoomBar);
 			map.setView([42.359200, -71.091950], 16);
