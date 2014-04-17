@@ -7,7 +7,6 @@
 //Only get latest datapoint
 //Differentiate inside vs. outside nodes
 //Fix Attribution
-//Graph Popup
 
 var serverNodesURL = "http://ec2-54-186-224-108.us-west-2.compute.amazonaws.com/api/v1/node/"
 //http://ec2-54-187-18-145.us-west-2.compute.amazonaws.com/api/v1/node/";
@@ -28,7 +27,8 @@ var pm25_thresholds = [100, 500, 900, 1300, 1500];
 var pm10_thresholds = [100, 500, 900, 1300, 1500];
 var alpha_thresholds = [alpha1_thresholds, alpha2_thresholds, alpha3_thresholds, alpha4_thresholds, pm25_thresholds, pm10_thresholds];
 
-function sensor(lat,lon,location) {
+function sensor(lat,lon,location,id) {
+	this.node_id = id;
 	this.lat = lat;
 	this.lon = lon;
 	this.location = location;
@@ -41,6 +41,15 @@ function sensor(lat,lon,location) {
 	this.pm10 = null;
 	
 }
+/*
+sensors.push(new sensor(17,"Building 48"));
+sensors.push(new sensor(16,"Building 16"));
+sensors.push(new sensor(15,"Killian Court"));
+sensors.push(new sensor(20,"Walker Memorial"));
+sensors.push(new sensor(23,"Sloan School"));
+sensors.push(new sensor(21,"GB Base"));
+sensors.push(new sensor(4,"Cogen"));
+*/
 
 function RequestNodes() {
 	$.getJSON(serverNodesURL, function (data) {
@@ -50,10 +59,6 @@ function RequestNodes() {
     		nodesDrawn = true;
 		}
 	});
-	//while(!nodesDrawn){
-		//wait
-	//	}
-	//RequestDatapoints();
 }
 
 function RequestDatapoints() {
@@ -186,32 +191,21 @@ $(document).ready(function(){
 
 	var draw = setTimeout(function() {drawNodes()}, 500);
 
+	var mapBig = true;
+
 	function moveMap(){
 		if(mapBig){
-			//map.setZoom(15);
-			$("#map").animate({
-				height: "100px",
-				width: "100px"
-			},750);
 			$("#graphcontainer").css("visibility","visible","height","400px","width","95%");
 			$("#valuesTable").css("visibility","hidden");
 			mapBig = false;
 			map.removeControl(zoomBar);
-			//map.panTo([42.35300, -71.083000]);
-			//map.setZoom(15);
 		}
 	}
 
 	$('#map').click(function(){
 		if(!mapBig){
-			$(this).animate({
-					height: "800px",
-					width: "70%"
-				},750);
 			$("#graphcontainer").css("visibility","initial","height","0px","width","0px");
 			mapBig = true;
-			map.addControl(zoomBar);
-			map.setView([42.359200, -71.091950], 16);
 		}
 	});
 
