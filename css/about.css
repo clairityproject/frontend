@@ -31,26 +31,27 @@ h3 {
 
 .features-panel-caption {
 	position: relative;
-	width: 968px;
-	margin: 0 auto;
+/*	width: 968px;
+	margin: 0 auto;*/
 	overflow: hidden;
 	display: block;
 	font-size: 1.5em;
-	font-family: "Proxima Nova Semibold",Arial,sans-serif;
-	font-weight: bold;
+/*	font-family: "Proxima Nova Semibold",Arial,sans-serif;
+	font-weight: bold;*/
 	margin-top: 30px;
+	padding-left: 90px;
 }
 
 .features-panel {
-	position: absolute;
+/*	position: absolute;*/
 	left: 50%;
-	margin: -484px;
-	width: 1500px;
+	/*margin: -484px;
+	width: 1000px;*/
 	height: 242px;
 	margin-top: 20px;
 	font-size: 1.5em;
 	line-height: 1.25em;
-	padding: 0;
+	padding-left: 110px;
 	border: 0;
 	vertical-align: baseline;
 }
@@ -147,6 +148,10 @@ height: 100%;
 z-index: 1001;
 }
 
+.tilecaption {
+	font-size: 13px;
+	line-height: 14px;
+}
 
 .transperent-tile {
 -moz-box-shadow: 0 0 32px rgba(0,0,0,0.25);
@@ -202,4 +207,152 @@ box-shadow: 0 0 32px rgba(0,0,0,0.25);
 }
 #features_tile_fourth:before {
 	border: #1077e0 solid 6px;
+}
+
+
+
+/* styling for the image wrapper  */
+#image_wrap {
+    /* dimensions */
+    padding:15px 0;
+ 
+    /* centered */
+    text-align:center;
+ 
+    /* some "skinning" */
+    background-color:#efefef;
+    border:2px solid #fff;
+    outline:1px solid #ddd;
+    -moz-ouline-radius:4px;
+}
+
+
+/*
+  root element for the scrollable.
+  when scrolling occurs this element stays still.
+  */
+.scrollable {
+
+    /* required settings */
+    position:relative;
+    overflow:hidden;
+    width: 550px;
+    height:120px;
+
+    /* custom decorations */
+    border:1px solid #ccc;
+    background:url(/media/img/gradient/h300.png) repeat-x;
+}
+
+/*
+   root element for scrollable items. Must be absolutely positioned
+   and it should have a extremely large width to accomodate scrollable
+   items.  it's enough that you set the width and height for the root
+   element and not for this element.
+*/
+.scrollable .items {
+    /* this cannot be too large */
+    width:20000em;
+    position:absolute;
+    clear:both;
+}
+
+.items div {
+    float:left;
+    width:680px;
+}
+
+/* single scrollable item */
+.scrollable img {
+    float:left;
+    margin:20px 5px 20px 21px;
+    background-color:#fff;
+    padding:2px;
+    border:1px solid #ccc;
+    width:100px;
+    height:75px;
+
+    -moz-border-radius:4px;
+    -webkit-border-radius:4px;
+}
+
+/* active item */
+.scrollable .active {
+    border:2px solid #000;
+    position:relative;
+    cursor:default;
+}
+
+/*
+a.browse {
+background: url(/media/img/scrollable/arrow/hori_large.png) no-repeat;
+display: block;
+width: 30px;
+height: 30px;
+float: left;
+margin: 40px 10px;
+cursor: pointer;
+font-size: 1px;
+}
+
+a.left {
+margin-left: 0px;
+}
+
+a.right {
+background-position: 0 -30px;
+clear: right;
+margin-right: 0px;
+}
+
+*/
+
+/* this makes it possible to add next button beside scrollable */
+.scrollable {
+    float:left;
+}
+
+/* prev, next, prevPage and nextPage buttons */
+a.browse {
+    background:url(../images/hori_large.png) no-repeat;
+    display:block;
+    width:30px;
+    height:30px;
+    float:left;
+    margin:40px 10px;
+    cursor:pointer;
+    font-size:1px;
+}
+
+/* right */
+a.right { background-position: 0 -30px; clear:right; margin-right: 0px;}
+a.right:hover { background-position:-30px -30px; }
+a.right:active { background-position:-60px -30px; }
+
+
+/* left */
+a.left { margin-left: 0px; }
+a.left:hover  { background-position:-30px 0; }
+a.left:active { background-position:-60px 0; }
+
+/* up and down */
+a.up, a.down  {
+    background:url(../images/vert_large.png) no-repeat;
+    float: none;
+    margin: 10px 50px;
+}
+
+/* up */
+a.up:hover { background-position:-30px 0; }
+a.up:active { background-position:-60px 0; }
+
+/* down */
+a.down { background-position: 0 -30px; }
+a.down:hover { background-position:-30px -30px; }
+a.down:active { background-position:-60px -30px; }
+
+
+/* disabled navigational button */
+a.disabled {
+    visibility:hidden !important;
 }
