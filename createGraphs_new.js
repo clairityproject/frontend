@@ -90,6 +90,7 @@ $(document).ready(function () {
 		yaxis = 'CO (ppm)';
 		series = as5;
 		redraw();
+		logger(index,value);
 	});
 	
 function redraw() {
@@ -109,7 +110,7 @@ function redraw() {
                 }
             },
             series: [{
-				name: 'PM-2.5',
+				name: yaxis,
 				data: series
             }]
         });
