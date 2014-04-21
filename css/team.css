@@ -7,8 +7,8 @@
 }
 
 .container {
-  padding-left: 10%;
-  padding-right: 10%;
+  padding-left: 2%;
+  padding-right: 2%;
 }
 
 .thumbnail {
@@ -59,6 +59,11 @@ transition: all .2s;
   background: rgba(0, 0, 0, 0.4);
 }
 
+.team-details:hover .team-description:after,
+.team-details:hover .team-description:before {
+  width: 100%;
+}
+
 .team-description {
   font-size: 16px;
 color: #fff;
@@ -77,6 +82,15 @@ transition: width 0.25s ease-in-out;
 padding-bottom: 20px;
 }
 
+.line-break {
+  height: 25px;
+}
+
+.line-break-border {
+  border-top: 2px solid #c8c8c8;
+
+}
+
 .team-image-display-background {
 position: absolute;
 height: 100%;
@@ -87,5 +101,30 @@ background-color: rgba(0, 0, 0, 0.05);
   width: 100%;
 }
 
+.team-image-display .team-description:before {
+content: '';
+border-top: 1px solid #0e153a;
+width: 15%;
+position: absolute;
+-webkit-transition: width 1s;
+-moz-transition: width 1s;
+-o-transition: width 1s;
+transition: width 1s;
+top: -7px;
+left: 0;
+}
+
+.team-image-display .team-description:after {
+content: '';
+border-top: 1px solid #0e153a;
+width: 15%;
+position: absolute;
+-webkit-transition: width 1s;
+-moz-transition: width 1s;
+-o-transition: width 1s;
+transition: width 1s;
+right: 0;
+bottom: -7px;
+}
 
 
