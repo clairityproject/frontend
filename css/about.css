@@ -360,3 +360,7 @@ a.disabled {
 .image_navbar {
   padding: 10px 5px;
 }
+
+#carousel_image {
+  width: 100%;
+}
