@@ -4,7 +4,7 @@
           <meta charset="utf-8">
           <meta http-equiv="X-UA-Compatible" content="IE=edge">
           <meta name="viewport" content="width=device-width, initial-scale=1">
-          <title>CLAIRITY</title>
+          <title>CLAIRITY: MIT's Air Quality Network</title>
           
           <script src="https://code.jquery.com/jquery-2.1.0.min.js"></script>
 
@@ -63,19 +63,13 @@
         <div class="collapse navbar-collapse">
 
            <ul class="nav navbar-nav">
-              <li><a href="wireframe3.html"><img src="../images/clairitynavbar.png"></a></li>
-              <!--
+              <li><a href="wireframe3.html" class="image_navbar"><img src="../images/clairity_navbar.png"></a></li>
               <li><a href="wireframe3.html">Home</a></li>
-            -->
-              <li class="active"><a href="#about" rel="m_PageScroll2id">About</a></li>
-              <li><a href="#hiw" rel="m_PageScroll2id">How It Works</a></li>
-              <li><a href="#pollutants" rel="m_PageScroll2id">Pollutants</a></li>
-              <li><a href="#contact" rel="m_PageScroll2id">Contact</a></li>
-              <li><a href="https://cee.mit.edu/">MIT CEE</a></li>
+              <li class="active"><a href="#about" rel="m_PageScroll2id">The Project</a></li>
+              <li><a href="team.html">The Team</a></li>
+              <li><a href="howitworks.html" rel="m_PageScroll2id">How It Works</a></li>
           </ul>
-          <ul class="nav navbar-nav navbar-right">
-              <li><a href="">Export Data</a></li>
-          </ul>
+  
       </div>
       </div>
       </div>
@@ -94,7 +88,7 @@
       <div class="carousel-inner">
 
       	<div class="item active">
-            <img style="opacity:0.7" src="../images/unitphotos.jpg">
+            <img style="opacity:0.7" src="../images/unitphotos.jpg" id="carousel_image">
             <div class="container">
                 <div class="caption-overlay"></div>
                 <div class="carousel-caption">
@@ -104,7 +98,7 @@
        </div>
 
        <div class="item">
-         <img style="opacity:0.85" src="../images/campusimage.jpg">
+         <img style="opacity:0.85" src="../images/campusimage.jpg" id="carousel_image">
          <div class="container">
              <div class="caption-overlay"></div>
              <div class="carousel-caption">
@@ -114,7 +108,7 @@
       </div>
 
       <div class="item">
-      	<img style="opacity:0.85" src="../images/mitdome.png">
+      	<img style="opacity:0.85" src="../images/mitdome.png" id="carousel_image">
         <div class="container">
           <div class="caption-overlay"></div>
           <div class="carousel-caption">
@@ -138,7 +132,7 @@
 
       <!-- ABOUT SECTION -->
 
-      <div id="about"></div>
+
 
       <hr class="featurette-divider">
       <br><br>
@@ -158,6 +152,19 @@
   <br><br>
 
 
+
+
+  <div class="row featurette" style="padding-left: 90px; padding-right: 90px">
+       <h2 class="featurette-heading">
+           <font color="#1560ac">Our Network</font> 
+           <span class="text-muted"></span>
+       </h2>
+      <br>
+      <p class="lead">
+      Poor air quality is one of the largest causes of premature death worldwide, and, because of rapid increases in global urban populations (especially in developing countries), is likely to become an increasingly central problem in civil and environmental engineering over the next several decades.  The development of an air quality sensor network for MIT’s campus will allow us to understand the health risks our own community faces, and ideally will address specific air quality concerns associated with a campus research university.  Moreover, the network will serve as a generic testbed/prototype for future air quality networks, for deployment across a diverse array of urban and rural environments in both the developed and developing world. 
+      </p>
+      </div>
+  <br><br>
 
 
       <!-- NODE SECTION -->
@@ -289,7 +296,7 @@
 
       <!-- HOW IT WORKS test section -->
 
-      <div class="container" style="height: 400px; width:100%;background:#FBFBFB;">
+      <div class="container" style="width:100%; background:#FBFBFB;">
 
           <div class="features-panel-caption"><h2> Understanding the Network </h2></div> 
           <div class="features-panel">
@@ -361,7 +368,7 @@
                       </p>
                       <img class="lazyload" data-original="http://static0.fitbit.com/simple.b-dis-png.hb473cce5cea6c9e6f1ee169233abfd40.pack?items=%2Fcontent%2Fassets%2Fonezip%2Fimages%2Ffeatures-content%2Fone%2Ficon4.png" src="http://static0.fitbit.com/simple.b-dis-png.hb473cce5cea6c9e6f1ee169233abfd40.pack?items=%2Fcontent%2Fassets%2Fonezip%2Fimages%2Ffeatures-content%2Fone%2Ficon4.png" style="visibility: visible; display: block;">
                   </div>
-                  <div class="features-tile-cap"></div> 
+           <!--        <div class="features-tile-cap"></div>  -->
               </div> 
 <br>
               </div>
@@ -369,7 +376,7 @@
           </div>
 
     <hr>
-   
+
 
           <!-- AQI SECTION -->
         <div id="aqi"></div>

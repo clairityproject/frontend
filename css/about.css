@@ -356,3 +356,11 @@ a.down:active { background-position:-60px -30px; }
 a.disabled {
     visibility:hidden !important;
 }
+
+.image_navbar {
+  padding: 10px 5px;
+}
+
+#carousel_image {
+  width: 100%;
+}
