@@ -37,9 +37,9 @@ body {
 
 
 body {
-  color: #fff;
+  color: #333;
   text-align: center;
-  text-shadow: 0 1px 3px rgba(0,0,0,.5);
+  text-shadow: 0 0px 0px rgba(0,0,0,.5);
   box-shadow: inset 0 0 100px rgba(0,0,0,.5);
 }
 
@@ -165,4 +165,21 @@ body {
   .cover-container {
     width: 700px;
   }
+}
+
+
+
+.btn-lg {
+  border-radius: 0px;
+}
+.btn {
+  border-radius: 0px;
+}
+
+.btn-lg:hover {
+  color: #2893ff;
+}
+
+.mastfoot {
+  color: #333;
 }
