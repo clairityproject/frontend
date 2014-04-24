@@ -2,7 +2,6 @@
 
 //TO DO:
 //Fix map bounds
-//Fix hover area
 //Last updated
 //Only get latest datapoint
 //Differentiate inside vs. outside nodes
@@ -153,11 +152,13 @@ $(document).ready(function(){
 
 	var sWBound = L.latLng(42.365901,-71.079440);
 	var nEBound = L.latLng(42.350901,-71.107550);
-	var map = new L.Map('map', {minZoom: 14, maxBounds:[sWBound,nEBound], zoomControl: false, layers: [googleLayer] });
-	map.setView([42.359200, -71.091950], 16);
+	var map = new L.Map('map', {minZoom: 14, maxBounds:[sWBound,nEBound], zoomControl: false, attributionControl: false, layers: [googleLayer] });
+	map.setView([42.359900, -71.095000], 16);
 
 	map.addLayer(googleLayer);
 	var zoomBar = L.control.zoom({ position: 'topleft' }).addTo(map);
+	var attribution = L.control.attribution({position: 'bottomleft'}).addTo(map);
+
 
 	map.touchZoom.disable();
 	map.dragging.disable();
@@ -174,8 +175,8 @@ $(document).ready(function(){
 			}).addTo(map);
 
 			sensors[i].circ.number = i;
-	
-			sensors[i].circ.bindPopup(sensors[i].location, {closeButton: false});
+			
+			sensors[i].circ.bindPopup(sensors[i].location, {closeButton: false,'offset': L.point(0,-5)});
 			sensors[i].circ.on('mouseover', function(evt) {
 				evt.target.openPopup();
 			});

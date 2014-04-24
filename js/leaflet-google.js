@@ -10,8 +10,8 @@ var mapStylesArray = [
       { "visibility": "off" }
     ]
   },{
-    "featureType": "road",
-    "elementType": "labels",
+    "featureType": "road.highway",
+    "elementType": "labels.icon",
     "stylers": [
       { "visibility": "off" }
     ]
