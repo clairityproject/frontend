@@ -84,8 +84,13 @@
 
 table{
 	border-collapse:separate;
-	border-spacing:10px 20px;
+	border-spacing:0px 0px;
 	font-style: bold;
+}
+
+.table {
+	vertical-align: middle;
+	border-top: 0px;
 }
 
 .leaflet-google-layer{
@@ -100,3 +105,7 @@ table{
 	padding: 10px 5px;
 }
 
+#temprh {
+	padding-top: 10px;
+	font-size: 12px;
+}
