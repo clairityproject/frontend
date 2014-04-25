@@ -1,0 +1,40 @@
+data_new = [0.087, 0.13, 23.1, 54.4, 8.4, 0]    #set up sample data
+
+brkpts = ([0, 0.064, 0.065, 0.084, 0.085, 0.104, 0.105, 0.124, 0.125, 0.404, 0.405, 0.504, 0.505, 0.604],   #hardcoded break points
+             [0, 0, 0, 0, 0.125, 0.164, 0.165, 0.204, 0.205, 0.404, 0.405, 0.504, 0.505, 0.604],
+             [0, 54, 55, 154, 155, 254, 255, 354, 355, 424, 425, 504, 505, 604],
+             [0, 15.4, 15.5, 40.4, 40.5, 65.4, 65.5, 150.4, 150.5, 250.4, 250.5, 350.4, 350.5, 500.4],
+              [0, 4.4, 4.5, 9.4, 9.5, 12.4, 12.5, 15.4, 15.5, 30.4, 30.5, 40.4, 40.5, 50.4],
+                [0, 0, 0, 0, 0, 0, 0, 0, 0.65, 1.24, 1.25, 1.64, 1.65, 2.04])
+
+AQI_index = ([0, 50], [51, 100], [101,150], [151,200], [201,300], [301,400], [401,500]) #aqi index bounds
+
+indices = ([0, 0, 0, 0, 0, 0],  #lower break point
+           [0, 0, 0, 0, 0, 0],  #higher break point
+           [0, 0, 0, 0, 0, 0],  #higher aqi index bound
+           [0, 0, 0, 0, 0, 0],  #lower aqi index bound
+           [0, 0, 0, 0, 0, 0])  #aqi for each individual pollutant
+
+for i in range (0,6):   #calculate aqi for each individual pollutant
+    j = 0
+
+    while data_new[i] > brkpts[i][(j+1)*2-1]:
+        j = j+1
+
+    #print (j+1)*2-1
+ 
+    indices[0][i] = brkpts[i][(j+1)*2-1]
+    indices[1][i] = brkpts[i][(j+1)*2-2]
+    indices[2][i] = AQI_index[j][1]
+    indices[3][i] = AQI_index[j][0]
+    
+    if indices[0][i]-indices[1][i] > 0:
+        indices[4][i] = (indices[2][i]-indices[3][i])*(data_new[i]-indices[1][i])/(indices[0][i]-indices[1][i]) + indices[3][i]
+        indices[4][i] = round(indices[4][i], 0)
+
+    if indices[4][0] >= 301:
+        indices[4][0] = indices[4][1]
+
+#print indices
+print max(indices[4])
+            
