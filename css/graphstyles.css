@@ -16,9 +16,22 @@
 	left: 1%;
 	top: 50px;
 	height: 100%;
-	width: 250px;
+	width: 260px;
 	color: white;
 	z-index: 1;
+}
+
+#lastupdated{
+	position: relative;
+	left: 10px;
+}
+
+#locationheader{
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+	font-style: bold;
+	font-size: 25px;
+	position: relative;
+	left: 10px;
 }
 
 #graphContainer{
@@ -56,6 +69,12 @@
 	font-size: x-small;
 	line-height: 10px;
 	text-align: center;
+}
+
+table{
+	border-collapse:separate;
+	border-spacing:10px 20px;
+	font-style: bold;
 }
 
 .leaflet-google-layer{

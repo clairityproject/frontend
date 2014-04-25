@@ -133,12 +133,12 @@ function setColor(){
 
 function displaySidebar(i){
 	$("#locationheader").html(String(sensors[i].location));
-	$(".alpha1").html("Nitrogen Dioxide (NO2) "+String(sensors[i].alpha1));
-	$(".alpha2").html("Ozone (O3) "+String(sensors[i].alpha2));
-	$(".alpha3").html("Carbon Monoxide (CO) "+String(sensors[i].alpha3));
-	$(".alpha4").html("Nitric Oxide (NO) "+String(sensors[i].alpha4));
-	$(".temp").html("Temperature "+String(sensors[i].temp));
-	$(".rh").html("Relative Humidity "+String(sensors[i].rh));
+	$(".alpha1").html(String(sensors[i].alpha1));
+	$(".alpha2").html(String(sensors[i].alpha2));
+	$(".alpha3").html(String(sensors[i].alpha3));
+	$(".alpha4").html(String(sensors[i].alpha4));
+	$(".temp").html(String(sensors[i].temp));
+	$(".rh").html(String(sensors[i].rh));
 	
 };
 
@@ -157,7 +157,7 @@ $(document).ready(function(){
 
 	map.addLayer(googleLayer);
 	var zoomBar = L.control.zoom({ position: 'topleft' }).addTo(map);
-	var attribution = L.control.attribution({position: 'bottomleft'}).addTo(map);
+	var attribution = L.control.attribution({position: 'topright'}).addTo(map);
 
 
 	map.touchZoom.disable();
