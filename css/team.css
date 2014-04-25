@@ -56,7 +56,15 @@ transition: all .2s;
 
 .team-details:hover {
   opacity: 1;
+/*  background: url("../images/logistics2.jpg") no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;*/
+
   background: rgba(0, 0, 0, 0.4);
+
+
 }
 
 .team-details:hover .team-description:after,
@@ -65,7 +73,7 @@ transition: all .2s;
 }
 
 .team-description {
-  font-size: 16px;
+  font-size: 14px;
 color: #fff;
 position: relative;
 pointer-events: none;

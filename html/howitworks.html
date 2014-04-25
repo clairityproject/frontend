@@ -79,6 +79,95 @@
 
 <!-- Information about the System --> 
 
+<div class="row featurette" style="padding-left: 20px; padding-right: 20px; padding-top: 110px">
+  <h2 class="featurette-heading">
+    <span class="text-muted">What does each node consist of?</span>
+  </h2>
+  <br>
+  <p class="lead">
+   Each node consists of several parts; notably a dylos system, alphasense sensors, printed circuit boards, an analog to digital converter, and a raspberry pi. Every node has a dylos that consists of a small computer fan, a laser system that measures particulate matter and a screen that displays the results. This original setup was modified to also channel air over a RH/Temp Sensor and through a 3D printed infrastructure that houses the four alphasense sensors. Alphasense sensors are electrochemical sensors that measure the concentration of pollutants. Our sensors include CO, NO, NO2 and O3 sensors along with a RH Temperature sensor. 
+
+The PCB, or printed circuit board, is a mini computer that serves two purposes. It distributed power to various components of the node and communicates the data collected by the alphasense sensors and RH/Temperature sensor to the ADC board. The ADC, or analog to Digital converter, received analog input and then converts it into digital data that the Raspberry Pi can read. The Raspberry Pi receives digital data from the ADC board through the ribbon cable. Ultimately, this information is transferred wirelessly to a database. 
+
+  </p>
+</div>
+
+<!-- 3D Model -->
+
+<canvas id="cv" width=640 height=480></canvas>
+
+        <script type="text/javascript">
+            var viewer = new JSC3D.Viewer(document.getElementById('cv'));
+            viewer.setParameter('SceneUrl',         '../images/node.stl');
+            viewer.setParameter('ModelColor',       '#CAA618');
+            viewer.setParameter('BackgroundColor1', '#E5D7BA');
+            viewer.setParameter('BackgroundColor2', '#383840');
+            viewer.setParameter('RenderMode',       'flat');
+            viewer.init();
+            viewer.update();
+        </script>
+
+
+
+      <!-- NODE SECTION -->
+
+     
+      <div id="image_wrap">
+        <!-- Initially the image is a simple 1x1 pixel transparent GIF -->
+        <img src="../images/node1_t.jpg" width="500" height="375" />
+      </div>
+
+
+   <div id="image_wrap">
+    
+    <div style="margin:0 auto; width: 634px; height:120px;">
+
+  <!-- "previous page" action -->
+
+  <a class="prev browse left"></a>
+   
+  <!-- root element for scrollable -->
+  <div class="scrollable" id="scrollable">
+   
+    <!-- root element for the items -->
+    <div class="items">
+   
+      <!-- 1-5 -->
+
+      <div>
+      <img src="../images/node1_t.jpg" />
+      <img src="../images/node2_t.jpg" />
+      <img src="../images/node3_t.jpg" />
+      <img src="../images/node4_t.jpg" />
+    </div>
+
+   
+      <!-- 5-10 -->
+      <div>
+        <img src="http://farm1.static.flickr.com/163/399223609_db47d35b7c_t.jpg" />
+        <img src="http://farm1.static.flickr.com/135/321464104_c010dbf34c_t.jpg" />
+        <img src="http://farm1.static.flickr.com/40/117346184_9760f3aabc_t.jpg" />
+        <img src="http://farm1.static.flickr.com/153/399232237_6928a527c1_t.jpg" />
+      </div>
+   
+      <!-- 10-15 -->
+      <div>
+        <img src="http://farm4.static.flickr.com/3629/3323896446_3b87a8bf75_t.jpg" />
+        <img src="http://farm4.static.flickr.com/3023/3323897466_e61624f6de_t.jpg" />
+        <img src="http://farm4.static.flickr.com/3650/3323058611_d35c894fab_t.jpg" />
+        <img src="http://farm4.static.flickr.com/3635/3323893254_3183671257_t.jpg" />
+      </div>
+   
+    </div>
+   
+  </div>
+   
+  <!-- "next page" action -->
+  <a class="next browse right"></a>
+  </div>
+</div>
+     
+
 
      
 
@@ -92,7 +181,9 @@
   </h2>
   <br>
   <p class="lead">
-    Here is a brief explanation of air pollution and what pollutants are the six harmful pollutants.. why we are measuing those.. etc. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+We are measuring five pollutants: nitric oxide, nitrogen dioxide, carbon monoxide, ozone, and particulate matter. The NOx group (nitric oxide and nitrogen dioxide) is emitted from automobiles, power plants, and turbines. Carbon monoxide comes from automobile exhaust and burning fuel. Particulate matter is the result of a wide range of manmade and natural sources, while ozone is the result of reactions between chemicals already in our air.
+Together, these pollutants paint a comprehensive picture of air quality impacts from the interaction of human activity with natural processes.
+
   </p>
 </div>
 
@@ -305,89 +396,21 @@
 
 </div>
 </div>
-
-
-
-      <!-- NODE SECTION -->
-
-     
-      <div id="image_wrap">
-        <!-- Initially the image is a simple 1x1 pixel transparent GIF -->
-        <img src="../images/node1_t.jpg" width="500" height="375" />
-      </div>
-
-
-   <div id="image_wrap">
-    
-    <div style="margin:0 auto; width: 634px; height:120px;">
-
-  <!-- "previous page" action -->
-
-  <a class="prev browse left"></a>
-   
-  <!-- root element for scrollable -->
-  <div class="scrollable" id="scrollable">
-   
-    <!-- root element for the items -->
-    <div class="items">
-   
-      <!-- 1-5 -->
-
-      <div>
-      <img src="../images/node1_t.jpg" />
-      <img src="../images/node2_t.jpg" />
-      <img src="../images/node3_t.jpg" />
-      <img src="../images/node4_t.jpg" />
-    </div>
-
-  <!--     <div>
-        <img src="../images/node2_t.jpg" />
-        <img src="../images/node3_t.jpg" />
-        <img src="../images/node4_t.jpg" />
-        <img src="http://farm1.static.flickr.com/28/66523124_b468cf4978_t.jpg" />
-      </div> -->
-   
-      <!-- 5-10 -->
-      <div>
-        <img src="http://farm1.static.flickr.com/163/399223609_db47d35b7c_t.jpg" />
-        <img src="http://farm1.static.flickr.com/135/321464104_c010dbf34c_t.jpg" />
-        <img src="http://farm1.static.flickr.com/40/117346184_9760f3aabc_t.jpg" />
-        <img src="http://farm1.static.flickr.com/153/399232237_6928a527c1_t.jpg" />
-      </div>
-   
-      <!-- 10-15 -->
-      <div>
-        <img src="http://farm4.static.flickr.com/3629/3323896446_3b87a8bf75_t.jpg" />
-        <img src="http://farm4.static.flickr.com/3023/3323897466_e61624f6de_t.jpg" />
-        <img src="http://farm4.static.flickr.com/3650/3323058611_d35c894fab_t.jpg" />
-        <img src="http://farm4.static.flickr.com/3635/3323893254_3183671257_t.jpg" />
-      </div>
-   
-    </div>
-   
-  </div>
-   
-  <!-- "next page" action -->
-  <a class="next browse right"></a>
-  </div>
 </div>
-     
 
 
-<!-- 3D Model -->
+<!-- AQI SECTION --> 
 
-<canvas id="cv" width=640 height=480></canvas>
+<div class="row featurette" style="padding-left: 20px; padding-right: 20px; padding-top: 110px">
+  <h2 class="featurette-heading">
+    <span class="text-muted">How are we measuring air quality?</span>
+  </h2>
+  <br>
+  <p class="lead">
+    Here is a brief explanation of our AQI blah blah blah
+  </p>
+</div>
 
-        <script type="text/javascript">
-            var viewer = new JSC3D.Viewer(document.getElementById('cv'));
-            viewer.setParameter('SceneUrl',         '../images/node.stl');
-            viewer.setParameter('ModelColor',       '#CAA618');
-            viewer.setParameter('BackgroundColor1', '#E5D7BA');
-            viewer.setParameter('BackgroundColor2', '#383840');
-            viewer.setParameter('RenderMode',       'flat');
-            viewer.init();
-            viewer.update();
-        </script>
 
 
 
