@@ -34,6 +34,16 @@
 	left: 10px;
 }
 
+#legend{
+	position: relative;
+	left: 79%;
+	top: 80%;
+	width: 20%;
+	height: 15%;
+	background-color: white;
+}
+
+
 #graphContainer{
 	z-index: -10;
 	position: fixed;
@@ -69,6 +79,7 @@
 	font-size: x-small;
 	line-height: 10px;
 	text-align: center;
+	cursor: pointer;
 }
 
 table{

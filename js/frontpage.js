@@ -8,7 +8,8 @@
 //Fix Attribution
 //map: Buildings from whereis.mit.edu ?
 
-var serverNodesURL = "http://ec2-54-186-224-108.us-west-2.compute.amazonaws.com/api/v1/node/"
+var serverNodesURL = "http://clairity.mit.edu/api/v1/node/?limit=0";
+//"http://ec2-54-186-224-108.us-west-2.compute.amazonaws.com/api/v1/node/"
 //http://ec2-54-187-18-145.us-west-2.compute.amazonaws.com/api/v1/node/";
 var serverDataURL = "http://ec2-54-187-18-145.us-west-2.compute.amazonaws.com/api/v1/datapoint/";
 
@@ -27,11 +28,12 @@ var pm25_thresholds = [100, 500, 900, 1300, 1500];
 var pm10_thresholds = [100, 500, 900, 1300, 1500];
 var alpha_thresholds = [alpha1_thresholds, alpha2_thresholds, alpha3_thresholds, alpha4_thresholds, pm25_thresholds, pm10_thresholds];
 
-function sensor(lat,lon,location,id) {
+function sensor(lat,lon,location,id,in_out) {
 	this.node_id = id;
 	this.lat = lat;
 	this.lon = lon;
 	this.location = location;
+	this.indoor = in_out;
 	this.alpha1 = null;
 	this.alpha2 = null;
 	this.alpha3 = null;
@@ -41,24 +43,18 @@ function sensor(lat,lon,location,id) {
 	this.pm10 = null;
 	
 }
-/*
-sensors.push(new sensor(17,"Building 48"));
-sensors.push(new sensor(16,"Building 16"));
-sensors.push(new sensor(15,"Killian Court"));
-sensors.push(new sensor(20,"Walker Memorial"));
-sensors.push(new sensor(23,"Sloan School"));
-sensors.push(new sensor(21,"GB Base"));
-sensors.push(new sensor(4,"Cogen"));
-*/
 
 function RequestNodes() {
 	$.getJSON(serverNodesURL, function (data) {
 		for(i=0; i<data["objects"].length; i++){
-			new_sensor = new sensor(data["objects"][i]["location"]["latitude"],data["objects"][i]["location"]["longitude"],data["objects"][i]["location"]["name"]);
-    		sensors.push(new_sensor);
-    		nodesDrawn = true;
+			if(data["objects"][i]["latitude"]){
+				new_sensor = new sensor(data["objects"][i]["latitude"],data["objects"][i]["longitude"],data["objects"][i]["name"],data["objects"][i]["node_id"],data["objects"][i]["indoor"]);
+    			sensors.push(new_sensor);
+    		}
 		}
+		nodesDrawn = true;
 	});
+	console.log(sensors);
 }
 
 function RequestDatapoints() {
@@ -153,7 +149,7 @@ $(document).ready(function(){
 	var sWBound = L.latLng(42.365901,-71.079440);
 	var nEBound = L.latLng(42.350901,-71.107550);
 	var map = new L.Map('map', {minZoom: 14, maxBounds:[sWBound,nEBound], zoomControl: false, attributionControl: false, layers: [googleLayer] });
-	map.setView([42.359900, -71.095000], 16);
+	map.setView([42.3599000, -71.096000], 15);
 
 	map.addLayer(googleLayer);
 	var zoomBar = L.control.zoom({ position: 'topleft' }).addTo(map);
@@ -167,12 +163,24 @@ $(document).ready(function(){
 
 	//Nodes
 	function drawNodes(){
+		
 		for(var i=0; i<sensors.length; i++){
-			sensors[i].circ = L.circle([sensors[i].lat,sensors[i].lon], 16, {
-	    		color: 'red',
-	    		fillColor: "#f03",
-	    		fillOpacity: 0.5
-			}).addTo(map);
+			var delt_lat = 0.00015;
+			var delt_lon = 0.00028;
+			if(sensors[i].indoor){
+				sensors[i].circ = L.polygon([[sensors[i].lat+delt_lat,sensors[i].lon],[sensors[i].lat-delt_lat,sensors[i].lon+delt_lon],[sensors[i].lat-delt_lat,sensors[i].lon-delt_lon]],{
+	    			color: 'red',
+	    			fillColor: "#f03",
+	    			fillOpacity: 0.5
+				}).addTo(map);
+			}
+			else{
+				sensors[i].circ = L.circle([sensors[i].lat,sensors[i].lon], 16, {
+	    			color: 'red',
+	    			fillColor: "#f03",
+	    			fillOpacity: 0.5
+				}).addTo(map);
+			}
 
 			sensors[i].circ.number = i;
 			

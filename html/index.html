@@ -128,7 +128,17 @@
 		</div>
 
 	</div>
-	<div id="map"></div>
+	<div id="map">
+	<!--Map Legend-->
+
+	<div id="legend">
+		<p style="margin: 10px">Legend</p>
+		<p>Indoor Nodes</p>
+		<p>Outdoor Nodes</p>
+	</div>
+	
+	</div>
+
 
 
 <!--GRAPH SECTION-->
@@ -138,13 +148,15 @@
 			<p style="font-size: x-large">X</p>
 			<p>Back to Map</p>
 		</div>
-			<button id="make100" class="graphButton">100 points</button>
-			<button id="make200" class="graphButton">200 points</button>
-			<button id="make400" class="graphButton">400 points</button>
-
-			<div>
-				<div id="container1" class="graph"></div>
-			</div>
+			<button id="day" >Last Day</button>
+			<button id="week">Last Week</button>
+			<button id="month">Last Month</button>
+			<button id="O3">Ozone</button>
+			<button id="PM">Particulate Matter</button>
+			<button id="NO2">Nitrogen Dioxide</button>
+			<button id="NO">Nitrogen Oxide</button>
+			<button id="CO">Carbon Monoxide</button>    
+			<div id="container1" class="graph"></div>
 
 	</div>
 
@@ -154,7 +166,7 @@
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="../js/bootstrap.min.js"></script>
     <script src="../js/frontpage.js"></script>
-    <script type="text/javascript" src="../js/createGraphs.js"></script>
+    <script type="text/javascript" src="../js/createGraphs3.js"></script>
     <script src="https://code.jquery.com/jquery-2.1.0.min.js"></script>
     <script src="http://code.highcharts.com/highcharts.js"></script>
 	<script src="js/jquery.malihu.PageScroll2id.min.js"></script>
