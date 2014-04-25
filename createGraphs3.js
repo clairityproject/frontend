@@ -64,10 +64,10 @@ $(document).ready(function () {
 		node.push(value.node_id);
    }
 
-var pollutant = '';
-var yaxis = ''
-var set = [];
-var mset = [];
+var pollutant = 'Ozone';
+var yaxis = 'Ozone (ppm)'
+var set = as3;
+var mset = set;
 
 //    var limit = prompt("Please enter how many values: ", 20);
 	var limit = 413;
@@ -93,7 +93,6 @@ var mset = [];
 	$("#O3").click(function ()	{
 		limit = 400;
 		pollutant = 'Ozone'
-		yaxis = 'O3 concentration (ppm)'
 		url = "http://clairity.mit.edu/api/v1/datapoint/?limit=" + limit;
 		as3 = [];
 		function logger(index, value) {
@@ -170,7 +169,7 @@ function redraw() {
                 type: 'line'
             },
             title: {
-                text: pollutant
+                text: ''
             },
 
             yAxis: {
