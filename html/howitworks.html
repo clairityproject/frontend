@@ -65,10 +65,9 @@
 
 <!-- Photo Header -->
 <div class="container" style="padding-top:120px">
- 
-    <div class="col-md-12 col-sm-12 team-image-display">
-      <img id="hiw" src="../images/howitworks.png">
-    </div>
+  <div class="col-md-12 col-sm-12 team-image-display">
+    <img id="hiw" src="../images/howitworks.png">
+  </div>
 
 <!-- line divider -->
     <div class="col-md-12 line-break"></div>
@@ -81,101 +80,91 @@
 
 <div class="row featurette" style="padding-left: 20px; padding-right: 20px; padding-top: 110px">
   <h2 class="featurette-heading">
-    <span class="text-muted">What does each node consist of?</span>
+    <font color="#1560ac">What does each node consist of?</font> 
   </h2>
   <br>
   <p class="lead">
    Each node consists of several parts; notably a dylos system, alphasense sensors, printed circuit boards, an analog to digital converter, and a raspberry pi. Every node has a dylos that consists of a small computer fan, a laser system that measures particulate matter and a screen that displays the results. This original setup was modified to also channel air over a RH/Temp Sensor and through a 3D printed infrastructure that houses the four alphasense sensors. Alphasense sensors are electrochemical sensors that measure the concentration of pollutants. Our sensors include CO, NO, NO2 and O3 sensors along with a RH Temperature sensor. 
+   <br>
+   <br>
 
-The PCB, or printed circuit board, is a mini computer that serves two purposes. It distributed power to various components of the node and communicates the data collected by the alphasense sensors and RH/Temperature sensor to the ADC board. The ADC, or analog to Digital converter, received analog input and then converts it into digital data that the Raspberry Pi can read. The Raspberry Pi receives digital data from the ADC board through the ribbon cable. Ultimately, this information is transferred wirelessly to a database. 
+   The PCB, or printed circuit board, is a mini computer that serves two purposes. It distributed power to various components of the node and communicates the data collected by the alphasense sensors and RH/Temperature sensor to the ADC board. The ADC, or analog to Digital converter, received analog input and then converts it into digital data that the Raspberry Pi can read. The Raspberry Pi receives digital data from the ADC board through the ribbon cable. Ultimately, this information is transferred wirelessly to a database. 
 
-  </p>
+ </p>
 </div>
 
+
+<!-- NODE SECTION -->
+
+
+<div id="image_wrap">
+  <!-- Initially the image is a simple 1x1 pixel transparent GIF -->
+  <img src="../images/node1.jpg" width="500" height="375" />
+</div>
+
+<div id="image_wrap">
+  <div style="margin:0 auto; width: 634px; height:120px;">
+    <!-- "previous page" action -->
+    <a class="prev browse left"></a>
+    <!-- root element for scrollable -->
+    <div class="scrollable" id="scrollable">
+      <!-- root element for the items -->
+      <div class="items">
+
+        <!-- 1-4 -->
+        <div>
+          <img src="../images/node1.jpg" />
+          <img src="../images/node2.jpg" />
+          <img src="../images/node3.jpg" />
+          <img src="../images/node4.jpg" />
+        </div>
+        <!-- 5-8 -->
+        <div>
+          <img src="../images/node5.jpg" />
+          <img src="../images/node6.jpg" />
+          <img src="../images/node7.jpg" />
+          <img src="../images/node8.jpg" />
+        </div>
+        <!-- 8-12 -->
+        <div>
+          <img src="../images/node9.jpg" />
+          <img src="../images/node10.jpg" />
+          <img src="../images/node11.jpg" />
+          <img src="../images/node12.jpg" />
+        </div>
+      </div>
+    </div>
+
+    <!-- "next page" action -->
+    <a class="next browse right"></a>
+  </div>
+</div>
+
+
+
 <!-- 3D Model -->
+<br><br>
+<div>
+  <h3 style="text-align: left">A 3D Visualization of the Node</h3>
+</div>
 
 <canvas id="cv" width=640 height=480></canvas>
 
-        <script type="text/javascript">
-            var viewer = new JSC3D.Viewer(document.getElementById('cv'));
-            viewer.setParameter('SceneUrl',         '../images/node.stl');
-            viewer.setParameter('ModelColor',       '#CAA618');
-            viewer.setParameter('BackgroundColor1', '#E5D7BA');
-            viewer.setParameter('BackgroundColor2', '#383840');
-            viewer.setParameter('RenderMode',       'flat');
-            viewer.init();
-            viewer.update();
-        </script>
-
-
-
-      <!-- NODE SECTION -->
-
-     
-      <div id="image_wrap">
-        <!-- Initially the image is a simple 1x1 pixel transparent GIF -->
-        <img src="../images/node1_t.jpg" width="500" height="375" />
-      </div>
-
-
-   <div id="image_wrap">
-    
-    <div style="margin:0 auto; width: 634px; height:120px;">
-
-  <!-- "previous page" action -->
-
-  <a class="prev browse left"></a>
-   
-  <!-- root element for scrollable -->
-  <div class="scrollable" id="scrollable">
-   
-    <!-- root element for the items -->
-    <div class="items">
-   
-      <!-- 1-5 -->
-
-      <div>
-      <img src="../images/node1_t.jpg" />
-      <img src="../images/node2_t.jpg" />
-      <img src="../images/node3_t.jpg" />
-      <img src="../images/node4_t.jpg" />
-    </div>
-
-   
-      <!-- 5-10 -->
-      <div>
-        <img src="http://farm1.static.flickr.com/163/399223609_db47d35b7c_t.jpg" />
-        <img src="http://farm1.static.flickr.com/135/321464104_c010dbf34c_t.jpg" />
-        <img src="http://farm1.static.flickr.com/40/117346184_9760f3aabc_t.jpg" />
-        <img src="http://farm1.static.flickr.com/153/399232237_6928a527c1_t.jpg" />
-      </div>
-   
-      <!-- 10-15 -->
-      <div>
-        <img src="http://farm4.static.flickr.com/3629/3323896446_3b87a8bf75_t.jpg" />
-        <img src="http://farm4.static.flickr.com/3023/3323897466_e61624f6de_t.jpg" />
-        <img src="http://farm4.static.flickr.com/3650/3323058611_d35c894fab_t.jpg" />
-        <img src="http://farm4.static.flickr.com/3635/3323893254_3183671257_t.jpg" />
-      </div>
-   
-    </div>
-   
-  </div>
-   
-  <!-- "next page" action -->
-  <a class="next browse right"></a>
-  </div>
-</div>
-     
-
-
-     
-
+<script type="text/javascript">
+var viewer = new JSC3D.Viewer(document.getElementById('cv'));
+viewer.setParameter('SceneUrl',         '../images/node.stl');
+viewer.setParameter('ModelColor',       '#CAA618');
+viewer.setParameter('BackgroundColor1', '#E5D7BA');
+viewer.setParameter('BackgroundColor2', '#383840');
+viewer.setParameter('RenderMode',       'flat');
+viewer.init();
+viewer.update();
+</script>
 
 
 
 <!-- Pollutants Section -->
-<div class="row featurette" style="padding-left: 20px; padding-right: 20px; padding-top: 110px">
+<div class="row featurette" style="padding-left: 20px; padding-right: 20px; padding-top: 80px">
   <h2 class="featurette-heading">
     <span class="text-muted">What are we measuring?</span>
   </h2>
@@ -196,7 +185,110 @@ Together, these pollutants paint a comprehensive picture of air quality impacts 
 <hr>
 <br><br>
 
+
+
+
 <!-- first row of pollutants -->
+
+<!--CARBON MONOXIDE -->
+<div class="row">
+  <div class="col-sm-6 col-md-4">
+   <div class="thumbnail">
+    <img src="../images/CO.png">
+    <h3>Carbon Monoxide</h3>
+    <p>
+      CO is an odorless, colorless gas that is highly toxic in when encountered in high concentrations. The main contribution of CO is vehicle exhaust but other sources include fuel combustion, fires, and volcanoes. Harmful health effects of CO occur when it enters the bloodstream through the lungs and binds to hemoglobin, reducing the amount of oxygen that reaches the bodys' tissues and organs. 
+    </p>
+    <p>
+     <a class="btn" data-toggle="modal" data-target="#COModal" href="#">Learn More</a>
+   </p>
+ </div>
+</div>
+<!-- CO Modal -->
+<div class="modal fade" id="COModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="myModalLabel">Carbon Monoxide</h4>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- NITRIC OXIDE -->
+<div class="col-sm-6 col-md-4">
+ <div class="thumbnail">
+   <img src="../images/NO.png">
+   <h3>Nitric Oxide</h3>
+   <p>
+    Nitric Oxide is colorless and odorless, and of the nitrogen oxides (NOx) emitted, NO is the primary pollutant. While NO is non-toxic by itself, it quickly converts to NO2 in the air. 
+  </p>
+  <p>
+   <a class="btn" data-toggle="modal" data-target="#NOModal" href="#">Learn More</a>
+ </p>
+</div>
+</div>
+<!-- NO Modal -->
+<div class="modal fade" id="NOModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="myModalLabel">Nitric Oxide</h4>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- NITROGEN DIOXIDE -->
+<div class="col-sm-6 col-md-4">
+ <div class="thumbnail">
+   <img src="../images/NO2.png">
+   <h3>Nitrogen Dioxide</h3>
+   <p>
+    Nitrogen Dioxide (NO2) is strongly tied to the presence of O3 and particulate matter. The largest sources of NO2 are combustion processes, such as heating and power generation. Long-term exposure to NO2 has been linked to adverse respiratory effects. 
+  </p>
+  <p>
+   <a class="btn" data-toggle="modal" data-target="#NO2Modal" href="#">Learn More</a>
+  </p>
+</div>
+</div>
+<!-- NO2 Modal -->
+<div class="modal fade" id="NO2Modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="myModalLabel">Nitrogen Dioxide</h4>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+
+
+</div>
+</div>
+</div>
+
+<!-- second row of pollutants -->
 <div class="row">
  <div class="row">
 
@@ -298,112 +390,11 @@ Together, these pollutants paint a comprehensive picture of air quality impacts 
 
 
 
-<!-- second row of pollutants -->
-
-<!--CARBON MONOXIDE -->
-<div class="row">
-  <div class="col-sm-6 col-md-4">
-   <div class="thumbnail">
-    <img src="../images/CO.png">
-    <h3>Carbon Monoxide</h3>
-    <p>
-      CO is an odorless, colorless gas that is highly toxic in when encountered in high concentrations. The main contribution of CO is vehicle exhaust but other sources include fuel combustion, fires, and volcanoes. Harmful health effects of CO occur when it enters the bloodstream through the lungs and binds to hemoglobin, reducing the amount of oxygen that reaches the bodys' tissues and organs. 
-    </p>
-    <p>
-     <a class="btn" data-toggle="modal" data-target="#COModal" href="#">Learn More</a>
-   </p>
- </div>
-</div>
-<!-- CO Modal -->
-<div class="modal fade" id="COModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <h4 class="modal-title" id="myModalLabel">Carbon Monoxide</h4>
-      </div>
-      <div class="modal-body">
-        ...
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- NITRIC OXIDE -->
-<div class="col-sm-6 col-md-4">
- <div class="thumbnail">
-   <img src="../images/NO.png">
-   <h3>Nitric Oxide</h3>
-   <p>
-    Nitric Oxide is colorless and odorless, and of the nitrogen oxides (NOx) emitted, NO is the primary pollutant. While NO is non-toxic by itself, it quickly converts to NO2 in the air. 
-  </p>
-  <p>
-   <a class="btn" data-toggle="modal" data-target="#NOModal" href="#">Learn More</a>
- </p>
-</div>
-</div>
-<!-- NO Modal -->
-<div class="modal fade" id="NOModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <h4 class="modal-title" id="myModalLabel">Nitric Oxide</h4>
-      </div>
-      <div class="modal-body">
-        ...
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- NITROGEN DIOXIDE -->
-<div class="col-sm-6 col-md-4">
- <div class="thumbnail">
-   <img src="../images/NO2.png">
-   <h3>Nitrogen Dioxide</h3>
-   <p>
-    Nitrogen Dioxide (NO2) is strongly tied to the presence of O3 and particulate matter. The largest sources of NO2 are combustion processes, such as heating and power generation. Long-term exposure to NO2 has been linked to adverse respiratory effects. 
-  </p>
-  <p>
-   <a class="btn" data-toggle="modal" data-target="#NO2Modal" href="#">Learn More</a>
-  </p>
-</div>
-</div>
-<!-- NO2 Modal -->
-<div class="modal fade" id="NO2Modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <h4 class="modal-title" id="myModalLabel">Nitrogen Dioxide</h4>
-      </div>
-      <div class="modal-body">
-        ...
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-      </div>
-    </div>
-  </div>
-
-
-</div>
-</div>
-</div>
-
-
 <!-- AQI SECTION --> 
 
 <div class="row featurette" style="padding-left: 20px; padding-right: 20px; padding-top: 110px">
   <h2 class="featurette-heading">
-    <span class="text-muted">How are we measuring air quality?</span>
+    <font color="#1560ac">How are we measuring air quality?</font> 
   </h2>
   <br>
   <p class="lead">
