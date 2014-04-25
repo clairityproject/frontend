@@ -170,12 +170,3 @@ $(document).ready(function () {
 	});
 	
 });
-
-
-//OLD CODE
-// var url = "http://ec2-54-201-87-182.us-west-2.compute.amazonaws.com/api/v1/datapoint/?limit=3";
-// $.getJSON(url, function (data) {
-// 	$.each(data.objects, function( index, value ) {
-//   	console.log( index + ": " + value.temperature );
-// 	});
-// });
