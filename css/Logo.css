@@ -332,10 +332,10 @@
 
 #divider-large-reversed {
 	width: 0px;
-	height: 54px;
+	height: 0px;
 	margin-top: -7px;
 	margin-left: 14px;
-	border-left: 1px solid #fff;
+	border-left: 0px #000;
 	float: left;
 	}
 	
