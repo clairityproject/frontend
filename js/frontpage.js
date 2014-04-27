@@ -1,16 +1,14 @@
 // In Front End
 
 //TO DO:
-//Fix map bounds
+//Fix map bounds - attribution on zoom
 //Last updated
 //Only get latest datapoint
-//Fix Attribution
 //map: Buildings from whereis.mit.edu ?
-
 
 //color legend
 //concentration units
-//site label on graphs
+//site label on graphs?????
 
 var serverNodesURL = "http://clairity.mit.edu/api/v1/node/?limit=0";
 //"http://ec2-54-186-224-108.us-west-2.compute.amazonaws.com/api/v1/node/"
