@@ -1,0 +1,315 @@
+/*MIT Logo*/
+
+/* holds the 3-part logo set */
+#logo-holder-large {
+	float: none;
+	width: 460px;
+	height: 54px;
+	margin-top: 4%;
+	margin-bottom: 3%;
+}
+
+
+#logo-holder-small {
+	float: none;
+	width: 403px;
+	height: 54px;
+	margin-top: 4%;
+	margin-bottom: 3%;
+}
+
+/* The CEE-branded MIT logo in two sizes and two color variations, each with it's own hover state */
+
+#MIT-logo-large {
+	width: 74px;
+	height: 38px;
+	float: left;
+	background-image: url(../images/cee-images/MIT-CEE-logo-large-sprite.png);
+	background-repeat: no-repeat;
+	background-position: 0px 0px;
+	}
+	
+#MIT-logo-large:hover {
+	background-image: url(../images/cee-images/MIT-CEE-logo-large-sprite.png);
+	background-repeat: no-repeat;
+	background-position: -74px 0px;
+	}	
+
+#MIT-logo-large-reversed {
+	width: 74px;
+	height: 38px;
+	float: left;
+	background-image: url(../images/cee-images/MIT-CEE-logo-large-sprite.png);
+	background-repeat: no-repeat;
+	background-position: -148px 0px;
+	}
+	
+#MIT-logo-large-reversed:hover {
+	background-image: url(../images/cee-images/MIT-CEE-logo-large-sprite.png);
+	background-repeat: no-repeat;
+	background-position: -222px 0px;
+	}	
+
+#MIT-logo-small {
+	width: 56px;
+	height: 30px;
+	float: left;
+	background-image: url(../images/cee-images/MIT-CEE-logo-small-sprite.png);
+	background-repeat: no-repeat;
+	background-position: 0px 0px;
+	}
+	
+#MIT-logo-small:hover {
+	background-image: url(../images/cee-images/MIT-CEE-logo-small-sprite.png);
+	background-repeat: no-repeat;
+	background-position: -56px 0px;
+	}	
+	
+#MIT-logo-small-reversed {
+	width: 56px;
+	height: 30px;
+	float: left;
+	background-image: url(../images/cee-images/MIT-CEE-logo-small-sprite.png);
+	background-repeat: no-repeat;
+	background-position: -112px 0px;
+	}
+	
+#MIT-logo-small-reversed:hover {
+	background-image: url(../images/cee-images/MIT-CEE-logo-small-sprite.png);
+	background-repeat: no-repeat;
+	background-position: -168px 0px;
+	}	
+
+/* the vertical pipe between the MIT logo and the CEE logo, in two sizes and two color variations */
+
+#divider-large {
+	width: 14px;
+	height: 54px;
+	margin-top: -7px;
+	margin-left: 14px;
+	border-left: 1px solid #000;
+	float: left;
+	}
+
+#divider-large-reversed {
+	width: 14px;
+	height: 54px;
+	margin-top: -7px;
+	margin-left: 14px;
+	border-left: 1px solid #fff;
+	float: left;
+	}	
+	
+#divider-small {
+	width: 10px;
+	height: 40px;
+	margin-top: -5px;
+	margin-left: 10px;
+	border-left: 1px solid #000;
+	float: left;
+	}
+	
+#divider-small-reversed {
+	width: 12px;
+	height: 40px;
+	margin-top: -5px;
+	margin-left: 12px;
+	border-left: 1px solid #fff;
+	float: left;
+	}
+
+/* logo holders with the CEE dark blue background to demo the white logos */
+
+#CEE-logo-holder-large {
+	width: 500px;
+	height: 48px;
+	margin-left: -3%;
+	margin-top: 2%;
+	margin-bottom: 2%;
+	margin-right: 6%;
+	padding: 3%;
+	padding-top: 5%;
+	z-index: 100;
+	}
+
+#CEE-logo-holder-small {
+	width: 500px;
+	height: 48px;
+	margin-left: -3%;
+	margin-top: 2%;
+	margin-bottom: 2%;
+	margin-right: 6%;
+	padding: 3%;
+	padding-top: 5%;
+	background-color:#48588b;
+	z-index: 100;
+	}
+
+/* The CEE logo and wordmark lockups for web, in two sizes and two color variations, each with its own hover state */
+
+#CEE-logo-web-large {
+	width: 323px;
+	height: 61px;
+	float: left;
+	margin-top: -10px;
+	background-image: url(../images/cee-images/CEE-logo-web-large-off.png);
+	background-repeat: no-repeat;
+	background-position: 0px 0px;
+	}
+	
+#CEE-logo-web-large:hover {
+	background-image: url(../images/cee-images/CEE-logo-web-large-on.png);
+	background-repeat: no-repeat;
+	}
+
+
+#CEE-logo-reversed-web-large {
+	width: 323px;
+	height: 61px;
+	float: left;
+	margin-top: -10px;
+	background-image: url(../images/cee-images/CEE-logo-web-large-reversed-off.png);
+	background-repeat: no-repeat;
+	background-position: 0px 0px;
+	}
+	
+#CEE-logo-reversed-web-large:hover {
+	background-image: url(../images/cee-images/CEE-logo-web-large-reversed-on.png);
+	background-repeat: no-repeat;
+	}
+
+
+#CEE-logo-web-small {
+	width: 248px;
+	height: 52px;
+	float: left;
+	margin-top: -8px;
+	background-image: url(../images/cee-images/CEE-logo-web-off.png);
+	background-repeat: no-repeat;
+	background-position: 0px 0px;
+	}
+	
+#CEE-logo-web-small:hover {
+	background-image: url(../images/cee-images/CEE-logo-web-on.png);
+	background-repeat: no-repeat;
+	}
+
+
+#CEE-logo-reversed-web-small {
+	width: 248px;
+	height: 52px;
+	float: left;
+	margin-top: -8px;
+	background-image: url(../images/cee-images/CEE-logo-web-reversed-off.png);
+	background-repeat: no-repeat;
+	background-position: 0px 0px;
+	}
+	
+#CEE-logo-reversed-web-small:hover {
+	background-image: url(../images/cee-images/CEE-logo-web-reversed-on.png);
+	background-repeat: no-repeat;
+	}
+
+/* The short versions of the CEE logo and wordmark lockups for mobile, in two sizes and two color variations, each with its own hover state */
+
+#CEE-logo-mobile-small {
+	display: block;
+	width: 144px;
+	height: 52px;
+	float: left;
+	margin-top: -8px;
+	background-image: url(../images/cee-images/CEE-logo-mobile-small-off.png);
+	background-repeat: no-repeat;
+	background-position: 0px 0px;
+	}
+	
+#CEE-logo-mobile-small:hover {
+	background-image: url(../images/cee-images/CEE-logo-mobile-small-on.png);
+	background-repeat: no-repeat;
+	}
+
+#CEE-logo-reversed-mobile-small {
+	display: block;
+	width: 144px;
+	height: 52px;
+	float: left;
+	margin-top: -8px;
+	background-image: url(../images/cee-images/CEE-logo-mobile-small-reversed-off.png);
+	background-repeat: no-repeat;
+	background-position: 0px 0px;
+	}
+	
+#CEE-logo-reversed-mobile-small:hover {
+	background-image: url(../images/cee-images/CEE-logo-mobile-small-reversed-on.png);
+	background-repeat: no-repeat;
+	}
+
+#CEE-logo-mobile-large {
+	width: 172px;
+	height: 61px;
+	float: left;
+	margin-top: -10px;
+	background-image: url(../images/cee-images/CEE-logo-mobile-large-off.png);
+	background-repeat: no-repeat;
+	background-position: 0px 0px;
+	}
+	
+#CEE-logo-mobile-large:hover {
+	background-image: url(../images/cee-images/CEE-logo-mobile-large-on.png);
+	background-repeat: no-repeat;
+	}
+
+
+#CEE-logo-reversed-mobile-large {
+	width: 323px;
+	height: 61px;
+	float: left;
+	margin-top: -10px;
+	background-image: url(../images/cee-images/CEE-logo-mobile-large-reversed-off.png);
+	background-repeat: no-repeat;
+	background-position: 0px 0px;
+	}
+	
+#CEE-logo-reversed-mobile-large:hover {
+	background-image: url(../images/cee-images/CEE-logo-mobile-large-reversed-on.png);
+	background-repeat: no-repeat;
+	}
+	
+
+@media (max-width: 480px) { /* Displays the short versions of the CEE logo and wordmark lockups for web when viewed on mobile, in two sizes and two color variations, each with its own hover state */
+	
+#CEE-logo-web-large {
+	background-image: url(../images/cee-images/CEE-logo-mobile-large-off.png);
+	}
+	
+#CEE-logo-web-large:hover {
+	background-image: url(../images/cee-images/CEE-logo-mobile-large-on.png);
+	}
+
+
+#CEE-logo-reversed-web-large {
+	background-image: url(../images/cee-images/CEE-logo-mobile-large-reversed-off.png);
+	}
+	
+#CEE-logo-reversed-web-large:hover {
+	background-image: url(../images/cee-images/CEE-logo-mobile-large-reversed-on.png);
+	}
+
+#CEE-logo-web-small {
+	background-image: url(../images/cee-images/CEE-logo-mobile-small-off.png);
+	}
+	
+#CEE-logo-web-small:hover {
+	background-image: url(../images/cee-images/CEE-logo-mobile-small-on.png);
+	}
+
+
+#CEE-logo-reversed-web-small {
+	background-image: url(../images/cee-images/CEE-logo-mobile-small-reversed-off.png);
+	}
+	
+#CEE-logo-reversed-web-small:hover {
+	background-image: url(../images/cee-images/CEE-logo-mobile-small-reversed-on.png);
+	}
+
+}

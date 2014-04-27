@@ -8,7 +8,6 @@
 //map: Buildings from whereis.mit.edu ?
 
 //Building 1 is outdoor
-//label Cambridge/Boston, maybe little map in corner
 //color legend
 //MIT Attribution
 //concentration units
