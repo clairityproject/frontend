@@ -132,3 +132,15 @@ table.table#temprh > tbody > tr > td {
 .table-condensed>tbody>tr>td {
 	padding: 0.5px;
 }
+
+.table-condensed>tbody>tr>td.pollutantFull {
+	padding-bottom: 5px;
+}
+
+.pollutantValue {
+	text-align: right;
+}
+
+#xButton {
+	line-height: 30px;
+}
