@@ -52,6 +52,11 @@
 	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 	font-style: bold;
 }
+
+
+#legend_container{
+	position: absolute;
+	margin-left: 5px;
 }
 
 #legendtable{
