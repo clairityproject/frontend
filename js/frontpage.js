@@ -147,9 +147,9 @@ $(document).ready(function(){
     var googleLayer = new L.Google('ROADMAP',mapStylesArray);
 
 	var sWBound = L.latLng(42.365901,-71.079440);
-	var nEBound = L.latLng(42.350901,-71.107550);
+	var nEBound = L.latLng(42.350901,-71.207550);
 	var map = new L.Map('map', {minZoom: 14, maxBounds:[sWBound,nEBound], zoomControl: false, attributionControl: false, layers: [googleLayer] });
-	map.setView([42.3599000, -71.096000], 15);
+	map.setView([42.3590000, -71.095500], 16);
 
 	map.addLayer(googleLayer);
 	var zoomBar = L.control.zoom({ position: 'topleft' }).addTo(map);
