@@ -123,12 +123,12 @@
 #CEE-logo-holder-large {
 	width: 500px;
 	height: 48px;
-	margin-left: -3%;
-	margin-top: 2%;
-	margin-bottom: 2%;
-	margin-right: 6%;
-	padding: 3%;
-	padding-top: 5%;
+	margin-left: -30%;
+	//margin-top: 2%;
+	//margin-bottom: 2%;
+	//margin-right: 6%;
+	//padding: 3%;
+	//padding-top: 5%;
 	z-index: 100;
 	}
 
