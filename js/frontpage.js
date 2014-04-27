@@ -7,9 +7,8 @@
 //Fix Attribution
 //map: Buildings from whereis.mit.edu ?
 
-//Building 1 is outdoor
+
 //color legend
-//MIT Attribution
 //concentration units
 //site label on graphs
 
@@ -131,7 +130,6 @@ function setColor(){
 	}
 }
 
-
 function displaySidebar(i){
 	$("#locationheader").html(String(sensors[i].location));
 	$(".alpha1").html(String(sensors[i].alpha1));
@@ -140,7 +138,6 @@ function displaySidebar(i){
 	$(".alpha4").html(String(sensors[i].alpha4));
 	$(".temp").html(String(sensors[i].temp));
 	$(".rh").html(String(sensors[i].rh));
-	
 };
 
 
@@ -157,9 +154,8 @@ $(document).ready(function(){
 	map.setView([42.3590000, -71.095500], 16);
 
 	map.addLayer(googleLayer);
-	var zoomBar = L.control.zoom({ position: 'topleft' }).addTo(map);
+	var zoomBar = L.control.zoom({ position: 'topright' }).addTo(map);
 	var attribution = L.control.attribution({position: 'topright'}).addTo(map);
-
 
 	map.touchZoom.disable();
 	map.dragging.disable();
