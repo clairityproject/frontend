@@ -4,9 +4,15 @@
 //Fix map bounds
 //Last updated
 //Only get latest datapoint
-//Differentiate inside vs. outside nodes
 //Fix Attribution
 //map: Buildings from whereis.mit.edu ?
+
+//Building 1 is outdoor
+//label Cambridge/Boston, maybe little map in corner
+//color legend
+//MIT Attribution
+//concentration units
+//site label on graphs
 
 var serverNodesURL = "http://clairity.mit.edu/api/v1/node/?limit=0";
 //"http://ec2-54-186-224-108.us-west-2.compute.amazonaws.com/api/v1/node/"
