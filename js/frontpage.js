@@ -1,7 +1,7 @@
 // In Front End
 
 //TO DO:
-//Fix map bounds - attribution on zoom
+//Fix map bounds - when zooms, doesn't center
 //Last updated
 //Only get latest datapoint
 //map: Buildings from whereis.mit.edu ?
@@ -9,6 +9,8 @@
 //color legend
 //concentration units
 //site label on graphs?????
+
+//GRAPHS
 
 var serverNodesURL = "http://clairity.mit.edu/api/v1/node/?limit=0";
 //"http://ec2-54-186-224-108.us-west-2.compute.amazonaws.com/api/v1/node/"
@@ -148,8 +150,8 @@ $(document).ready(function(){
 
 	var sWBound = L.latLng(42.365901,-71.079440);
 	var nEBound = L.latLng(42.350901,-71.207550);
-	var map = new L.Map('map', {minZoom: 14, maxBounds:[sWBound,nEBound], zoomControl: false, attributionControl: false, layers: [googleLayer] });
-	map.setView([42.3590000, -71.095500], 16);
+	var map = new L.Map('map', {center: [42.3590000, -71.095500], zoom: 16, minZoom: 14, maxBounds:[sWBound,nEBound], zoomControl: false, attributionControl: false, layers: [googleLayer] });
+	//map.setView([42.3590000, -71.095500], 16);
 
 	map.addLayer(googleLayer);
 	var zoomBar = L.control.zoom({ position: 'topright' }).addTo(map);
