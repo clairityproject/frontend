@@ -13,9 +13,7 @@
 //GRAPHS
 
 var serverNodesURL = "http://clairity.mit.edu/api/v1/node/?limit=0";
-//"http://ec2-54-186-224-108.us-west-2.compute.amazonaws.com/api/v1/node/"
-//http://ec2-54-187-18-145.us-west-2.compute.amazonaws.com/api/v1/node/";
-var serverDataURL = "http://ec2-54-187-18-145.us-west-2.compute.amazonaws.com/api/v1/datapoint/";
+var serverDataURL = "http://clairity.mit.edu/latest/all/";
 
 var sensors = [];
 var new_sensor;
@@ -51,26 +49,27 @@ function sensor(lat,lon,location,id,in_out) {
 function RequestNodes() {
 	$.getJSON(serverNodesURL, function (data) {
 		for(i=0; i<data["objects"].length; i++){
-			if(data["objects"][i]["latitude"]){
 				new_sensor = new sensor(data["objects"][i]["latitude"],data["objects"][i]["longitude"],data["objects"][i]["name"],data["objects"][i]["node_id"],data["objects"][i]["indoor"]);
     			sensors.push(new_sensor);
-    		}
 		}
 		nodesDrawn = true;
 	});
-	console.log(sensors);
 }
+
+var date_separators = [" ","-",":"];
 
 function RequestDatapoints() {
 	if(nodesDrawn){
 		$.getJSON(serverDataURL, function (data) {
-			for(i=0; i<data["objects"].length; i++){
+			for(i=0; i<data.length; i++){
 				sensors[i].color = 0;
 				for(j=1; j<5; j++){
 					addAlphasenseData(i,j,data);
 				}
-				sensors[i].temp = data["objects"][i]["temperature"];
-				sensors[i].rh = data["objects"][i]["rh"];
+				sensors[i].temp = data[i]["temperature"];
+				sensors[i].rh = data[i]["rh"];
+				var tempDate = data[i]["last_modified"].split(/[\s*\-\s*,":"]/,5);
+				sensors[i].lastUpdated = new Date(tempDate[0],tempDate[1],tempDate[2],tempDate[3],tempDate[4]);
 			}
 			setColor();
 		});
@@ -80,27 +79,27 @@ function RequestDatapoints() {
 function addAlphasenseData(i,j,data){
 	switch(j){
 	case 1:
-		var toAdd = data["objects"][i]["alphasense_1"];
+		var toAdd = data[i]["alphasense_1"];
 		sensors[i].alpha1 = toAdd;
 		findColor(i,toAdd);
 	case 2:
-		 var toAdd = data["objects"][i]["alphasense_2"];
+		 var toAdd = data[i]["alphasense_2"];
 		 sensors[i].alpha2 = toAdd;
 		 findColor(i,toAdd);
 	case 3:
-		var toAdd = data["objects"][i]["alphasense_3"];
+		var toAdd = data[i]["alphasense_3"];
 		sensors[i].alpha3 = toAdd;
 		findColor(i,toAdd);
 	case 4:
-		var toAdd = data["objects"][i]["alphasense_4"];
+		var toAdd = data[i]["alphasense_4"];
 		sensors[i].alpha4 = toAdd;
 		findColor(i,toAdd);
 	case 5:
-		var toAdd = data["objects"][i]["pm25"];
+		var toAdd = data[i]["pm25"];
 		sensors[i].pm25 = toAdd;
 		findColor(i,toAdd);
 	case 6:
-		var toAdd = data["objects"][i]["pm10"];
+		var toAdd = data[i]["pm10"];
 		sensors[i].pm10 = toAdd;
 		findColor(i,toAdd);
 		
@@ -122,22 +121,25 @@ function findColor(i, value) {
 function setColor(){
 	var circColor = null;
 	for(i=0; i<sensors.length; i++){
+	if(sensors[i].lat){
 		if(sensors[i].color == 0){ circColor = "green"; }
 		else if(sensors[i].color == 1){ circColor = "yellow"; }
 		else if(sensors[i].color == 2){ circColor = "orange"; }
 		else{ circColor = "red"; }
 		sensors[i].circ.setStyle({color: circColor, fillColor: circColor});
 	}
+	}
 }
 
 function displaySidebar(i){
 	$("#locationheader").html(String(sensors[i].location));
-	$(".alpha1").html(String(sensors[i].alpha1));
-	$(".alpha2").html(String(sensors[i].alpha2));
-	$(".alpha3").html(String(sensors[i].alpha3));
-	$(".alpha4").html(String(sensors[i].alpha4));
+	$(".alpha1").html(String(Math.round(sensors[i].alpha1)));
+	$(".alpha2").html(String(Math.round(sensors[i].alpha2)));
+	$(".alpha3").html(String(Math.round(sensors[i].alpha3)));
+	$(".alpha4").html(String(Math.round(sensors[i].alpha4)));
 	$(".temp").html(String(sensors[i].temp));
 	$(".rh").html(String(sensors[i].rh));
+	$("#lastupdated").html("Last Update: "+sensors[i].lastUpdated);
 };
 
 
@@ -166,6 +168,7 @@ $(document).ready(function(){
 	function drawNodes(){
 		
 		for(var i=0; i<sensors.length; i++){
+		if(sensors[i].lat){
 			var delt_lat = 0.00015;
 			var delt_lon = 0.00028;
 			if(sensors[i].indoor){
@@ -196,11 +199,14 @@ $(document).ready(function(){
 			sensors[i].circ.on('click', function(evt){
 				displaySidebar(this.number);
 				for(var i=0; i<sensors.length; i++){
+					if(sensors[i].lat){
 					sensors[i].circ.setStyle({fillOpacity: "0.5"});
+					}
 				}
 				this.setStyle({fillOpacity: "1"});
 			});
 
+		};
 		};
 	}
 
