@@ -2,20 +2,23 @@
 
 //My TO DO by Thursday:
 //Fix PM once Derek determines what to do
-//fix time delay of nodes
-//Last updated
+//check long, latitude of media lab node - They overlap, waiting on coding
+//Last updated - ask coding for assistance in converting real date ?????
+
 //don't show malfunctioning nodes
 //Initial explanation
-//Fix map bounds - when zooms, doesn't center
+
 //concentration units - once David is done callibrating
-//fix location margin
+
+//------------
 
 //Others
 //color legend
 
 //At some later date
-//site label on graphs?????
-//map: Buildings from whereis.mit.edu ?
+//site label on graphs
+//map: Buildings from whereis.mit.edu
+//fix popup skip when click
 
 
 var serverURL = "http://clairity.mit.edu/latest/all/";
@@ -23,6 +26,7 @@ var serverURL = "http://clairity.mit.edu/latest/all/";
 var sensors = [];
 var new_sensor;
 var nodesDrawn = false;
+var firstUpdate = true;
 var update_int = 15000; //milliseconds, 15 seconds
 
 var mapBig = true;
@@ -34,6 +38,8 @@ var alpha4_thresholds = [100, 500, 900, 1300, 1500]; //O3
 var pm25_thresholds = [100, 500, 900, 1300, 1500];
 var pm10_thresholds = [100, 500, 900, 1300, 1500];
 var alpha_thresholds = [alpha1_thresholds, alpha2_thresholds, alpha3_thresholds, alpha4_thresholds, pm25_thresholds, pm10_thresholds];
+
+var drawNodes;
 
 function sensor(lat,lon,location,id,in_out) {
 	this.node_id = id;
@@ -58,7 +64,6 @@ function RequestNodes() {
 	    		sensors.push(new_sensor);
 			}
 			drawNodes();
-			//console.log(sensors);
 			nodesDrawn=true;
 		}
 		if(nodesDrawn){
@@ -70,11 +75,16 @@ function RequestNodes() {
 				sensors[i].temp = data[i]["temperature"];
 				sensors[i].rh = data[i]["rh"];
 				var tempDate = data[i]["last_modified"].split(/[\s*\-\s*,":"]/,5);
-				sensors[i].lastUpdated = new Date(tempDate[0],tempDate[1],tempDate[2],tempDate[3],tempDate[4]);
+				sensors[i].lastUpdated = tempDate[1]+"/"+tempDate[2]+"/"+tempDate[0]+" "+tempDate[3]+":"+tempDate[4];
 			}
+			if(firstUpdate){
+				displaySidebar(14);
+				sensors[14].circ.setStyle({fillOpacity: "1"});
+			}
+			else{ firstUpdate = false; }
 		}
+		setColor();
 	});
-	setColor();
 }
 
 function addAlphasenseData(i,j,data){
@@ -138,40 +148,53 @@ function displaySidebar(i){
 	$(".alpha2").html(String(Math.round(sensors[i].alpha2)));
 	$(".alpha3").html(String(Math.round(sensors[i].alpha3)));
 	$(".alpha4").html(String(Math.round(sensors[i].alpha4)));
-	$("#lastupdated").html("Last Update: "+sensors[i].lastUpdated);
+	$("#lastupdated").html("Last Updated: "+sensors[i].lastUpdated);
 };
 
-function drawNodes(){
-	console.log("Drawing Nodes...");
+
+$(document).ready(function(){
+    //Leaflet Map 
+
+	var googleLayer = new L.Google('ROADMAP',mapStylesArray);
+
+	var sWBound = L.latLng(42.336976,-71.153984);
+	var nEBound = L.latLng(42.381880,-71.052017);
+	var map = new L.Map('map', {center: [42.3590000, -71.095500], zoom: 16, minZoom: 14, maxBounds:[sWBound,nEBound], zoomControl: false, attributionControl: false, layers: [googleLayer] });
+	//map.setView([42.3590000, -71.095500], 16);
+
+	map.addLayer(googleLayer);
+	var zoomBar = L.control.zoom({ position: 'topright' }).addTo(map);
+	var attribution = L.control.attribution({position: 'topright'}).addTo(map);
+
+	//map.touchZoom.disable();
+	//map.dragging.disable();
+	map.doubleClickZoom.disable();
+	map.scrollWheelZoom.disable();
+
+	drawNodes = function(){
 	for(var i=0; i<sensors.length; i++){
 		if(sensors[i].lat){
 			var delt_lat = 0.00015;
 			var delt_lon = 0.00028;
 			if(sensors[i].indoor){
-				console.log("Sensor is indoors");
 				sensors[i].circ = L.polygon([[sensors[i].lat+delt_lat,sensors[i].lon],[sensors[i].lat-delt_lat,sensors[i].lon+delt_lon],[sensors[i].lat-delt_lat,sensors[i].lon-delt_lon]],{
 	    			color: 'red',
 	    			fillColor: "#f03",
 	    			fillOpacity: 0.5
 				}).addTo(map);
+				sensors[i].circ.bindPopup(sensors[i].location, {closeButton: false,'offset': L.point(-12,-15)});
 			}
 			else{
-				console.log("sensor is outdoors");
-				console.log(sensors[i].lat+" "+sensors[i].lon);
-				var placement = [42.361995,-71.097513];
-				cirlce = L.circle(placement,16).addTo(map);
-				console.log("circle placed");
-				sensors[i].circ = L.circle(placement, 16, {
+				sensors[i].circ = L.circle([sensors[i].lat,sensors[i].lon], 16, {
 	    			color: 'red',
 	    			fillColor: "#f03",
 	    			fillOpacity: 0.5
 				}).addTo(map);
-				console.log("sensor added to map");
+				sensors[i].circ.bindPopup(sensors[i].location, {closeButton: false,'offset': L.point(0,-5)});
 			}
 
 			sensors[i].circ.number = i;
 
-			sensors[i].circ.bindPopup(sensors[i].location, {closeButton: false,'offset': L.point(0,-5)});
 			sensors[i].circ.on('mouseover', function(evt) {
 				evt.target.openPopup();
 			});
@@ -191,34 +214,10 @@ function drawNodes(){
 
 		};
 	};
-	console.log("Nodes Drawn!");
 }
-
-
-$(document).ready(function(){
-    //Leaflet Map 
-
-	var googleLayer = new L.Google('ROADMAP',mapStylesArray);
-
-	var sWBound = L.latLng(42.365901,-71.079440);
-	var nEBound = L.latLng(42.350901,-71.207550);
-	var map = new L.Map('map', {center: [42.3590000, -71.095500], zoom: 16, minZoom: 14, maxBounds:[sWBound,nEBound], zoomControl: false, attributionControl: false, layers: [googleLayer] });
-	//map.setView([42.3590000, -71.095500], 16);
-
-	map.addLayer(googleLayer);
-	var zoomBar = L.control.zoom({ position: 'topright' }).addTo(map);
-	var attribution = L.control.attribution({position: 'topright'}).addTo(map);
-
-	map.touchZoom.disable();
-	map.dragging.disable();
-	map.doubleClickZoom.disable();
-	map.scrollWheelZoom.disable();
-
 	
 	RequestNodes();
-	//drawNodes();
-	//var reset = setInterval(function() {RequestNodes()}, update_int);
-
+	var reset = setInterval(function() {RequestNodes()}, update_int);
    
 	var mapBig = true;
 
