@@ -1,0 +1,15 @@
+body {
+    padding-top: 50px;
+}
+.content{
+    padding: 40px 15px;
+}
+.btn-sm, .btn-group-sm>.btn {
+    padding: 7px 11px;
+    margin: 4px;
+
+}
+.btn-node {
+    width:38px;
+    height:36px;
+}
