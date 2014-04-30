@@ -21,7 +21,7 @@ cache = {
     'o3':{}
 }
 
-baseURL = "http://localhost:8000/graph/all"
+baseURL = "http://clairity.mit.edu/graph/all"
 var seriesOptions = [];
 
 $(function() {
