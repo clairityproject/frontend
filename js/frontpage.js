@@ -69,7 +69,7 @@ function RequestNodes() {
 		if(nodesDrawn){
 			for(i=0; i<sensors.length; i++){
 				sensors[i].color = 0;
-				for(j=1; j<5; j++){
+				for(j=1; j<7; j++){
 					addAlphasenseData(i,j,data);
 				}
 				sensors[i].temp = data[i]["temperature"];
@@ -106,11 +106,11 @@ function addAlphasenseData(i,j,data){
 		sensors[i].alpha4 = toAdd;
 		findColor(i,toAdd);
 	case 5:
-		var toAdd = data[i]["pm25"];
+		var toAdd = data[i]["dylos_bin_1"]+data[i]["dylos_bin_2"]+data[i]["dylos_bin_3"];
 		sensors[i].pm25 = toAdd;
 		findColor(i,toAdd);
 	case 6:
-		var toAdd = data[i]["pm10"];
+		var toAdd = data[i]["dylos_bin_4"];
 		sensors[i].pm10 = toAdd;
 		findColor(i,toAdd);
 		
@@ -148,6 +148,9 @@ function displaySidebar(i){
 	$(".alpha2").html(String(Math.round(sensors[i].alpha2)));
 	$(".alpha3").html(String(Math.round(sensors[i].alpha3)));
 	$(".alpha4").html(String(Math.round(sensors[i].alpha4)));
+	$(".pm25").html(String(Math.round(sensors[i].pm25)));
+	console.log("PM 2.5: "+sensors[i].pm25);
+	$(".pm10").html(String(Math.round(sensors[i].pm10)));
 	$("#lastupdated").html("Last Updated: "+sensors[i].lastUpdated);
 };
 
