@@ -8,7 +8,13 @@
 //don't show malfunctioning nodes
 //Initial explanation
 
-//concentration units - once David is done callibrating
+//concentration units - ask Derek for unitsz
+
+//For next Tuesday:
+//Posters: bring laptop to connect to screen to project poster - bring Dongle ??????
+//Bring towers ?
+//Presenters will be miked
+//Attire: don't wear anything not drastically blue, dress up (business casual)
 
 //------------
 
