@@ -1,6 +1,5 @@
 //export.js
 
-
 Array.prototype.remove = function() {
     var what, a = arguments, L = a.length, ax;
     while (L && this.length) {
@@ -12,6 +11,26 @@ Array.prototype.remove = function() {
     return this;
 };
 
+$.xhrPool = [];
+$.xhrPool.abortAll = function() {
+    $(this).each(function(idx, jqXHR) {
+        jqXHR.abort();
+    });
+    $.xhrPool.length = 0
+};
+
+$.ajaxSetup({
+    beforeSend: function(jqXHR) {
+        $.xhrPool.push(jqXHR);
+    },
+    complete: function(jqXHR) {
+        var index = $.xhrPool.indexOf(jqXHR);
+        if (index > -1) {
+            $.xhrPool.splice(index, 1);
+        }
+    }
+});
+
 cache = {
     'dylosBig':{},
     'dylosSmall':{},
@@ -21,7 +40,7 @@ cache = {
     'o3':{}
 }
 
-baseURL = "http://clairity.mit.edu"
+baseURL = "http://clairity.mit.edu";
 //baseURL = "http://localhost:8000";
 var seriesOptions = [];
 
@@ -68,6 +87,14 @@ $(function() {
     function displayError(msg){
 
         $('#graph-area').prepend('<div class="alert alert-danger alert-dismissable">' +
+                  '<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>' +
+                  msg +
+                    '</div>');
+    }
+
+    function displayInfo(msg){
+
+        $('#graph-area').prepend('<div class="alert alert-success alert-dismissable">' +
                   '<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>' +
                   msg +
                     '</div>');
@@ -129,12 +156,19 @@ $(function() {
     });
 
     $('#download-csv').click(function(e){
-        var url = baseURL+'/download/csv/?sensor=' + sensor + '&node_ids=' + nodes;
+        // stop all active connections
+        $.xhrPool.abortAll();
+        if (nodes.length == 0 || currentSensor == undefined){
+            console.log("asdfasdfa ");
+            displayError("Please select a node and a sensor for which to download data.");
+            return ;
+        }
+        displayInfo("Please wait. Generating and downloading CSV file. This may take a while.");
+        var url = baseURL+'/download/csv/?sensor=' + currentSensor+ '&node_ids=' + nodes;
         window.location = url;
     });
 
     $('.btn-sensor').click(function(e){
-
         target = $(e.target)
         // remove all UI selections
         $.each($('.btn-sensor'), function(i, btn){
