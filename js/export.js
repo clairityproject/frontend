@@ -21,7 +21,8 @@ cache = {
     'o3':{}
 }
 
-baseURL = "http://clairity.mit.edu/graph/all"
+baseURL = "http://clairity.mit.edu"
+//baseURL = "http://localhost:8000";
 var seriesOptions = [];
 
 $(function() {
@@ -29,7 +30,7 @@ $(function() {
         names = ['dylos'],
         nodes = [],
         color = ['#7cb5ec', '#90ed7d', '#f7a35c', '#8085e9', '#f15c80', '#e4d354', '#8085e8', '#8d4653', '#91e8e1'],
-        currentSensor = null;
+        currentSensor;
 
     counter = 0;
 
@@ -40,7 +41,7 @@ $(function() {
         }
         // download otherwise
 
-        $.getJSON(baseURL + '/?sensor=' + sensor + '&node_id=' + node,   function(data) {
+        $.getJSON(baseURL + '/graph/all/?sensor=' + sensor + '&node_id=' + node,   function(data) {
             // add to cache
             cache[sensor][node] = data;
 
@@ -90,6 +91,7 @@ $(function() {
             var seriesCounter = 0,
                 drawNow = true
             seriesOptions = []
+
             $.each(nodes, function(num, nodeId){
                 sensor = currentSensor
                 if(cache[sensor].hasOwnProperty(nodeId)){
@@ -107,10 +109,11 @@ $(function() {
                 drawNow = false
             if (drawNow)
                 createChart();
-
     }
 
     $('.btn-node').click(function(e){
+
+
         target = $(e.target)
         nodeId = target.attr('id') 
         if (target.hasClass('btn-default')){
@@ -125,7 +128,13 @@ $(function() {
         downloadData();
     });
 
+    $('#download-csv').click(function(e){
+        var url = baseURL+'/download/csv/?sensor=' + sensor + '&node_ids=' + nodes;
+        window.location = url;
+    });
+
     $('.btn-sensor').click(function(e){
+
         target = $(e.target)
         // remove all UI selections
         $.each($('.btn-sensor'), function(i, btn){
@@ -154,6 +163,7 @@ $(function() {
 
 // create the chart when all data is loaded
 function createChart() {
+
         $('#graph').highcharts('StockChart', {
             colors : color,
             rangeSelector : {
@@ -196,6 +206,8 @@ function createChart() {
                     width: 1,
                     color: 'silver'
                 }]
+                //,
+                //range:6000
             },
             
             plotOptions: {
@@ -211,6 +223,7 @@ function createChart() {
             
             series: seriesOptions
         });
+         
     }
 
 });
