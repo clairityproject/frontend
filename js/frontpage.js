@@ -1,19 +1,17 @@
 // In Front End
 
-//My TO DO by Thursday:
-//Fix PM once Derek determines what to do
-//check long, latitude of media lab node - They overlap, waiting on coding
-//Last updated - ask coding for assistance in converting real date ?????
-
+//TO DO:
+//Fix PM numbers ?? Ask Derek
+//fix colors
 //don't show malfunctioning nodes
-//Initial explanation
-
-//concentration units - ask Derek for unitsz
+//Initial explanation - add EPA
+//Add text colors
+//concentration units - ask Derek for units
+//Last updated - David will fix
 
 //For next Tuesday:
 //Posters: bring laptop to connect to screen to project poster - bring Dongle ??????
-//Bring towers ?
-//Presenters will be miked
+//Bring towers
 //Attire: don't wear anything not drastically blue, dress up (business casual)
 
 //------------
@@ -26,6 +24,8 @@
 //map: Buildings from whereis.mit.edu
 //fix popup skip when click
 
+//Self Note: changing the colors on the nodes to reflect only PM2.5, CO, and O3 with the data Derek emailed
+//the numbers are in counts, and ppm (which is what we'll be using once things are calibrated)
 
 var serverURL = "http://clairity.mit.edu/latest/all/";
 
@@ -57,9 +57,12 @@ function sensor(lat,lon,location,id,in_out) {
 	this.alpha2 = null;
 	this.alpha3 = null;
 	this.alpha4 = null;
-	this.color = 0; // 0 = green, 1 = yellow, 2 = orange, 3 = red
+	this.color = [0,0,0,0,0,0,0]; 
+	//Overall color, alpha1 color, alpha2 color, alpha3 color, alpha4 color, pm2.5 color, pm10 color
+	// 0 = green, 1 = yellow, 2 = orange, 3 = red
 	this.pm25 = null;
 	this.pm10 = null;
+	this.functioning = true;
 }
 
 function RequestNodes() {
@@ -74,7 +77,7 @@ function RequestNodes() {
 		}
 		if(nodesDrawn){
 			for(i=0; i<sensors.length; i++){
-				sensors[i].color = 0;
+				sensors[i].color = [0,0,0,0,0,0,0];
 				for(j=1; j<7; j++){
 					addAlphasenseData(i,j,data);
 				}
@@ -82,69 +85,83 @@ function RequestNodes() {
 				sensors[i].rh = data[i]["rh"];
 				var tempDate = data[i]["last_modified"].split(/[\s*\-\s*,":"]/,5);
 				sensors[i].lastUpdated = tempDate[1]+"/"+tempDate[2]+"/"+tempDate[0]+" "+tempDate[3]+":"+tempDate[4];
+				setColor(i);
 			}
 			if(firstUpdate){
 				displaySidebar(14);
 				sensors[14].circ.setStyle({fillOpacity: "1"});
+				firstUpdate = false;
 			}
-			else{ firstUpdate = false; }
 		}
-		setColor();
 	});
 }
 
 function addAlphasenseData(i,j,data){
-	switch(j){
-	case 1:
+	console.log("addAlphasenseData");
+	if(j==1){
 		var toAdd = data[i]["alphasense_1"];
 		sensors[i].alpha1 = toAdd;
-		findColor(i,toAdd);
-	case 2:
+		findColor(i,1,toAdd);
+	}
+	else if(j==2){
 		 var toAdd = data[i]["alphasense_2"];
 		 sensors[i].alpha2 = toAdd;
-		 findColor(i,toAdd);
-	case 3:
+		 findColor(i,2,toAdd);
+	}
+	else if(j==3){
 		var toAdd = data[i]["alphasense_3"];
 		sensors[i].alpha3 = toAdd;
-		findColor(i,toAdd);
-	case 4:
+		findColor(i,3,toAdd);
+	}
+	else if(j==4){
 		var toAdd = data[i]["alphasense_4"];
 		sensors[i].alpha4 = toAdd;
-		findColor(i,toAdd);
-	case 5:
-		var toAdd = data[i]["dylos_bin_1"]+data[i]["dylos_bin_2"]+data[i]["dylos_bin_3"];
-		sensors[i].pm25 = toAdd;
-		findColor(i,toAdd);
-	case 6:
-		var toAdd = data[i]["dylos_bin_4"];
-		sensors[i].pm10 = toAdd;
-		findColor(i,toAdd);
-		
+		findColor(i,4,toAdd);
+	}
+	else if(j==5){
+		if(data[i]["dylos_bin_1"]){
+			var toAdd = data[i]["dylos_bin_1"]+data[i]["dylos_bin_2"]+data[i]["dylos_bin_3"];
+			sensors[i].pm25 = toAdd;
+			findColor(i,5,toAdd);
+		}
+	}
+	else{
+		if(data[i]["dylos_bin_4"]){
+			var toAdd = data[i]["dylos_bin_4"];
+			sensors[i].pm10 = toAdd;
+			findColor(i,6,toAdd);
+		}
 	}
 }
 
-function findColor(i, value) {
-	if(value > alpha_thresholds[0][3]){ 
-		sensors[i].color = 3; 
+function findColor(i, j, value) {
+	console.log(i+","+j+","+value);
+	if(value > alpha_thresholds[j-1][3]){ 
+		sensors[i].color[j] = 3; 
 	}
-	else if(value > alpha_thresholds[0][2] && sensors[i].color < 2){ 
-		sensors[i].color = 2; 
+	else if(value > alpha_thresholds[j-1][2]){ 
+		sensors[i].color[j] = 2; 
 	}
-	else if(value > alpha_thresholds[0][1] && sensors[i].color < 1){ 
-		sensors[i].color = 1; 
+	else if(value > alpha_thresholds[j-1][1]){ 
+		sensors[i].color[j] = 1; 
 	}
+	console.log("Pollutant "+j+" color value set to "+sensors[i].color[j]);
 }
 
-function setColor(){
+function setColor(i){
 	var circColor = null;
-	for(i=0; i<sensors.length; i++){
 	if(sensors[i].lat){
-		if(sensors[i].color == 0){ circColor = "green"; }
-		else if(sensors[i].color == 1){ circColor = "yellow"; }
-		else if(sensors[i].color == 2){ circColor = "orange"; }
+		for(k=1;k<7;k++){
+			if(sensors[i].color[k]>sensors[i].color[0]){
+				sensors[i].color[0]=sensors[i].color[k];
+			}
+		}
+		if(sensors[i].color[0] == 0){ circColor = "green"; }
+		else if(sensors[i].color[0] == 1){ circColor = "yellow"; }
+		else if(sensors[i].color[0] == 2){ circColor = "orange"; }
 		else{ circColor = "red"; }
 		sensors[i].circ.setStyle({color: circColor, fillColor: circColor});
-	}
+		console.log("Color set to "+circColor);
 	}
 }
 
