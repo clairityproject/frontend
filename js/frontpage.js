@@ -153,12 +153,12 @@ function setColor(i){
 
 function displaySidebar(i){
 	$("#locationheader").html(String(sensors[i].location));
-	$(".alpha1").html(String(Math.round(sensors[i].alpha1))+" ppm");
-	$(".alpha2").html(String(Math.round(sensors[i].alpha2))+" ppm");
-	$(".alpha3").html(String(Math.round(sensors[i].alpha3))+" ppm");
-	$(".alpha4").html(String(Math.round(sensors[i].alpha4))+" ppm");
-	$(".pm25").html(String(Math.round(sensors[i].pm25))+" per 0.01 ft³");
-	$(".pm10").html(String(Math.round(sensors[i].pm10))+" per 0.01 ft³");
+	$(".alpha1").html(String(Math.round(sensors[i].alpha1)));
+	$(".alpha2").html(String(Math.round(sensors[i].alpha2)));
+	$(".alpha3").html(String(Math.round(sensors[i].alpha3)));
+	$(".alpha4").html(String(Math.round(sensors[i].alpha4)));
+	$(".pm25").html(String(Math.round(sensors[i].pm25)));
+	$(".pm10").html(String(Math.round(sensors[i].pm10)));
 	$("#lastupdated").html("Last Updated: "+sensors[i].lastUpdated);
 };
 

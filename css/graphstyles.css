@@ -22,7 +22,7 @@
 }
 
 #values{
-	font-size: 24px;
+	font-size: 22px;
 }
 
 
@@ -139,6 +139,7 @@ table.table#temprh > tbody > tr > td {
 
 .table-condensed>tbody>tr>td.pollutantFull {
 	padding-bottom: 5px;
+	font-size: 10px;
 }
 
 .pollutantValue {
@@ -147,4 +148,10 @@ table.table#temprh > tbody > tr > td {
 
 #xButton {
 	line-height: 30px;
+}
+
+.unitlabel {
+	text-align: right;
+	font-size: 10px;
+
 }
