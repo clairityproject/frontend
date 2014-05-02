@@ -7,6 +7,7 @@
 //Fix concentration units placement
 //Last updated - David will fix
 //color legend
+//Fix navbar
 
 //For next Tuesday:
 //Posters: bring laptop to connect to screen to project poster - bring Dongle ??????
