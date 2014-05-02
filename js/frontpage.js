@@ -1,13 +1,12 @@
 // In Front End
 
 //TO DO:
-//Fix PM numbers ?? Ask Derek
 //fix colors
 //don't show malfunctioning nodes
 //Initial explanation - add EPA
-//Add text colors
-//concentration units - ask Derek for units
+//Fix concentration units placement
 //Last updated - David will fix
+//color legend
 
 //For next Tuesday:
 //Posters: bring laptop to connect to screen to project poster - bring Dongle ??????
@@ -16,15 +15,12 @@
 
 //------------
 
-//Others
-//color legend
-
 //At some later date
 //site label on graphs
 //map: Buildings from whereis.mit.edu
 //fix popup skip when click
 
-//Self Note: changing the colors on the nodes to reflect only PM2.5, CO, and O3 with the data Derek emailed
+//Note: changing the colors on the nodes to reflect only PM2.5, CO, and O3 with the data Derek emailed
 //the numbers are in counts, and ppm (which is what we'll be using once things are calibrated)
 
 var serverURL = "http://clairity.mit.edu/latest/all/";
@@ -37,11 +33,11 @@ var update_int = 15000; //milliseconds, 15 seconds
 
 var mapBig = true;
 
-var alpha1_thresholds = [100, 500, 900, 1300, 1500]; //CO
+var alpha1_thresholds = [0, 4.5, 9.5]; //CO
 var alpha2_thresholds = [100, 500, 900, 1300, 1500]; //NO
 var alpha3_thresholds = [100, 500, 900, 1300, 1500]; //NO2
-var alpha4_thresholds = [100, 500, 900, 1300, 1500]; //O3
-var pm25_thresholds = [100, 500, 900, 1300, 1500];
+var alpha4_thresholds = [0, 0.065, 0.165]; //O3
+var pm25_thresholds = [0, 300, 1050];
 var pm10_thresholds = [100, 500, 900, 1300, 1500];
 var alpha_thresholds = [alpha1_thresholds, alpha2_thresholds, alpha3_thresholds, alpha4_thresholds, pm25_thresholds, pm10_thresholds];
 
@@ -97,7 +93,6 @@ function RequestNodes() {
 }
 
 function addAlphasenseData(i,j,data){
-	console.log("addAlphasenseData");
 	if(j==1){
 		var toAdd = data[i]["alphasense_1"];
 		sensors[i].alpha1 = toAdd;
@@ -106,12 +101,10 @@ function addAlphasenseData(i,j,data){
 	else if(j==2){
 		 var toAdd = data[i]["alphasense_2"];
 		 sensors[i].alpha2 = toAdd;
-		 findColor(i,2,toAdd);
 	}
 	else if(j==3){
 		var toAdd = data[i]["alphasense_3"];
 		sensors[i].alpha3 = toAdd;
-		findColor(i,3,toAdd);
 	}
 	else if(j==4){
 		var toAdd = data[i]["alphasense_4"];
@@ -129,23 +122,17 @@ function addAlphasenseData(i,j,data){
 		if(data[i]["dylos_bin_4"]){
 			var toAdd = data[i]["dylos_bin_4"];
 			sensors[i].pm10 = toAdd;
-			findColor(i,6,toAdd);
 		}
 	}
 }
 
 function findColor(i, j, value) {
-	console.log(i+","+j+","+value);
-	if(value > alpha_thresholds[j-1][3]){ 
-		sensors[i].color[j] = 3; 
-	}
-	else if(value > alpha_thresholds[j-1][2]){ 
+	if(value > alpha_thresholds[j-1][2]){ 
 		sensors[i].color[j] = 2; 
 	}
 	else if(value > alpha_thresholds[j-1][1]){ 
 		sensors[i].color[j] = 1; 
 	}
-	console.log("Pollutant "+j+" color value set to "+sensors[i].color[j]);
 }
 
 function setColor(i){
@@ -158,22 +145,19 @@ function setColor(i){
 		}
 		if(sensors[i].color[0] == 0){ circColor = "green"; }
 		else if(sensors[i].color[0] == 1){ circColor = "yellow"; }
-		else if(sensors[i].color[0] == 2){ circColor = "orange"; }
 		else{ circColor = "red"; }
 		sensors[i].circ.setStyle({color: circColor, fillColor: circColor});
-		console.log("Color set to "+circColor);
 	}
 }
 
 function displaySidebar(i){
 	$("#locationheader").html(String(sensors[i].location));
-	$(".alpha1").html(String(Math.round(sensors[i].alpha1)));
-	$(".alpha2").html(String(Math.round(sensors[i].alpha2)));
-	$(".alpha3").html(String(Math.round(sensors[i].alpha3)));
-	$(".alpha4").html(String(Math.round(sensors[i].alpha4)));
-	$(".pm25").html(String(Math.round(sensors[i].pm25)));
-	console.log("PM 2.5: "+sensors[i].pm25);
-	$(".pm10").html(String(Math.round(sensors[i].pm10)));
+	$(".alpha1").html(String(Math.round(sensors[i].alpha1))+" ppm");
+	$(".alpha2").html(String(Math.round(sensors[i].alpha2))+" ppm");
+	$(".alpha3").html(String(Math.round(sensors[i].alpha3))+" ppm");
+	$(".alpha4").html(String(Math.round(sensors[i].alpha4))+" ppm");
+	$(".pm25").html(String(Math.round(sensors[i].pm25))+" per 0.01 ft³");
+	$(".pm10").html(String(Math.round(sensors[i].pm10))+" per 0.01 ft³");
 	$("#lastupdated").html("Last Updated: "+sensors[i].lastUpdated);
 };
 
