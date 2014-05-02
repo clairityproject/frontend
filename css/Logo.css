@@ -24,13 +24,13 @@
 	width: 74px;
 	height: 38px;
 	float: left;
-	background-image: url(../images/cee-images/MIT-CEE-logo-large-sprite.png);
+	background-image: url(../images/cee-images/MIT-CEE-logo-small-sprite.png);
 	background-repeat: no-repeat;
 	background-position: 0px 0px;
 	}
 	
 #MIT-logo-large:hover {
-	background-image: url(../images/cee-images/MIT-CEE-logo-large-sprite.png);
+	background-image: url(../images/cee-images/MIT-CEE-logo-small-sprite.png);
 	background-repeat: no-repeat;
 	background-position: -74px 0px;
 	}	
@@ -39,13 +39,13 @@
 	width: 74px;
 	height: 38px;
 	float: left;
-	background-image: url(../images/cee-images/MIT-CEE-logo-large-sprite.png);
+	background-image: url(../images/cee-images/MIT-CEE-logo-small-sprite.png);
 	background-repeat: no-repeat;
 	background-position: -148px 0px;
 	}
 	
 #MIT-logo-large-reversed:hover {
-	background-image: url(../images/cee-images/MIT-CEE-logo-large-sprite.png);
+	background-image: url(../images/cee-images/MIT-CEE-logo-small-sprite.png);
 	background-repeat: no-repeat;
 	background-position: -222px 0px;
 	}	
