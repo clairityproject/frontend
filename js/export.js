@@ -40,8 +40,8 @@ cache = {
     'o3':{}
 }
 
-baseURL = "http://clairity.mit.edu";
-//baseURL = "http://localhost:8000";
+//baseURL = "http://clairity.mit.edu";
+baseURL = "http://localhost:8000";
 var seriesOptions = [];
 
 $(function() {
@@ -230,7 +230,7 @@ function createChart() {
                     //formatter: function() {
                         //return (this.value > 0 ? '+' : '') + this.value + '%';
                     //}
-                    align:'right',
+                    align:'left',
                     style: {
                         whiteSpace: 'nowrap'
                     }
