@@ -71,10 +71,11 @@
 			<ul class="nav navbar-nav">
 				<li><a href="home.html" class="image_navbar"><img src="../images/clairity_navbar.png"></a></li>
 				<li class="active"><a href="#">Home</a></li>
+				<li><a href="export.html">Data</a></li>
 				<li><a href="about.html" rel="m_PageScroll2id">The Project</a></li>
 				<li><a href="team.html">The Team</a></li>
 				<li><a href="howitworks.html" rel="m_PageScroll2id">How It Works</a></li>
-                <li><a href="export.html">Export Data</a></li>
+
 	
 			</ul>
 			<ul class="nav navbar-nav navbar-right visible-lg">
@@ -144,25 +145,24 @@
 				<td class="unitlabel">ppm</td>
 			</tr>
 			<tr>
-				<td id="values" class="pollutantName">PM2.5</td>
+				<td id="values" class="pollutantName">Small Particles</td>
 				<td id="values" class="pm25 pollutantName pollutantValue">Blank</td>
 			</tr>
 			<tr>
-				<td class="pollutantFull">Particulate Matter</td>
+				<td class="pollutantFull">Particle Count</td>
 				<td class="unitlabel">per 0.01 ft<sup>3</sup></td>
 			</tr>
 			<tr>
-				<td id="values" class="pollutantName">PM10</td>
+				<td id="values" class="pollutantName">Large Particles</td>
 				<td id="values" class="pm10 pollutantName pollutantValue">Blank</td>
 			</tr>
 			<tr>
-				<td class="pollutantFull">Particulate Matter</td>
+				<td class="pollutantFull">Particle Count</td>
 				<td class="unitlabel">per 0.01 ft<sup>3</sup></td>
 			</tr>
 			</table>
 			
 			<p style="font-size: 15px; margin-top: 30px">Click on a location to display air quality data</p>
-
 		</div>
 
 	</div>
@@ -171,6 +171,7 @@
 <!--Map Legend-->
 
 	<div id="legend">
+		<div class="sublegend" style="width: 115px">
 		<p style="margin: 10px; font-size: 18px">Legend</p>
 		<div id="legend_container"><img src="../images/legend_triangle.png" height="22" width="22"></div>
 		<p style="margin-left: 30px; line-height: 20px">Indoor Nodes</p>
@@ -183,7 +184,10 @@
 		<p style="margin-left: 30px; line-height: 20px">Moderate</p>
 		<div id="legend_container"><img src="../images/red_legend.png" height="22" width="22"></div>
 		<p style="margin-left: 30px; line-height: 20px">Unhealthy</p>
-		
+		</div>
+		<div class="sublegend" style="width: 120px; margin-left: 50px">
+		<p>Air quality classification derived from EPA and Dylos thresholds for ozone, carbon monoxide, and particle counts</p>
+		</div>
 	</div>
 
 	</div>
