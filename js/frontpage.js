@@ -105,7 +105,7 @@ function RequestNodes() {
 
 function addAlphasenseData(i,j,data){
 	if(j==1){
-		var toAdd = data[i]["alphasense_1"];
+		var toAdd = data[i]["co"];
 		sensors[i].alpha1 = toAdd;
 		if(toAdd<1){
 			sensors[i].alpha1Functioning = false;
@@ -115,7 +115,7 @@ function addAlphasenseData(i,j,data){
 		}
 	}
 	else if(j==2){
-		 var toAdd = data[i]["alphasense_2"];
+		 var toAdd = data[i]["no"];
 		 sensors[i].alpha2 = toAdd;
 		 if(toAdd<1){
 			sensors[i].alpha2Functioning = false;
@@ -125,7 +125,7 @@ function addAlphasenseData(i,j,data){
 		}
 	}
 	else if(j==3){
-		var toAdd = data[i]["alphasense_3"];
+		var toAdd = data[i]["no2"];
 		sensors[i].alpha3 = toAdd;
 		if(toAdd<1){
 			sensors[i].alpha3Functioning = false;
@@ -135,7 +135,7 @@ function addAlphasenseData(i,j,data){
 		}
 	}
 	else if(j==4){
-		var toAdd = data[i]["alphasense_4"];
+		var toAdd = data[i]["o3"];
 		sensors[i].alpha4 = toAdd;
 		if(toAdd<1){
 			sensors[i].alpha4Functioning = false;
@@ -145,7 +145,7 @@ function addAlphasenseData(i,j,data){
 		}
 	}
 	else if(j==5){
-			var toAdd = data[i]["dylos_bin_1"]+data[i]["dylos_bin_2"]+data[i]["dylos_bin_3"];
+			var toAdd = data[i]["small_particles"];
 			sensors[i].pm25 = toAdd;
 			findColor(i,5,toAdd);
 			if(toAdd < 1 ){
@@ -153,8 +153,8 @@ function addAlphasenseData(i,j,data){
 			}
 	}
 	else{
-		if(data[i]["dylos_bin_4"]){
-			var toAdd = data[i]["dylos_bin_4"];
+		if(data[i]["big_particles"]){
+			var toAdd = data[i]["big_particles"];
 			sensors[i].pm10 = toAdd;
 		}
 	}
