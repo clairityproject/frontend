@@ -364,3 +364,12 @@ a.disabled {
 #carousel_image {
   width: 100%;
 }
+
+.line-break {
+  height: 25px;
+}
+
+.line-break-border {
+  border-top: 2px solid #c8c8c8;
+
+}
