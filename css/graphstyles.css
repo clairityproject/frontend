@@ -101,7 +101,7 @@
 }
 
 
-#values{
+.values{
 	font-size: 22px;
 }
 
@@ -162,5 +162,8 @@ table.table#temprh > tbody > tr > td {
 .unitlabel {
 	text-align: right;
 	font-size: 10px;
+}
 
+#dylos{
+	color: white;
 }

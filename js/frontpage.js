@@ -57,6 +57,12 @@ function sensor(lat,lon,location,id,in_out) {
 	this.pm25 = null;
 	this.pm10 = null;
 	this.functioning = true;
+	this.alphaFunctioning = true;
+	this.dylosFunctioning = true;
+	this.alpha1Functioning = true;
+	this.alpha2Functioning = true;
+	this.alpha3Functioning = true;
+	this.alpha4Functioning = true;
 }
 
 function RequestNodes() {
@@ -73,12 +79,6 @@ function RequestNodes() {
 			for(i=0; i<sensors.length; i++){
 				sensors[i].color = [0,0,0,0,0,0,0];
 				for(j=1; j<7; j++){
-					if(j<5 && data[i]["alphasense_1"]==0){
-						sensors[i].alphaFunctioning = false;
-					}
-					else if(j==5 && data[i]["dylos_bin_1"]==0){
-						sensors[i].dylosFunctioning = false;
-					}
 					addAlphasenseData(i,j,data);
 				}
 				sensors[i].temp = data[i]["temperature"];
@@ -86,6 +86,9 @@ function RequestNodes() {
 				var tempDate = data[i]["last_modified"].split(/[\s*\-\s*,":"]/,5);
 				var tempHour = tempDate[3]-4;
 				sensors[i].lastUpdated = tempDate[1]+"/"+tempDate[2]+"/"+tempDate[0]+" "+tempHour+":"+tempDate[4];
+				if(!sensors[i].alpha1Functioning && !sensors[i].alpha2Functioning && !sensors[i].alpha3Functioning && !sensors[i].alpha4Functioning){
+					sensors[i].alphaFunctioning = false;
+				}
 				if(!sensors[i].alphaFunctioning && !sensors[i].dylosFunctioning){
 					sensors[i].functioning = false;
 				}
@@ -104,27 +107,50 @@ function addAlphasenseData(i,j,data){
 	if(j==1){
 		var toAdd = data[i]["alphasense_1"];
 		sensors[i].alpha1 = toAdd;
-		findColor(i,1,toAdd);
+		if(toAdd<1){
+			sensors[i].alpha1Functioning = false;
+		}
+		else{
+			findColor(i,1,toAdd);	
+		}
 	}
 	else if(j==2){
 		 var toAdd = data[i]["alphasense_2"];
 		 sensors[i].alpha2 = toAdd;
+		 if(toAdd<1){
+			sensors[i].alpha2Functioning = false;
+		}
+		else{
+			findColor(i,2,toAdd);
+		}
 	}
 	else if(j==3){
 		var toAdd = data[i]["alphasense_3"];
 		sensors[i].alpha3 = toAdd;
+		if(toAdd<1){
+			sensors[i].alpha3Functioning = false;
+		}
+		else{
+			findColor(i,3,toAdd);
+		}
 	}
 	else if(j==4){
 		var toAdd = data[i]["alphasense_4"];
 		sensors[i].alpha4 = toAdd;
-		findColor(i,4,toAdd);
+		if(toAdd<1){
+			sensors[i].alpha4Functioning = false;
+		}
+		else{
+			findColor(i,4,toAdd);
+		}
 	}
 	else if(j==5){
-		if(data[i]["dylos_bin_1"]){
 			var toAdd = data[i]["dylos_bin_1"]+data[i]["dylos_bin_2"]+data[i]["dylos_bin_3"];
 			sensors[i].pm25 = toAdd;
 			findColor(i,5,toAdd);
-		}
+			if(toAdd < 1 ){
+				sensors[i].dylosFunctioning = false;
+			}
 	}
 	else{
 		if(data[i]["dylos_bin_4"]){
@@ -165,13 +191,53 @@ function setColor(i){
 
 function displaySidebar(i){
 	$("#locationheader").html(String(sensors[i].location));
+	if(!sensors[i].alpha1Functioning){
+		var alpha1_color = "grey";
+	}
+	else{
+		alpha1_color = "white";
+	}
+	doc = document.getElementById("no2a").style.color=alpha1_color;
+	doc = document.getElementById("no2b").style.color=alpha1_color;
 	$(".alpha1").html(String(Math.round(sensors[i].alpha1)));
+	if(!sensors[i].alpha2Functioning){
+		var alpha2_color = "grey";
+	}
+	else{
+		alpha2_color = "white";
+	}
+	doc = document.getElementById("o3a").style.color=alpha2_color;
+	doc = document.getElementById("o3b").style.color=alpha2_color;
 	$(".alpha2").html(String(Math.round(sensors[i].alpha2)));
+	if(!sensors[i].alpha3Functioning){
+		var alpha3_color = "grey";
+	}
+	else{
+		alpha3_color = "white";
+	}
+	doc = document.getElementById("coa").style.color=alpha3_color;
+	doc = document.getElementById("cob").style.color=alpha3_color;
 	$(".alpha3").html(String(Math.round(sensors[i].alpha3)));
+	if(!sensors[i].alpha4Functioning){
+		var alpha4_color = "grey";
+	}
+	else{
+		alpha4_color = "white";
+	}
+		doc = document.getElementById("noa").style.color=alpha4_color;
+		doc = document.getElementById("nob").style.color=alpha4_color;
 	$(".alpha4").html(String(Math.round(sensors[i].alpha4)));
 	if(!sensors[i].dylosFunctioning){
-		$(".pm25").css("color","grey");
-		$(".pm10").css("color","grey");
+		doc = document.getElementById("dylos1").style.color="grey";
+		doc = document.getElementById("dylos2").style.color="grey";
+		doc = document.getElementById("dylosa").style.color="grey";
+		doc = document.getElementById("dylosb").style.color="grey";
+	}
+	else{
+		doc = document.getElementById("dylos1").style.color="white";
+		doc = document.getElementById("dylos2").style.color="white";
+		doc = document.getElementById("dylosa").style.color="white";
+		doc = document.getElementById("dylosb").style.color="white";
 	}
 	$(".pm25").html(String(Math.round(sensors[i].pm25)));
 	$(".pm10").html(String(Math.round(sensors[i].pm10)));
