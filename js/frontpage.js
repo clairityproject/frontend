@@ -6,7 +6,7 @@
 //Initial explanation - add EPA
 //Fix concentration units placement
 //Last updated - David will fix
-//color legend
+//make color legend prettier
 //Fix navbar
 
 //For next Tuesday:
@@ -81,7 +81,8 @@ function RequestNodes() {
 				sensors[i].temp = data[i]["temperature"];
 				sensors[i].rh = data[i]["rh"];
 				var tempDate = data[i]["last_modified"].split(/[\s*\-\s*,":"]/,5);
-				sensors[i].lastUpdated = tempDate[1]+"/"+tempDate[2]+"/"+tempDate[0]+" "+tempDate[3]+":"+tempDate[4];
+				var tempHour = tempDate[3]-4;
+				sensors[i].lastUpdated = tempDate[1]+"/"+tempDate[2]+"/"+tempDate[0]+" "+tempHour+":"+tempDate[4];
 				setColor(i);
 			}
 			if(firstUpdate){
