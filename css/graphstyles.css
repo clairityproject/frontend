@@ -16,13 +16,10 @@
 	left: 1%;
 	top: 50px;
 	height: 100%;
-	width: 230px;
+	width: 250px;
 	color: white;
 	z-index: 1;
 }
-
-
-
 
 #lastupdated{
 	position: relative;
@@ -103,8 +100,13 @@
 	cursor: pointer;
 }
 
+
 #values{
 	font-size: 22px;
+}
+
+#contactLink {
+	font-size: 10px;
 }
 
 table{

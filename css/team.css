@@ -198,4 +198,14 @@ bottom: -7px;
   padding: 10px 5px;
 }
 
+#team_descriptions {
+  padding-left: 10%;
+  padding-right: 10%;
 
+}
+
+.team_name {
+  font-weight: bold;
+  color: #1560ac;
+  font-size: 14px;
+}
