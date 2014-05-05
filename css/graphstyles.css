@@ -16,7 +16,7 @@
 	left: 1%;
 	top: 50px;
 	height: 100%;
-	width: 230px;
+	width: 250px;
 	color: white;
 	z-index: 1;
 }
@@ -103,6 +103,10 @@
 	line-height: 10px;
 	text-align: center;
 	cursor: pointer;
+}
+
+#contactLink {
+	font-size: 10px;
 }
 
 table{
