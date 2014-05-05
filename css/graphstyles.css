@@ -41,9 +41,9 @@
 
 #legend{
 	position: relative;
-	left: 88%;
+	left: 77%;
 	top: 68%;
-	width: 10%;
+	width: 22%;
 	height: 27%;
 	background-color: #6699FF;
 	background: rgba(0, 0, 0, 0.7);
@@ -52,6 +52,10 @@
 	font-style: bold;
 }
 
+.sublegend{
+	display: inline-block;
+
+}
 
 #legend_container{
 	position: absolute;

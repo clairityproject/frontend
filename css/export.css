@@ -16,3 +16,8 @@ body {
     vertical-align: middle;
     line-height: 15px;
 }
+
+#disclaimer{
+	white-space: normal;
+	word-break: normal;
+}
