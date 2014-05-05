@@ -1,13 +1,10 @@
 // In Front End
 
 //TO DO:
-//fix colors
-//don't show malfunctioning nodes
-//Initial explanation - add EPA
-//Fix concentration units placement
-//Last updated - David will fix
+// color malfunctioning nodes grey - done
+//color malfunctioning nodes' text grey
 //make color legend prettier
-//Fix navbar
+
 
 //For next Tuesday:
 //Posters: bring laptop to connect to screen to project poster - bring Dongle ??????
@@ -76,6 +73,12 @@ function RequestNodes() {
 			for(i=0; i<sensors.length; i++){
 				sensors[i].color = [0,0,0,0,0,0,0];
 				for(j=1; j<7; j++){
+					if(j<5 && data[i]["alphasense_1"]==0){
+						sensors[i].alphaFunctioning = false;
+					}
+					else if(j==5 && data[i]["dylos_bin_1"]==0){
+						sensors[i].dylosFunctioning = false;
+					}
 					addAlphasenseData(i,j,data);
 				}
 				sensors[i].temp = data[i]["temperature"];
@@ -83,6 +86,9 @@ function RequestNodes() {
 				var tempDate = data[i]["last_modified"].split(/[\s*\-\s*,":"]/,5);
 				var tempHour = tempDate[3]-4;
 				sensors[i].lastUpdated = tempDate[1]+"/"+tempDate[2]+"/"+tempDate[0]+" "+tempHour+":"+tempDate[4];
+				if(!sensors[i].alphaFunctioning && !sensors[i].dylosFunctioning){
+					sensors[i].functioning = false;
+				}
 				setColor(i);
 			}
 			if(firstUpdate){
@@ -140,14 +146,19 @@ function findColor(i, j, value) {
 function setColor(i){
 	var circColor = null;
 	if(sensors[i].lat){
-		for(k=1;k<7;k++){
-			if(sensors[i].color[k]>sensors[i].color[0]){
-				sensors[i].color[0]=sensors[i].color[k];
+		if(sensors[i].functioning){
+			for(k=1;k<7;k++){
+				if(sensors[i].color[k]>sensors[i].color[0]){
+					sensors[i].color[0]=sensors[i].color[k];
+				}
 			}
+			if(sensors[i].color[0] == 0){ circColor = "green"; }
+			else if(sensors[i].color[0] == 1){ circColor = "yellow"; }
+			else{ circColor = "red"; }
 		}
-		if(sensors[i].color[0] == 0){ circColor = "green"; }
-		else if(sensors[i].color[0] == 1){ circColor = "yellow"; }
-		else{ circColor = "red"; }
+		else{
+			circColor = "grey";
+		}
 		sensors[i].circ.setStyle({color: circColor, fillColor: circColor});
 	}
 }
@@ -158,6 +169,10 @@ function displaySidebar(i){
 	$(".alpha2").html(String(Math.round(sensors[i].alpha2)));
 	$(".alpha3").html(String(Math.round(sensors[i].alpha3)));
 	$(".alpha4").html(String(Math.round(sensors[i].alpha4)));
+	if(!sensors[i].dylosFunctioning){
+		$(".pm25").css("color","grey");
+		$(".pm10").css("color","grey");
+	}
 	$(".pm25").html(String(Math.round(sensors[i].pm25)));
 	$(".pm10").html(String(Math.round(sensors[i].pm10)));
 	$("#lastupdated").html("Last Updated: "+sensors[i].lastUpdated);
@@ -166,7 +181,6 @@ function displaySidebar(i){
 
 $(document).ready(function(){
     //Leaflet Map 
-
 	var googleLayer = new L.Google('ROADMAP',mapStylesArray);
 
 	var sWBound = L.latLng(42.336976,-71.153984);

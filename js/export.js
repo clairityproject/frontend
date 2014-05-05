@@ -226,10 +226,10 @@ function createChart() {
             },
 
             yAxis: {
+                title: {
+                    text: 'ozone'
+                },
                 labels: {
-                    //formatter: function() {
-                        //return (this.value > 0 ? '+' : '') + this.value + '%';
-                    //}
                     align:'right',
                     style: {
                         whiteSpace: 'nowrap'

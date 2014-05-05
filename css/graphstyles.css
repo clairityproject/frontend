@@ -1,4 +1,4 @@
-	.graph{
+.graph{
 }
 
 
@@ -21,9 +21,7 @@
 	z-index: 1;
 }
 
-#values{
-	font-size: 22px;
-}
+
 
 
 #lastupdated{
@@ -105,6 +103,10 @@
 	cursor: pointer;
 }
 
+#values{
+	font-size: 22px;
+}
+
 table{
 	border-collapse:separate;
 	border-spacing:0px 0px;
@@ -135,6 +137,7 @@ table.table#temprh > tbody > tr > td {
 
 .table>tbody>tr>td.pollutantName {
 	border-top: 0px;
+
 }
 
 .table-condensed>tbody>tr>td {
