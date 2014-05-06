@@ -149,7 +149,8 @@ $(function() {
 
     $('.btn-node').click(function(e){
 
-
+        $("#loading_shell").prepend('<div id="loading"></div>');
+        console.log("Loading div appended");
         target = $(e.target)
         nodeId = target.attr('id') 
         if (target.hasClass('btn-default')){
@@ -206,7 +207,6 @@ $(function() {
 
 // create the chart when all data is loaded
 function createChart() {
-    $('#loading').fadein(3000);
         $('#graph').highcharts('StockChart', {
             colors : color,
             rangeSelector : {
@@ -271,8 +271,7 @@ function createChart() {
 
             
             series: seriesOptions
-        });
-    $('#loading').fadeOut(3000);     
+        });     
     }
 
 });
