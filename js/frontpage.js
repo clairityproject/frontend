@@ -84,8 +84,11 @@ function RequestNodes() {
 				sensors[i].temp = data[i]["temperature"];
 				sensors[i].rh = data[i]["rh"];
 				var tempDate = data[i]["last_modified"].split(/[\s*\-\s*,":"]/,5);
-				var tempHour = tempDate[3]-4;
-				sensors[i].lastUpdated = tempDate[1]+"/"+tempDate[2]+"/"+tempDate[0]+" "+tempHour+":"+tempDate[4];
+				var myDate = new Date(tempDate[0],tempDate[1],tempDate[2],tempDate[3],tempDate[4]);
+				myDate.setTime(myDate.getTime() - (4*60*60*1000));
+				myDate.setMonth(myDate.getMonth() - 1); 
+				
+				sensors[i].lastUpdated = myDate.getMonth()+"/"+myDate.getDay()+"/"+myDate.getFullYear()+" "+myDate.getTime+":"+tempDate[4];
 				if(!sensors[i].alpha1Functioning && !sensors[i].alpha2Functioning && !sensors[i].alpha3Functioning && !sensors[i].alpha4Functioning){
 					sensors[i].alphaFunctioning = false;
 				}
@@ -107,42 +110,34 @@ function addAlphasenseData(i,j,data){
 	if(j==1){
 		var toAdd = data[i]["co"];
 		sensors[i].alpha1 = toAdd;
-		if(toAdd<1){
+		if(toAdd < 1 && toAdd > -1){
 			sensors[i].alpha1Functioning = false;
 		}
-		else{
-			findColor(i,1,toAdd);	
-		}
+		findColor(i,1,toAdd);	
 	}
 	else if(j==2){
 		 var toAdd = data[i]["no"];
 		 sensors[i].alpha2 = toAdd;
-		 if(toAdd<1){
+		 if(toAdd < 1 && toAdd > -1){
 			sensors[i].alpha2Functioning = false;
 		}
-		else{
 			findColor(i,2,toAdd);
-		}
 	}
 	else if(j==3){
 		var toAdd = data[i]["no2"];
 		sensors[i].alpha3 = toAdd;
-		if(toAdd<1){
+		if(toAdd < 1 && toAdd > -1){
 			sensors[i].alpha3Functioning = false;
 		}
-		else{
-			findColor(i,3,toAdd);
-		}
+		findColor(i,3,toAdd);
 	}
 	else if(j==4){
 		var toAdd = data[i]["o3"];
 		sensors[i].alpha4 = toAdd;
-		if(toAdd<1){
+		if(toAdd < 1 && toAdd > -1){
 			sensors[i].alpha4Functioning = false;
 		}
-		else{
-			findColor(i,4,toAdd);
-		}
+		findColor(i,4,toAdd);
 	}
 	else if(j==5){
 			var toAdd = data[i]["small_particles"];
@@ -191,7 +186,7 @@ function setColor(i){
 
 function displaySidebar(i){
 	$("#locationheader").html(String(sensors[i].location));
-	if(!sensors[i].alpha1Functioning){
+	if(!sensors[i].alphaFunctioning){
 		var alpha1_color = "grey";
 	}
 	else{
@@ -199,8 +194,8 @@ function displaySidebar(i){
 	}
 	doc = document.getElementById("no2a").style.color=alpha1_color;
 	doc = document.getElementById("no2b").style.color=alpha1_color;
-	$(".alpha1").html(String(Math.round(sensors[i].alpha1)));
-	if(!sensors[i].alpha2Functioning){
+	$(".alpha1").html("*"+String(Math.round(sensors[i].alpha1)));
+	if(!sensors[i].alphaFunctioning){
 		var alpha2_color = "grey";
 	}
 	else{
@@ -209,7 +204,7 @@ function displaySidebar(i){
 	doc = document.getElementById("o3a").style.color=alpha2_color;
 	doc = document.getElementById("o3b").style.color=alpha2_color;
 	$(".alpha2").html(String(Math.round(sensors[i].alpha2)));
-	if(!sensors[i].alpha3Functioning){
+	if(!sensors[i].alphaFunctioning){
 		var alpha3_color = "grey";
 	}
 	else{
@@ -218,7 +213,7 @@ function displaySidebar(i){
 	doc = document.getElementById("coa").style.color=alpha3_color;
 	doc = document.getElementById("cob").style.color=alpha3_color;
 	$(".alpha3").html(String(Math.round(sensors[i].alpha3)));
-	if(!sensors[i].alpha4Functioning){
+	if(!sensors[i].alphaFunctioning){
 		var alpha4_color = "grey";
 	}
 	else{
