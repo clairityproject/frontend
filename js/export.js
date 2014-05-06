@@ -69,6 +69,22 @@ $(function() {
         return long_name;
     }
 
+
+    function sensorUnit(shortCode){
+        var sensor_unit = '';
+        switch(shortCode){
+            case 'dylosSmall' : 
+            case 'dylosBig' : sensor_unit='(count per 0.01ft<sup>3</sup>)'; break;
+            case 'no': 
+            case 'no2': 
+            case 'co': 
+            case 'o3': sensor_unit = '(ppb)'; break;
+            default: sensor_unit = '';
+        }
+        return sensor_unit;
+    }
+
+
     function getData(sensor, node){
         if(cache[sensor].hasOwnProperty(node)){
             processNodes()
@@ -120,6 +136,10 @@ $(function() {
         }
     }
 
+    function showLoadingWheel(){
+        $("#graph").html('<div id="loading"></div>');
+    }
+
     function processNodes(){
             // drawing asycronously
             var seriesCounter = 0,
@@ -135,7 +155,8 @@ $(function() {
                         data:cache[sensor][nodeId]
                     }
                     seriesCounter++;
-                    chartTitle = (chartTitle.length == 0) ? sensorName(sensor) + " at " + node_name[nodeId].name : chartTitle + ", " + node_name[nodeId].name;
+                    //chartTitle = (chartTitle.length == 0) ? sensorName(sensor) + " at " + node_name[nodeId].name : chartTitle + ", " + node_name[nodeId].name;
+                    chartTitle = sensorName(sensor) + " " + sensorUnit(sensor);
                 }
                 else{
                     drawNow = false
@@ -148,9 +169,7 @@ $(function() {
     }
 
     $('.btn-node').click(function(e){
-
-        $("#loading_shell").prepend('<div id="loading"></div>');
-        console.log("Loading div appended");
+        showLoadingWheel();
         target = $(e.target)
         nodeId = target.attr('id') 
         if (target.hasClass('btn-default')){
@@ -169,7 +188,6 @@ $(function() {
         // stop all active connections
         $.xhrPool.abortAll();
         if (nodes.length == 0 || currentSensor == undefined){
-            console.log("asdfasdfa ");
             displayError("Please select a node and a sensor for which to download data.");
             return ;
         }
@@ -179,6 +197,9 @@ $(function() {
     });
 
     $('.btn-sensor').click(function(e){
+        if (nodes.length != 0){
+            showLoadingWheel();
+        }
         target = $(e.target)
         // remove all UI selections
         $.each($('.btn-sensor'), function(i, btn){
