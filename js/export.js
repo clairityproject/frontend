@@ -240,12 +240,13 @@ function createChart() {
                     count    : 1,
                     text     : '1D'
                 }, {
-                    type     : 'year',
-                    count    : 1,
-                    text     : '1y'
+                    type     : 'day',
+                    count    : 7,
+                    text     : '1W'
                 }, {
-                    type     : 'ytd',
-                    text     : 'YTD'
+                    type     : 'month',
+                    count    : 1,
+                    text     : '1m'
                 }, {
                     type     : 'all',
                     count    : 1,
