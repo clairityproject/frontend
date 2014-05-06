@@ -40,8 +40,8 @@ cache = {
     'o3':{}
 }
 
-//baseURL = "http://clairity.mit.edu";
-baseURL = "http://localhost:8000";
+baseURL = "http://clairity.mit.edu";
+//baseURL = "http://localhost:8000";
 var seriesOptions = [];
 
 var node_name = [{"node_id": "0", "name": "None"}, {"node_id": "1", "name": "MIT Museum"}, {"node_id": "2", "name": "Next House Dining"}, {"node_id": "3", "name": "Stratton Student Center"}, {"node_id": "4", "name": "CoGen Plant"}, {"node_id": "5", "name": "Burton Conner"}, {"node_id": "6", "name": "Media Lab"}, {"node_id": "7", "name": "Briggs Field"}, {"node_id": "8", "name": "Next House Courtyard"}, {"node_id": "9", "name": "Kresge Parking Lot"}, {"node_id": "10", "name": "Green Building Roof"}, {"node_id": "11", "name": "West Parking Garage"}, {"node_id": "12", "name": "Parsons Laboratory (Building 48)"}, {"node_id": "13", "name": "Cafe 4"}, {"node_id": "14", "name": "Facilities Vehicle"}, {"node_id": "15", "name": "Killian Court"}, {"node_id": "16", "name": "Building 16"}, {"node_id": "17", "name": "Mass Ave / Vassar Parking"}, {"node_id": "18", "name": "Building 1"}, {"node_id": "19", "name": "Broken Node"}, {"node_id": "20", "name": "Walker Memorial"}, {"node_id": "21", "name": "Green Building"}, {"node_id": "22", "name": "Stata Loading Dock"}, {"node_id": "23", "name": "Sloan School"}, {"node_id": "24", "name": "Tech Shuttle"}, {"node_id": "25", "name": "MIT Medical Parking"}]
