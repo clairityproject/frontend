@@ -21,3 +21,14 @@ body {
 	white-space: normal;
 	word-break: normal;
 }
+
+#loading {
+    background:#FFFFFF url(../images/ajax-loader.gif) no-repeat center center;
+    height: 200px;
+    width: 200px;
+    position: relative;
+    left: 35%;
+    top: 50%;
+    margin: -25px 0 0 -25px;
+    z-index: 1000;
+}

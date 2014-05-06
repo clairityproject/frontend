@@ -206,7 +206,7 @@ $(function() {
 
 // create the chart when all data is loaded
 function createChart() {
-
+    $('#loading').fadein(3000);
         $('#graph').highcharts('StockChart', {
             colors : color,
             rangeSelector : {
@@ -272,7 +272,7 @@ function createChart() {
             
             series: seriesOptions
         });
-         
+    $('#loading').fadeOut(3000);     
     }
 
 });
