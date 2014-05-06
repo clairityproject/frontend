@@ -35,7 +35,7 @@ var alpha1_thresholds = [0, 4500, 9500]; //CO
 var alpha2_thresholds = [100000, 500000, 900000, 1300000, 1500000]; //NO
 var alpha3_thresholds = [100000, 500000, 900000, 1300000, 1500000]; //NO2
 var alpha4_thresholds = [0, 65, 165]; //O3
-var pm25_thresholds = [0, 30000, 105000];
+var pm25_thresholds = [0, 300, 1050];
 var pm10_thresholds = [10000, 50000, 90000, 130000, 150000];
 var alpha_thresholds = [alpha1_thresholds, alpha2_thresholds, alpha3_thresholds, alpha4_thresholds, pm25_thresholds, pm10_thresholds];
 
