@@ -4,6 +4,7 @@
 //site label on graphs
 //map: Buildings from whereis.mit.edu
 //fix popup skip when click
+//localize color values in "valuesTable"
 
 //Note: changing the colors on the nodes to reflect only PM2.5, CO, and O3 with the data Derek emailed
 //the numbers are in counts, and ppm (which is what we'll be using once things are calibrated)
