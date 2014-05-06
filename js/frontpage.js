@@ -164,9 +164,11 @@ function setColor(i){
 	var circColor = null;
 	if(sensors[i].lat){
 		if(sensors[i].dylosFunctioning && sensors[i].alphaFunctioning){
-			for(k=1;k<7;k++){
-				if(sensors[i].color[k]>sensors[i].color[0]){
-					sensors[i].color[0]=sensors[i].color[k];
+			index = [1,4,5];
+			for(k=1;k<4;k++){
+				z = index[k-1];
+				if(sensors[i].color[z]>sensors[i].color[0]){
+					sensors[i].color[0]=sensors[i].color[z];
 				}
 			}
 			if(sensors[i].color[0] == 0){ circColor = "green"; }
