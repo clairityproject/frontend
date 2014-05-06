@@ -161,8 +161,14 @@
 <div>
   <h3 style="text-align: left">A 3D Visualization of the Node</h3>
 </div>
+<div>
+  <p class="lead">
+ Our sensors include CO, NO, NO2 and O3 sensors along with a RH Temperature sensor. 
+  This 3D visualization let's you see what is inside each node's casing. It represents the Dylos particle sensor, the alphasense sensors, the Raspberry Pi, and the electronic boards. Feel free to rotate and zoom to get a better look!
+</p>
+</div>
 
-<canvas id="cv" width=640 height=480></canvas>
+<canvas id="cv" width=640 height=480 class="3dvisual" style=" margin-right: auto; margin-left: auto; position: relative; display: block;"></canvas>
 
 <script type="text/javascript">
 var viewer = new JSC3D.Viewer(document.getElementById('cv'));
@@ -175,9 +181,7 @@ viewer.init();
 viewer.update();
 </script>
 
-<div>
-  This 3D visualization let's you see what is inside each node's casing. It represents the Dylos particle sensor, the alphasense sensors, the Raspberry Pi, and the electronic boards. Feel free to rotate and zoom to get a better look!
-</div>
+
 
 <!-- line divider -->
     <div class="col-md-12 line-break"></div>
