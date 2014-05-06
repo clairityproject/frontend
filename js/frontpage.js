@@ -83,12 +83,9 @@ function RequestNodes() {
 				}
 				sensors[i].temp = data[i]["temperature"];
 				sensors[i].rh = data[i]["rh"];
-				var tempDate = data[i]["last_modified"].split(/[\s*\-\s*,":"]/,5);
-				var myDate = new Date(tempDate[0],tempDate[1],tempDate[2],tempDate[3],tempDate[4]);
-				myDate.setTime(myDate.getTime() - (4*60*60*1000));
-				myDate.setMonth(myDate.getMonth() - 1); 
-				
-				sensors[i].lastUpdated = myDate.getMonth()+"/"+myDate.getDay()+"/"+myDate.getFullYear()+" "+myDate.getTime+":"+tempDate[4];
+				var tempDate = data[i]["last_modified"].split(/[\s*\-\s*,":"]/,5); 
+				tempDate[3] = tempDate[3] - 4;
+				sensors[i].lastUpdated = tempDate[1]+"/"+tempDate[2]+"/"+tempDate[0]+" "+tempDate[3]+":"+tempDate[4];
 				if(!sensors[i].alpha1Functioning && !sensors[i].alpha2Functioning && !sensors[i].alpha3Functioning && !sensors[i].alpha4Functioning){
 					sensors[i].alphaFunctioning = false;
 				}
