@@ -84,7 +84,6 @@ function RequestNodes() {
 				sensors[i].temp = data[i]["temperature"];
 				sensors[i].rh = data[i]["rh"];
 				var tempDate = data[i]["last_modified"].split(/[\s*\-\s*,":"]/,5); 
-				tempDate[3] = tempDate[3] - 4;
 				sensors[i].lastUpdated = tempDate[1]+"/"+tempDate[2]+"/"+tempDate[0]+" "+tempDate[3]+":"+tempDate[4];
 				if(!sensors[i].alpha1Functioning && !sensors[i].alpha2Functioning && !sensors[i].alpha3Functioning && !sensors[i].alpha4Functioning){
 					sensors[i].alphaFunctioning = false;
@@ -194,7 +193,7 @@ function displaySidebar(i){
 		alpha_color = "white";
 		$(".alpha1").html(String(Math.round(sensors[i].alpha1)));
 		$(".alpha2").html(String(Math.round(sensors[i].alpha2)));
-		$(".alpha3").html("*"+String(Math.round(sensors[i].alpha3)));
+		$(".alpha3").html(String(Math.round(sensors[i].alpha3)));
 		$(".alpha4").html(String(Math.round(sensors[i].alpha4)));
 	}
 	doc = document.getElementById("no2a").style.color=alpha_color;
