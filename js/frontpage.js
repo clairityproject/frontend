@@ -225,7 +225,7 @@ function displaySidebar(i){
 		$(".pm25").html(String(Math.round(sensors[i].pm25)));
 		$(".pm10").html(String(Math.round(sensors[i].pm10)));
 	}
-	$("#lastupdated").html("Last Updated: "+sensors[i].lastUpdated);
+	$("#lastupdated").html("Last Updated: "+sensors[i].lastUpdated + " UTC");
 };
 
 
