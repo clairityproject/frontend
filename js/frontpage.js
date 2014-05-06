@@ -107,7 +107,7 @@ function addAlphasenseData(i,j,data){
 	if(j==1){
 		var toAdd = data[i]["co"];
 		sensors[i].alpha1 = toAdd;
-		if(toAdd < 1 && toAdd > -1){
+		if(toAdd < 1 && toAdd > -1 || toAdd > 5000 || toAdd < -500){
 			sensors[i].alpha1Functioning = false;
 		}
 		findColor(i,1,toAdd);	
@@ -115,7 +115,7 @@ function addAlphasenseData(i,j,data){
 	else if(j==2){
 		 var toAdd = data[i]["no"];
 		 sensors[i].alpha2 = toAdd;
-		 if(toAdd < 1 && toAdd > -1){
+		 if(toAdd < 1 && toAdd > -1 || toAdd > 1000 || toAdd < -500){
 			sensors[i].alpha2Functioning = false;
 		}
 			findColor(i,2,toAdd);
@@ -123,7 +123,7 @@ function addAlphasenseData(i,j,data){
 	else if(j==3){
 		var toAdd = data[i]["no2"];
 		sensors[i].alpha3 = toAdd;
-		if(toAdd < 1 && toAdd > -1){
+		if(toAdd < 1 && toAdd > -1 || toAdd > 5000 || toAdd < -500){
 			sensors[i].alpha3Functioning = false;
 		}
 		findColor(i,3,toAdd);
@@ -131,7 +131,7 @@ function addAlphasenseData(i,j,data){
 	else if(j==4){
 		var toAdd = data[i]["o3"];
 		sensors[i].alpha4 = toAdd;
-		if(toAdd < 1 && toAdd > -1){
+		if(toAdd < 1 && toAdd > -1 || toAdd > 5000 || toAdd < -500){
 			sensors[i].alpha4Functioning = false;
 		}
 		findColor(i,4,toAdd);
@@ -164,7 +164,7 @@ function findColor(i, j, value) {
 function setColor(i){
 	var circColor = null;
 	if(sensors[i].lat){
-		if(sensors[i].functioning){
+		if(sensors[i].dylosFunctioning && sensors[i].alphaFunctioning){
 			for(k=1;k<7;k++){
 				if(sensors[i].color[k]>sensors[i].color[0]){
 					sensors[i].color[0]=sensors[i].color[k];
@@ -184,55 +184,48 @@ function setColor(i){
 function displaySidebar(i){
 	$("#locationheader").html(String(sensors[i].location));
 	if(!sensors[i].alphaFunctioning){
-		var alpha1_color = "grey";
+		var alpha_color = "grey";
+		$(".alpha1").html("--");
+		$(".alpha2").html("--");
+		$(".alpha3").html("--");
+		$(".alpha4").html("--");
 	}
 	else{
-		alpha1_color = "white";
+		alpha_color = "white";
+		$(".alpha1").html(String(Math.round(sensors[i].alpha1)));
+		$(".alpha2").html(String(Math.round(sensors[i].alpha2)));
+		$(".alpha3").html("*"+String(Math.round(sensors[i].alpha3)));
+		$(".alpha4").html(String(Math.round(sensors[i].alpha4)));
 	}
-	doc = document.getElementById("no2a").style.color=alpha1_color;
-	doc = document.getElementById("no2b").style.color=alpha1_color;
-	$(".alpha1").html("*"+String(Math.round(sensors[i].alpha1)));
-	if(!sensors[i].alphaFunctioning){
-		var alpha2_color = "grey";
-	}
-	else{
-		alpha2_color = "white";
-	}
-	doc = document.getElementById("o3a").style.color=alpha2_color;
-	doc = document.getElementById("o3b").style.color=alpha2_color;
-	$(".alpha2").html(String(Math.round(sensors[i].alpha2)));
-	if(!sensors[i].alphaFunctioning){
-		var alpha3_color = "grey";
-	}
-	else{
-		alpha3_color = "white";
-	}
-	doc = document.getElementById("coa").style.color=alpha3_color;
-	doc = document.getElementById("cob").style.color=alpha3_color;
-	$(".alpha3").html(String(Math.round(sensors[i].alpha3)));
-	if(!sensors[i].alphaFunctioning){
-		var alpha4_color = "grey";
-	}
-	else{
-		alpha4_color = "white";
-	}
-		doc = document.getElementById("noa").style.color=alpha4_color;
-		doc = document.getElementById("nob").style.color=alpha4_color;
-	$(".alpha4").html(String(Math.round(sensors[i].alpha4)));
+	doc = document.getElementById("no2a").style.color=alpha_color;
+	doc = document.getElementById("no2b").style.color=alpha_color;
+
+	doc = document.getElementById("o3a").style.color=alpha_color;
+	doc = document.getElementById("o3b").style.color=alpha_color;
+
+
+	doc = document.getElementById("coa").style.color=alpha_color;
+	doc = document.getElementById("cob").style.color=alpha_color;
+
+	doc = document.getElementById("noa").style.color=alpha_color;
+	doc = document.getElementById("nob").style.color=alpha_color;
+		
 	if(!sensors[i].dylosFunctioning){
 		doc = document.getElementById("dylos1").style.color="grey";
 		doc = document.getElementById("dylos2").style.color="grey";
 		doc = document.getElementById("dylosa").style.color="grey";
 		doc = document.getElementById("dylosb").style.color="grey";
+		$(".pm25").html("--");
+		$(".pm10").html("--");
 	}
 	else{
 		doc = document.getElementById("dylos1").style.color="white";
 		doc = document.getElementById("dylos2").style.color="white";
 		doc = document.getElementById("dylosa").style.color="white";
 		doc = document.getElementById("dylosb").style.color="white";
+		$(".pm25").html(String(Math.round(sensors[i].pm25)));
+		$(".pm10").html(String(Math.round(sensors[i].pm10)));
 	}
-	$(".pm25").html(String(Math.round(sensors[i].pm25)));
-	$(".pm10").html(String(Math.round(sensors[i].pm10)));
 	$("#lastupdated").html("Last Updated: "+sensors[i].lastUpdated);
 };
 
