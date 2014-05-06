@@ -125,7 +125,7 @@ $(function() {
 
     function downloadData(){
         // make sure all nodes have data
-
+        //$("#loading_shell").prepend('<div id="loading"></div>');
         $.each(nodes, function(i, id) {
             getData(currentSensor, id);
         });
