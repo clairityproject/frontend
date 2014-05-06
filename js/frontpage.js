@@ -1,18 +1,5 @@
 // In Front End
 
-//TO DO:
-// color malfunctioning nodes grey - done
-//color malfunctioning nodes' text grey
-//make color legend prettier
-
-
-//For next Tuesday:
-//Posters: bring laptop to connect to screen to project poster - bring Dongle ??????
-//Bring towers
-//Attire: don't wear anything not drastically blue, dress up (business casual)
-
-//------------
-
 //At some later date
 //site label on graphs
 //map: Buildings from whereis.mit.edu
