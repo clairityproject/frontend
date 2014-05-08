@@ -128,7 +128,7 @@ transition: all .2s;
 }
 
 .team-description {
-  font-size: 14px;
+  font-size: 16px;
 color: #fff;
 position: relative;
 pointer-events: none;
@@ -158,6 +158,7 @@ padding-bottom: 20px;
 position: absolute;
 height: 100%;
 background-color: rgba(0, 0, 0, 0.05);
+opacity: 70%;
 }
 
 .team-image-photo {
@@ -204,4 +205,8 @@ bottom: -7px;
   font-weight: bold;
   color: #1560ac;
   font-size: 14px;
+}
+
+.memberNames {
+  font-size: 12px;
 }
