@@ -169,6 +169,7 @@ function displaySidebar(i){
 	$("#locationheader").html(String(sensors[i].location));
 	if(!sensors[i].alphaFunctioning){
 		var alpha_color = "grey";
+		co_color = "grey";
 		$(".alpha1").html("--");
 		$(".alpha2").html("--");
 		$(".alpha3").html("--");
