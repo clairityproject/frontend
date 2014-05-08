@@ -1,10 +1,4 @@
-// In Front End
-
-//At some later date
-//site label on graphs
-//map: Buildings from whereis.mit.edu
-//fix popup skip when click
-//localize color values in "valuesTable"
+// Frontpage.js
 
 //Note: changing the colors on the nodes to reflect only PM2.5, CO, and O3 with the data Derek emailed
 //the numbers are in counts, and ppm (which is what we'll be using once things are calibrated)
@@ -14,8 +8,9 @@ var serverURL = "http://clairity.mit.edu/latest/all/";
 var sensors = [];
 var new_sensor;
 var nodesDrawn = false;
-var firstUpdate = true;
-var update_int = 15000; //milliseconds, 15 seconds
+var firstUpdate = false;
+
+var update_int = 11000; //milliseconds, 11 seconds;
 
 var mapBig = true;
 
@@ -41,7 +36,7 @@ function sensor(lat,lon,location,id,in_out) {
 	this.alpha4 = null;
 	this.color = [0,0,0,0,0,0,0]; 
 	//Overall color, alpha1 color, alpha2 color, alpha3 color, alpha4 color, pm2.5 color, pm10 color
-	// 0 = green, 1 = yellow, 2 = orange, 3 = red
+	// 0 = green, 1 = yellow, 2 = red
 	this.pm25 = null;
 	this.pm10 = null;
 	this.functioning = true;
@@ -53,7 +48,7 @@ function sensor(lat,lon,location,id,in_out) {
 	this.alpha4Functioning = true;
 }
 
-function RequestNodes() {
+function RequestNodes(sidebarNode) {
 	$.getJSON(serverURL, function (data) {
 		if(!nodesDrawn){
 			for(i=0; i<data.length; i++){
@@ -81,10 +76,10 @@ function RequestNodes() {
 				}
 				setColor(i);
 			}
+			displaySidebar(sidebarNode);
 			if(firstUpdate){
-				displaySidebar(14);
-				sensors[14].circ.setStyle({fillOpacity: "1"});
-				firstUpdate = false;
+				sensors[sidebarNode].circ.setStyle({fillOpacity: "1"}); 
+				firstUpdate = false; 
 			}
 		}
 	});
@@ -185,6 +180,16 @@ function displaySidebar(i){
 		$(".alpha2").html(String(Math.round(sensors[i].alpha2)));
 		$(".alpha3").html(String(Math.round(sensors[i].alpha3)));
 		$(".alpha4").html(String(Math.round(sensors[i].alpha4)));
+		if(sensors[i].color[1]==1){
+			co_color = "yellow";
+		}
+		else if(sensors[i].color[1]==2){
+			co_color = "red";
+		}
+		else{
+			co_color = "green";
+		}
+		console.log(co_color);
 	}
 	doc = document.getElementById("no2a").style.color=alpha_color;
 	doc = document.getElementById("no2b").style.color=alpha_color;
@@ -192,9 +197,8 @@ function displaySidebar(i){
 	doc = document.getElementById("o3a").style.color="grey";
 	doc = document.getElementById("o3b").style.color="grey";
 
-
-	doc = document.getElementById("coa").style.color=alpha_color;
-	doc = document.getElementById("cob").style.color=alpha_color;
+	doc = document.getElementById("coa").style.color=co_color;
+	doc = document.getElementById("cob").style.color=co_color;
 
 	doc = document.getElementById("noa").style.color=alpha_color;
 	doc = document.getElementById("nob").style.color=alpha_color;
@@ -208,9 +212,21 @@ function displaySidebar(i){
 		$(".pm10").html("--");
 	}
 	else{
-		doc = document.getElementById("dylos1").style.color="white";
+		if(sensors[i].color[5]==1){
+			doc = document.getElementById("dylos1").style.color="yellow";
+			doc = document.getElementById("dylosa").style.color="yellow";
+		}
+		else if(sensors[i].color[5]==2){
+			doc = document.getElementById("dylos1").style.color="red";
+			doc = document.getElementById("dylosa").style.color="red";
+		}
+		else{
+			doc = document.getElementById("dylos1").style.color="green";
+			doc = document.getElementById("dylosa").style.color="green";
+		}
+
+
 		doc = document.getElementById("dylos2").style.color="white";
-		doc = document.getElementById("dylosa").style.color="white";
 		doc = document.getElementById("dylosb").style.color="white";
 		$(".pm25").html(String(Math.round(sensors[i].pm25)));
 		$(".pm10").html(String(Math.round(sensors[i].pm10)));
@@ -226,16 +242,15 @@ $(document).ready(function(){
 	var sWBound = L.latLng(42.336976,-71.153984);
 	var nEBound = L.latLng(42.381880,-71.052017);
 	var map = new L.Map('map', {center: [42.3590000, -71.095500], zoom: 16, minZoom: 14, maxBounds:[sWBound,nEBound], zoomControl: false, attributionControl: false, layers: [googleLayer] });
-	//map.setView([42.3590000, -71.095500], 16);
 
 	map.addLayer(googleLayer);
 	var zoomBar = L.control.zoom({ position: 'topright' }).addTo(map);
 	var attribution = L.control.attribution({position: 'topright'}).addTo(map);
 
-	//map.touchZoom.disable();
-	//map.dragging.disable();
 	map.doubleClickZoom.disable();
 	map.scrollWheelZoom.disable();
+
+	var sidebarNode = 14;
 
 	drawNodes = function(){
 	for(var i=0; i<sensors.length; i++){
@@ -270,6 +285,7 @@ $(document).ready(function(){
 
 			sensors[i].circ.on('click', function(evt){
 				displaySidebar(this.number);
+				sidebarNode = this.number;
 				for(var i=0; i<sensors.length; i++){
 					if(sensors[i].lat){
 					sensors[i].circ.setStyle({fillOpacity: "0.5"});
@@ -281,26 +297,8 @@ $(document).ready(function(){
 		};
 	};
 }
-	
-	RequestNodes();
-	var reset = setInterval(function() {RequestNodes()}, update_int);
+
+	RequestNodes(sidebarNode);
+	var reset = setInterval(function() {RequestNodes(sidebarNode)}, update_int);
    
-	var mapBig = true;
-
-	function moveMap(){
-		if(mapBig){
-			$("#graphcontainer").css("visibility","visible","height","400px","width","95%");
-			$("#valuesTable").css("visibility","hidden");
-			mapBig = false;
-			map.removeControl(zoomBar);
-		}
-	}
-
-	$('#map').click(function(){
-		if(!mapBig){
-			$("#graphcontainer").css("visibility","initial","height","0px","width","0px");
-			mapBig = true;
-		}
-	});
-
 });
