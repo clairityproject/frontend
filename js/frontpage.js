@@ -54,9 +54,14 @@ function RequestNodes(sidebarNode) {
 			for(i=0; i<data.length; i++){
 				new_sensor = new sensor(data[i]["latitude"],data[i]["longitude"],data[i]["name"],data[i]["node_id"],data[i]["indoor"]);
 	    		sensors.push(new_sensor);
+				if(sensors[i].location == "CoGen Plant"){
+					sensors[i].alphaFunctioning = false;
+					sensors[i].dylosFunctioning = false;
+				}
 			}
 			drawNodes();
 			nodesDrawn=true;
+			console.log(sensors[3].location+" "+sensors[3].alphaFunctioning);
 		}
 		if(nodesDrawn){
 			for(i=0; i<sensors.length; i++){
@@ -190,7 +195,6 @@ function displaySidebar(i){
 		else{
 			co_color = "green";
 		}
-		console.log(co_color);
 	}
 	doc = document.getElementById("no2a").style.color=alpha_color;
 	doc = document.getElementById("no2b").style.color=alpha_color;
