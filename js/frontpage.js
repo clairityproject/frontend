@@ -24,7 +24,7 @@ var alpha_thresholds = [alpha1_thresholds, alpha2_thresholds, alpha3_thresholds,
 
 var drawNodes;
 
-function sensor(lat,lon,location,id,in_out) {
+function sensor(lat,lon,location,id,in_out,offline) {
 	this.node_id = id;
 	this.lat = lat;
 	this.lon = lon;
@@ -46,15 +46,16 @@ function sensor(lat,lon,location,id,in_out) {
 	this.alpha2Functioning = true;
 	this.alpha3Functioning = true;
 	this.alpha4Functioning = true;
+	this.offline = false;
 }
 
 function RequestNodes(sidebarNode) {
 	$.getJSON(serverURL, function (data) {
 		if(!nodesDrawn){
 			for(i=0; i<data.length; i++){
-				new_sensor = new sensor(data[i]["latitude"],data[i]["longitude"],data[i]["name"],data[i]["node_id"],data[i]["indoor"]);
+				new_sensor = new sensor(data[i]["latitude"],data[i]["longitude"],data[i]["name"],data[i]["node_id"],data[i]["indoor"],data[i]["offline"]);
 	    		sensors.push(new_sensor);
-				if(sensors[i].location == "CoGen Plant"){
+				if(sensors[i].offline){
 					sensors[i].alphaFunctioning = false;
 					sensors[i].dylosFunctioning = false;
 				}
