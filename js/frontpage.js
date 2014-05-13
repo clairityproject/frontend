@@ -46,7 +46,7 @@ function sensor(lat,lon,location,id,in_out,offline) {
 	this.alpha2Functioning = true;
 	this.alpha3Functioning = true;
 	this.alpha4Functioning = true;
-	this.offline = false;
+	this.offline = offline;
 }
 
 function RequestNodes(sidebarNode) {
@@ -58,6 +58,7 @@ function RequestNodes(sidebarNode) {
 				if(sensors[i].offline){
 					sensors[i].alphaFunctioning = false;
 					sensors[i].dylosFunctioning = false;
+					console.log(sensors[i].location+" "+sensors[i].offline);
 				}
 			}
 			drawNodes();
