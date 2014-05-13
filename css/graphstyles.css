@@ -16,9 +16,10 @@
 	left: 1%;
 	top: 50px;
 	height: 100%;
-	width: 260px;
+	width: 23%;
 	color: white;
 	z-index: 1;
+	overflow: auto;
 }
 
 #lastupdated{
@@ -167,3 +168,4 @@ table.table#temprh > tbody > tr > td {
 #dylos{
 	color: white;
 }
+
