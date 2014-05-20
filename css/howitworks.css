@@ -54,5 +54,15 @@ background-color: #eee;
 	display: block;
 	margin-left:auto;
 	margin-right:auto;
+}
 
+.lead {
+	margin-bottom: 5px;
+}
+
+#dylosbox:hover {
+	display: block;
+	height: 100px;
+	width: 100px;
+	
 }
